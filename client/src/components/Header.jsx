@@ -1,4 +1,3 @@
-// import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
@@ -34,7 +33,7 @@ const Header = () => {
         collapseOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>MERN Auth</Navbar.Brand>
+            <Navbar.Brand>Detective Den</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -57,9 +56,11 @@ const Header = () => {
                     )}
 
                     {userInfo.role === "owner" && (
-                      <LinkContainer to="/dashboard">
-                        <NavDropdown.Item>Dashboard</NavDropdown.Item>
-                      </LinkContainer>
+                      <>
+                        <LinkContainer to="/dashboard">
+                          <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                        </LinkContainer>
+                      </>
                     )}
 
                     <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>

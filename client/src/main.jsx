@@ -11,8 +11,10 @@ import LoginScreen from "./screens/LoginScreen.jsx";
 import RegisterScreen from "./screens/RegisterScreen.jsx";
 import ProfileScreen from "./screens/ProfileScreen.jsx";
 import DashboardScreen from "./screens/DashboardScreen.jsx";
+import ListUserScreen from "./screens/ListUserScreen.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
+import OwnerRoute from "./components/OwnerRoute.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,6 +44,14 @@ const router = createBrowserRouter(
             path="/dashboard"
             element={<DashboardScreen />}
           />
+          <Route
+            path=""
+            element={<OwnerRoute />}>
+            <Route
+              path="/listallusers"
+              element={<ListUserScreen />}
+            />
+          </Route>
         </Route>
         <Route
           path="/profile"

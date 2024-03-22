@@ -36,7 +36,14 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    changeRole: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/role`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation, useGetAllUsersQuery } = userApiSlice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation, useGetAllUsersQuery, useChangeRoleMutation } = userApiSlice;

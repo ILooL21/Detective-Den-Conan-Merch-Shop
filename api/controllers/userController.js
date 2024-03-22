@@ -145,23 +145,31 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route   Put /api/users/changeRole
 // @access  Private
 const changeUserRole = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
+  const user = await User.findById(req.body.id);
+  const userlogin = await User.findById(req.body.userId);
 
   if (user) {
-    user.role = user.role === "admin" ? "user" : "admin";
-
-    const updatedUser = await user.save();
-
-    res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      role: updatedUser.role,
-    });
+    if (user.role === "user") {
+      await User.findByIdAndUpdate(req.body.id, { role: "admin" });
+      res.json({
+        _id: userlogin._id,
+        name: userlogin.name,
+        email: userlogin.email,
+        role: userlogin.role,
+      });
+    } else if (user.role === "admin") {
+      await User.findByIdAndUpdate(req.body.id, { role: "user" });
+      res.json({
+        _id: userlogin._id,
+        name: userlogin.name,
+        email: userlogin.email,
+        role: userlogin.role,
+      });
+    }
   } else {
     res.status(404);
     throw new Error("User not found");
   }
 });
 
-export { authUser, registerUser, logoutUser, getUserProfile, getAllUsers, updateUserProfile };
+export { authUser, registerUser, logoutUser, getUserProfile, getAllUsers, updateUserProfile, changeUserRole };
