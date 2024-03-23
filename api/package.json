@@ -1,14 +1,13 @@
 {
-  "name": "mern-auth",
+  "name": "detective-den-conan-merch-shop",
   "version": "1.0.0",
   "type": "module",
-  "description": "MERN authentication system",
+  "description": "conan merch shop",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js"
   },
-  "author": "Brad Traversy",
-  "license": "MIT",
+  "author": "Kelompok 2 (Ilul, Raka, Rama, Haris, Indira, Fina)",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
