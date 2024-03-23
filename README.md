@@ -3,6 +3,7 @@
     ```
     git clone https://github.com/ILooL21/Detective-Den-Conan-Merch-Shop.git
     cd Detective-Den-Conan-Merch-Shop
+    code .
     ```
 2. Buka 2 terminal
    
