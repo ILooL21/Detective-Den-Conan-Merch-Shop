@@ -5,7 +5,7 @@
    ```
 2. Buka 2 terminal
    Client
-   ```
+   ```sh
    cd client
    npm install
    npm run dev
