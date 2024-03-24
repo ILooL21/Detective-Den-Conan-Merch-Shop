@@ -18,6 +18,10 @@ const ListUserScreen = () => {
 
   const { userInfo } = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    setList(data);
+  }, [data]);
+
   const clickHandler = async (id) => {
     try {
       const res = await changeRole({ id: id, userId: userInfo._id }).unwrap();
@@ -32,7 +36,7 @@ const ListUserScreen = () => {
   const searchHandler = () => {
     if (search !== "") {
       const results = data?.filter((user) => {
-        return user.name.toLowerCase().startsWith(search.toLowerCase());
+        return user.email.toLowerCase().startsWith(search.toLowerCase());
       });
       if (results.length === 0) {
         toast.error("User not found");
@@ -44,29 +48,34 @@ const ListUserScreen = () => {
     }
   };
 
-  useEffect(() => {
-    setList(data);
-  }, [data]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    searchHandler();
+  };
 
   return (
     <div>
-      <div className="d-flex justify-content-between align-items-center my-3">
-        <h3 className="">Users</h3>
-        <div className="d-flex align-items-center">
-          <input
-            className="form-control"
-            type="text"
-            placeholder="Search by email or name"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            style={{ width: "200px" }} // Adjust the width as needed
-          />
-          <Button
-            className="btn btn-primary ms-2" // Adjust margin as needed
-            onClick={searchHandler}>
-            <FaSearch />
-          </Button>
-        </div>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <div className="d-flex justify-content-between align-items-center my-3">
+            <h3 className="">Users</h3>
+            <div className="d-flex align-items-center">
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Search by email"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                style={{ width: "200px" }}
+              />
+              <Button
+                type="submit" // Menjadikan button sebagai tombol submit
+                className="btn btn-primary ms-2">
+                <FaSearch />
+              </Button>
+            </div>
+          </div>
+        </form>
       </div>
       <Table
         striped
