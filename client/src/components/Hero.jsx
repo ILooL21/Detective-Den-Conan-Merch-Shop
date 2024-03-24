@@ -12,16 +12,18 @@ const Hero = () => {
         <Container className="d-flex justify-content-center">
           <Card className="p-5 d-flex flex-column align-items-center hero-card bg-light w-75">
             <h1 className="text-center mb-4">Detective Den</h1>
-            <h2>Hello, {userInfo.name}</h2>
+            {userInfo ? <h2>Hello, {userInfo.name}</h2> : null}
             <p className="text-center mb-4">Selamat Datang di Toko Merch Detective conan</p>
             <div className="d-flex">
               {userInfo ? (
-                <Button
-                  variant="primary"
-                  href="/profile"
-                  className="me-3">
-                  Profile
-                </Button>
+                <>
+                  <Button
+                    variant="primary"
+                    href="/profile"
+                    className="me-3">
+                    Profile
+                  </Button>
+                </>
               ) : (
                 <>
                   <Button
