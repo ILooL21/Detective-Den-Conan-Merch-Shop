@@ -96,7 +96,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route   GET /api/users/allUser
 // @access  Private
 const getAllUsers = asyncHandler(async (req, res) => {
-  const users = await User.find({ $or: [{ role: "user" }, { role: "admin" }] });
+  const users = await User.find({ $or: [{ role: "user" }, { role: "admin" }] }).sort({ role: 1 });
 
   if (users) {
     res.json(
