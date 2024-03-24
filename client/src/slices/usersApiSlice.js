@@ -43,7 +43,14 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    refreshToken: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/refreshToken`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation, useGetAllUsersQuery, useChangeRoleMutation } = userApiSlice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation, useGetAllUsersQuery, useChangeRoleMutation, useRefreshTokenMutation } = userApiSlice;
