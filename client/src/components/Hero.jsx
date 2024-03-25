@@ -35,7 +35,7 @@ const Hero = () => {
                   <Button
                     variant="secondary"
                     href="/register">
-                    Register
+                    Sign Up
                   </Button>
                 </>
               )}
