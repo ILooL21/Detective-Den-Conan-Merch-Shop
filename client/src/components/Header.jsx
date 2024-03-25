@@ -31,7 +31,7 @@ const Header = () => {
         variant="dark"
         expand="lg"
         collapseOnSelect>
-        <Container>
+        <Container fluid>
           <LinkContainer to="/">
             <Navbar.Brand>Detective Den</Navbar.Brand>
           </LinkContainer>
