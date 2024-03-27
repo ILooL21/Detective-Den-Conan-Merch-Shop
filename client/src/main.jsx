@@ -1,7 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import store from "./store";
@@ -18,45 +23,18 @@ import OwnerRoute from "./components/OwnerRoute.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route
-      path="/"
-      element={<App />}>
-      <Route
-        index={true}
-        path="/"
-        element={<HomeScreen />}
-      />
-      <Route
-        path="/login"
-        element={<LoginScreen />}
-      />
-      <Route
-        path="/register"
-        element={<RegisterScreen />}
-      />
-      <Route
-        path=""
-        element={<PrivateRoute />}>
-        <Route
-          path=""
-          element={<AdminRoute />}>
-          <Route
-            path="/dashboard"
-            element={<DashboardScreen />}
-          />
-          <Route
-            path=""
-            element={<OwnerRoute />}>
-            <Route
-              path="/listallusers"
-              element={<ListUserScreen />}
-            />
+    <Route path="/" element={<App />}>
+      <Route index={true} path="/" element={<HomeScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
+      <Route path="/register" element={<RegisterScreen />} />
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="" element={<AdminRoute />}>
+          <Route path="/dashboard" element={<DashboardScreen />} />
+          <Route path="" element={<OwnerRoute />}>
+            <Route path="/listallusers" element={<ListUserScreen />} />
           </Route>
         </Route>
-        <Route
-          path="/profile"
-          element={<ProfileScreen />}
-        />
+        <Route path="/profile" element={<ProfileScreen />} />
       </Route>
     </Route>
   )

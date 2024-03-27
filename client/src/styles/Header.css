@@ -1,0 +1,114 @@
+.logo {
+  color: #000;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 3%;
+  line-height: 24px;
+  width: 223px;
+  height: 48px;
+  margin-right: 24px;
+}
+.logo:hover {
+  color: #db4444;
+}
+.promo {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 21px;
+  cursor: text;
+}
+.detail-promo {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+}
+.promo:hover {
+  color: #fff;
+}
+.detail-promo:hover {
+  color: #db4444;
+  text-decoration: underline;
+}
+.menu {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000;
+  text-decoration: none;
+  gap: 16px;
+}
+.menu a {
+  color: #000;
+  text-decoration: none;
+  padding: 12px;
+}
+.menu a:hover {
+  color: #db4444;
+  border-bottom: 1px solid #db4444;
+}
+.menu-register {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000;
+  text-decoration: none;
+}
+.menu-register a {
+  color: #000;
+  text-decoration: none;
+  padding: 12px;
+}
+.menu-register a:hover {
+  color: #db4444;
+  border-bottom: 1px solid #db4444;
+}
+.menu-login {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000;
+  text-decoration: none;
+}
+.menu-login a {
+  color: #000;
+  text-decoration: none;
+  padding: 12px;
+}
+.menu-login a:hover {
+  color: #db4444;
+}
+.menu-user {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000;
+  text-decoration: none;
+}
+.menu-user:hover {
+  color: #db4444;
+}
+.dropdown-content {
+  text-decoration: none;
+}
+.icons {
+  font-size: 20px;
+}
+.icons:hover {
+  color: #db4444;
+}
