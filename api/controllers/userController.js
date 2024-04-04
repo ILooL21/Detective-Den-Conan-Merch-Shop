@@ -15,6 +15,11 @@ const authUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email });
 
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
   if (user && (await user.matchPassword(password))) {
     generateToken(res, user._id);
 
@@ -281,4 +286,4 @@ const updateAlamat = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, registerUser, logoutUser, getUserProfile, getAllUsers, updateUserProfile, changeUserRole, refreshToken };
+export { authUser, registerUser, logoutUser, getUserProfile, getAllUsers, updateUserProfile, changeUserRole, refreshToken, addAlamat, deleteAlamat, updateAlamat };
