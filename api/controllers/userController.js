@@ -212,14 +212,14 @@ const refreshToken = asyncHandler(async (req, res) => {
 });
 
 // @desc    add alamat
-// @route   POST /api/users/addAlamat
+// @route   POST /api/users/alamat
 // @access  Private
 
 const addAlamat = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
-    user.listalamat.push(req.body);
+    user.listalamat.push(req.body.alamat);
 
     const updatedUser = await user.save();
 
@@ -237,14 +237,14 @@ const addAlamat = asyncHandler(async (req, res) => {
 });
 
 // @desc    delete alamat
-// @route   DELETE /api/users/deleteAlamat
+// @route   DELETE /api/users/alamat
 // @access  Private
 
 const deleteAlamat = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
-    user.listalamat = user.listalamat.filter((alamat) => alamat._id.toString() !== req.body.id);
+    user.listalamat = user.listalamat.filter((listalamat) => listalamat !== req.body.alamat);
 
     const updatedUser = await user.save();
 
@@ -262,14 +262,16 @@ const deleteAlamat = asyncHandler(async (req, res) => {
 });
 
 // @desc    update alamat
-// @route   PUT /api/users/updateAlamat
+// @route   PUT /api/users/alamat
 // @access  Private
 
 const updateAlamat = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
+  let oldalamat = req.body.oldalamat;
+  let newalamat = req.body.newalamat;
 
   if (user) {
-    user.listalamat = user.listalamat.map((alamat) => (alamat._id.toString() === req.body.id ? req.body : alamat));
+    user.listalamat = user.listalamat.map((listalamat) => (listalamat === oldalamat ? newalamat : listalamat));
 
     const updatedUser = await user.save();
 
