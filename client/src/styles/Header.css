@@ -112,3 +112,8 @@
 .icons:hover {
   color: #db4444;
 }
+.container-header {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}

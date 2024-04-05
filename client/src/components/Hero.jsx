@@ -1,6 +1,7 @@
 import { Container, Card, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import RefreshToken from "../components/RefreshToken";
+import "../styles/Hero.css";
 
 const Hero = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -8,33 +9,27 @@ const Hero = () => {
   return (
     <>
       <RefreshToken />
-      <div className=" py-5">
+      <div className="container-hero">
         <Container className="d-flex justify-content-center">
           <Card className="p-5 d-flex flex-column align-items-center hero-card bg-light w-75">
             <h1 className="text-center mb-4">Detective Den</h1>
             {userInfo ? <h2>Hello, {userInfo.name}</h2> : null}
-            <p className="text-center mb-4">Selamat Datang di Toko Merch Detective conan</p>
+            <p className="text-center mb-4">
+              Selamat Datang di Toko Merch Detective conan
+            </p>
             <div className="d-flex">
               {userInfo ? (
                 <>
-                  <Button
-                    variant="primary"
-                    href="/profile"
-                    className="me-3">
+                  <Button variant="primary" href="/profile" className="me-3">
                     Profile
                   </Button>
                 </>
               ) : (
                 <>
-                  <Button
-                    variant="primary"
-                    href="/login"
-                    className="me-3">
+                  <Button variant="primary" href="/login" className="me-3">
                     Sign In
                   </Button>
-                  <Button
-                    variant="secondary"
-                    href="/register">
+                  <Button variant="secondary" href="/register">
                     Sign Up
                   </Button>
                 </>

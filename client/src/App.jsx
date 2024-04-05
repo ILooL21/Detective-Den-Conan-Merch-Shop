@@ -10,7 +10,7 @@ const App = () => {
     <>
       <Header />
       <ToastContainer />
-      <Container style={{ padding: "24px" }}>
+      <Container style={{ padding: "0px", margin: "0px" }}>
         <Outlet />
       </Container>
       <Footer />
