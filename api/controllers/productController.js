@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Product from "../models/productModel.js";
+import { unlink } from "node:fs";
 
 // @desc    Fetch all products
 // @route   GET /api/products
@@ -33,11 +34,11 @@ const getProductById = asyncHandler(async (req, res) => {
 // @route   POST /api/products
 // @access  Private/Admin
 const addProduct = asyncHandler(async (req, res) => {
-  const { name, image, category, description, price } = req.body;
+  const { name, category, description, price } = req.body;
 
   const product = new Product({
     name,
-    image,
+    image: `/public/images/${req.file.filename}`,
     category,
     description,
     price,
@@ -51,16 +52,28 @@ const addProduct = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const { name, image, category, description, price } = req.body;
+  const { name, category, description, price } = req.body;
 
   const product = await Product.findById(req.params.id);
 
   if (product) {
     if (name) product.name = name;
-    if (image) product.image = image;
     if (category) product.category = category;
     if (description) product.description = description;
     if (price) product.price = price;
+
+    if (req.file) {
+      // delete old image
+      const image = product.image;
+      unlink(`c/Users/muham/OneDrive/Desktop/Project/Detective-Den-Conan-Merch-Shop/api/${image}`, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      });
+
+      product.image = `/public/images/${req.file.filename}`;
+    }
 
     const updatedProduct = await product.save();
     res.json(updatedProduct);
@@ -78,6 +91,15 @@ const deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
   if (product) {
+    // delete image
+    const image = product.image;
+    fs.unlink(`${image}`, (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+    });
+
     await product.deleteOne({ _id: req.params.id });
     res.json({ message: "Product removed" });
   } else {
