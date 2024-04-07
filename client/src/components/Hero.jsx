@@ -1,5 +1,6 @@
-import { Container, Card, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import RefreshToken from "../components/RefreshToken";
 import "../styles/Hero.css";
 
@@ -9,11 +10,18 @@ const Hero = () => {
   return (
     <>
       <RefreshToken />
+
       <div className="container-hero">
-        <Container className="d-flex justify-content-center">
+        <div className="image-home-main-container">
+          <img
+            src="./src/assets/images/Conan-Home-Image.png"
+            alt="Conan Home Image"
+            className="image-home-main"
+          />
+        </div>
           <Card className="p-5 d-flex flex-column align-items-center hero-card bg-light w-75">
             <h1 className="text-center mb-4">Detective Den</h1>
-            {userInfo ? <h2>Hello, {userInfo.name}</h2> : null}
+            {userInfo ? <h2>Hello, <h3>{userInfo.name}</h3></h2> : null}
             <p className="text-center mb-4">
               Selamat Datang di Toko Merch Detective conan
             </p>
@@ -36,7 +44,13 @@ const Hero = () => {
               )}
             </div>
           </Card>
-        </Container>
+          <div className="container-view-products">
+            <button className="view-product">
+              <Link to="/products">
+                View All Products
+              </Link>
+            </button>
+          </div>
       </div>
     </>
   );

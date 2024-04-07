@@ -1,4 +1,4 @@
-.container-login {
+.container-register {
   padding: 24vh 0px;
   width: 98vw;
   display: flex;
@@ -7,52 +7,52 @@
   width: 1500px;
   height: 100%;
 }
-.image-auth-login {
+.image-auth-register {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 0px 8px 8px 0px;
 }
-.login-auth {
+.register-auth {
   display: flex;
   flex-direction: column; 
   gap: 24px;
 }
-.login-auth h1 {
+.register-auth h1 {
   font-size: 36px;
   font-weight: 500;
   line-height: 30px;
 }
-.login-auth h6 {
+.register-auth h6 {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
 }
-.form-login {
+.form-register {
   display: flex;
   flex-direction: column;
   width: 28vw;
   gap: 28px;
 }
-.form-login input {
+.form-register input {
   border: none;
   border-bottom: solid 3px #c4c4c4;
   padding: 8px;
   outline: none;
   font-size: 16px;
 }
-.form-login input::placeholder {
+.form-register input::placeholder {
   color: #c4c4c4;
 }
-.form-login input:focus {
+.form-register input:focus {
   border-bottom: solid 3px #db4444;
 }
-.container-submit-login {
+.container-submit-register {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 8px;
 }
-.button-login {
+.button-register {
   background-color: #db4444;
   color: white;
   border: none;
@@ -62,19 +62,40 @@
   padding: 12px 48px;
   cursor: pointer;
   display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
+  width: 100%;
 }
-.button-login:hover {
+.button-register-google {
+  background-color: #fff;
+  color: #000;
+  border: solid 1px #c4c4c4;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 4px;
+  padding: 12px 48px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+.button-register:hover {
   box-shadow: 0px 0px 8px 0px #c4c4c4;
 }
-.container-submit-login a {
+.button-register-google:hover {
+  box-shadow: 0px 0px 8px 0px #c4c4c4;
+}
+.container-submit-register a {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   color: #db4444;
   text-decoration: none;
 }
-.container-submit-login a:hover {
+.container-submit-register a:hover {
   text-decoration: underline;
 }
 .container-remember-me {
@@ -104,4 +125,9 @@
 .center-loading {
   position: absolute;
   right: 16px;
+}
+.image-google {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
 }

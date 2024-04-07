@@ -17,7 +17,7 @@ const FooterComponent = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          height: "400px",
+          height: "60vh",
           backgroundColor: "#000",
         }}
       >
@@ -72,7 +72,7 @@ const FooterComponent = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          height: "56px",
+          height: "5vh",
           backgroundColor: "#000",
           borderTop: "1px solid #444",
         }}
