@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useRegisterMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
+import "../styles/RegisterScreen.css";
 
 const RegisterScreen = () => {
   const [name, setName] = useState("");
@@ -43,68 +42,85 @@ const RegisterScreen = () => {
     }
   };
   return (
-    <FormContainer>
-      <h1>Register</h1>
-      <Form onSubmit={submitHandler}>
-        <Form.Group
-          className="my-2"
-          controlId="name">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="name"
-            placeholder="Enter name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}></Form.Control>
-        </Form.Group>
+    <div className="container-register">
+      <div className="image-auth-container">
+        <img
+          src="./src/assets/images/conan-gaya-auth.jpeg"
+          alt="Conan"
+          className="image-auth-register"
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <div className="register-auth">
+          <div>
+            <h1>Create an account</h1>
+            <h6>Enter your details below</h6>
+          </div>
+          <form action="" className="form-register">
+            <input
+              type="name"
+              placeholder="Enter name"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </form>
+          <form action="" className="form-register">
+            <input
+              type="email"
+              placeholder="Email or Phone Number"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </form>
+          <form action="" className="form-register">
+            <input
+              type="password"
+              placeholder="Password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </form>
+          <form action="" className="form-register">
+            <input
+              type="confirmPassword"
+              placeholder="Confirm Password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </form>
+          <div className="container-submit-register">
+            <button
+              type="sumbit"
+              className="button-register"
+              onClick={submitHandler}
+            >
+              Create Account
+              <div className="center-loading">{isLoading && <Loader />}</div>
+            </button>
+            <button type="sumbit" className="button-register-google">
+              <img src="./src/assets/images/Google-Logo.png" alt="Google" className="image-google"/>
+              Sign up with Google
+            </button>
+          </div>
 
-        <Form.Group
-          className="my-2"
-          controlId="email">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}></Form.Control>
-        </Form.Group>
-
-        <Form.Group
-          className="my-2"
-          controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}></Form.Control>
-        </Form.Group>
-        <Form.Group
-          className="my-2"
-          controlId="confirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}></Form.Control>
-        </Form.Group>
-
-        <Button
-          type="submit"
-          variant="primary"
-          className="mt-3">
-          Register
-        </Button>
-
-        {isLoading && <Loader />}
-      </Form>
-
-      <Row className="py-3">
-        <Col>
-          Already have an account? <Link to={`/login`}>Login</Link>
-        </Col>
-      </Row>
-    </FormContainer>
+          <div className="container-dont-have-account">
+            <p>Already have an account?</p>
+            <Link to="/login">Log in</Link>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

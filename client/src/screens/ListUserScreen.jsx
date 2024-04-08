@@ -6,6 +6,7 @@ import { setCredentials } from "../slices/authSlice";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { FaSearch } from "react-icons/fa";
+import "../styles/ListUserScreen.css";
 
 const ListUserScreen = () => {
   const [list, setList] = useState([]);
@@ -54,7 +55,7 @@ const ListUserScreen = () => {
   };
 
   return (
-    <div>
+    <div className="container-list-user">
       <div>
         <form onSubmit={handleSubmit}>
           <div className="d-flex justify-content-between align-items-center my-3">

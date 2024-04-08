@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import FormContainer from "../components/FormContainer";
+import { Link } from "react-router-dom";
 import RefreshToken from "../components/RefreshToken";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import { useUpdateUserMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
+import { Breadcrumb } from "antd";
+import "../styles/ProfileScreen.css";
 
 const ProfileScreen = () => {
   const [email, setEmail] = useState("");
@@ -45,66 +47,143 @@ const ProfileScreen = () => {
       }
     }
   };
+  const items = [
+    {
+      path: "/",
+      title: "Home",
+    },
+    {
+      path: "/profile",
+      title: "My Account",
+    },
+  ];
+
+  function itemRender(currentRoute, params, items, paths) {
+    const isLast = currentRoute?.path === items[items.length - 1]?.path;
+
+    return isLast ? (
+      <span>{currentRoute.title}</span>
+    ) : (
+      <Link to={`/${paths.join("/")}`}>{currentRoute.title}</Link>
+    );
+  }
   return (
     <>
-      <RefreshToken />
-      <FormContainer>
-        <h1>Update Profile</h1>
+      <div className="container-profile">
+        <RefreshToken />
+        <div className="container-profile-header">
+          <Breadcrumb
+            className="breadcrumb-profile"
+            itemRender={itemRender}
+            items={items}
+          />
+          {userInfo ? (
+            <h2>
+              Welcome! <h3>{userInfo.name}</h3>
+            </h2>
+          ) : null}
+        </div>
+        <div className="container-menu-form-profile">
+          <div className="menu-profile">
+            <h2>Manage My Account</h2>
+            <ul>
+              <li>
+                <Link to="/profile">My Profile</Link>
+              </li>
 
-        <Form onSubmit={submitHandler}>
-          <Form.Group
-            className="my-2"
-            controlId="name">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Enter name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}></Form.Control>
-          </Form.Group>
-          <Form.Group
-            className="my-2"
-            controlId="email">
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled></Form.Control>
-          </Form.Group>
-          <Form.Group
-            className="my-2"
-            controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}></Form.Control>
-          </Form.Group>
+              <li>
+                <Link to="/profile">Address Book</Link>
+              </li>
+              <li>
+                <Link to="/profile">My Payment Options</Link>
+              </li>
+            </ul>
+            <h2>My Orders</h2>
+            <ul>
+              <li>
+                <Link to="/profile">My Returns</Link>
+              </li>
+              <li>
+                <Link to="/profile">My Cancellations</Link>
+              </li>
+            </ul>
+            <h2>My WishList</h2>
+          </div>
+          <Form onSubmit={submitHandler} className="container-form-profile">
+            <h1>Edit Your Profile</h1>
+            <Form.Group className="form-profile" controlId="name">
+              <label>Name</label>
+              <Form.Control
+                type="name"
+                placeholder="Enter name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="form-profile-input"
+              ></Form.Control>
+            </Form.Group>
+            <div className="container-email-address">
+              <Form.Group className="form-profile" controlId="email">
+                <label>Email Address</label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="form-profile-input"
+                  disabled
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group className="form-profile" controlId="address">
+                <label>Address</label>
+                <Form.Control
+                  type="address"
+                  placeholder="Enter Address"
+                  // value={address}
+                  // onChange={(e) => setAddress(e.target.value)}
+                  className="form-profile-input"
+                ></Form.Control>
+              </Form.Group>
+            </div>
 
-          <Form.Group
-            className="my-2"
-            controlId="confirmPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Confirm password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}></Form.Control>
-          </Form.Group>
+            <Form.Group className="form-profile" controlId="password">
+              <label>Password Changes</label>
+              <Form.Control
+                type="password"
+                placeholder="Current password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-profile-input"
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group className="form-profile" controlId="password">
+              <Form.Control
+                type="password"
+                placeholder="New password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-profile-input"
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group className="form-profile" controlId="confirmPassword">
+              <Form.Control
+                type="password"
+                placeholder="Confirm password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="form-profile-input"
+              ></Form.Control>
+            </Form.Group>
+            <div className="container-button-profile">
+              <button className="button-profile-cancel">Cancel</button>
+              <button type="submit" className="button-profile-save">
+                Save Changes
+              </button>
+            </div>
 
-          <Button
-            type="submit"
-            variant="primary"
-            className="mt-3">
-            Update
-          </Button>
-
-          {isLoading && <Loader />}
-        </Form>
-      </FormContainer>
+            {isLoading && <Loader />}
+          </Form>
+        </div>
+      </div>
     </>
   );
 };
