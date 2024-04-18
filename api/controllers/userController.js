@@ -8,7 +8,17 @@ import generateToken from "../utils/generateToken.js";
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
+  const token = req.cookies.jwt;
+  if (token) {
+    res.status(200).json({ message: "Already logged in" });
+  }
+
   const user = await User.findOne({ email });
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
 
   if (user && (await user.matchPassword(password))) {
     generateToken(res, user._id);
@@ -18,6 +28,7 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      listalamat: user.listalamat,
     });
   } else {
     res.status(401);
@@ -45,6 +56,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     role: firstUser ? "user" : "owner",
+    listalamat: [],
   });
 
   if (user) {
@@ -55,6 +67,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      listalamat: user.listalamat,
     });
   } else {
     res.status(400);
@@ -66,10 +79,13 @@ const registerUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users/logout
 // @access  Public
 const logoutUser = (req, res) => {
-  res.cookie("jwt", "", {
-    httpOnly: true,
-    expires: new Date(0),
-  });
+  const token = req.cookies.jwt;
+  if (!token) {
+    res.status(400);
+    throw new Error("You are not logged in");
+  }
+
+  res.clearCookie("jwt");
   res.status(200).json({ message: "Logged out successfully" });
 };
 
@@ -85,6 +101,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      listalamat: user.listalamat,
     });
   } else {
     res.status(404);
@@ -134,6 +151,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       role: updatedUser.role,
+      listalamat: updatedUser.listalamat,
     });
   } else {
     res.status(404);
@@ -156,6 +174,7 @@ const changeUserRole = asyncHandler(async (req, res) => {
         name: userlogin.name,
         email: userlogin.email,
         role: userlogin.role,
+        listalamat: userlogin.listalamat,
       });
     } else if (user.role === "admin") {
       await User.findByIdAndUpdate(req.body.id, { role: "user" });
@@ -164,6 +183,7 @@ const changeUserRole = asyncHandler(async (req, res) => {
         name: userlogin.name,
         email: userlogin.email,
         role: userlogin.role,
+        listalamat: userlogin.listalamat,
       });
     }
   } else {
@@ -184,6 +204,7 @@ const refreshToken = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      listalamat: user.listalamat,
     });
   } else {
     res.status(404);
@@ -191,4 +212,81 @@ const refreshToken = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, registerUser, logoutUser, getUserProfile, getAllUsers, updateUserProfile, changeUserRole, refreshToken };
+// @desc    add alamat
+// @route   POST /api/users/alamat
+// @access  Private
+
+const addAlamat = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.listalamat.push(req.body.alamat);
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      listalamat: updatedUser.listalamat,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+// @desc    delete alamat
+// @route   DELETE /api/users/alamat
+// @access  Private
+
+const deleteAlamat = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.listalamat = user.listalamat.filter((listalamat) => listalamat !== req.body.alamat);
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      listalamat: updatedUser.listalamat,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+// @desc    update alamat
+// @route   PUT /api/users/alamat
+// @access  Private
+
+const updateAlamat = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  let oldalamat = req.body.oldalamat;
+  let newalamat = req.body.newalamat;
+
+  if (user) {
+    user.listalamat = user.listalamat.map((listalamat) => (listalamat === oldalamat ? newalamat : listalamat));
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      listalamat: updatedUser.listalamat,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+export { authUser, registerUser, logoutUser, getUserProfile, getAllUsers, updateUserProfile, changeUserRole, refreshToken, addAlamat, deleteAlamat, updateAlamat };
