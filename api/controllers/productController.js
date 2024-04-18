@@ -38,7 +38,7 @@ const addProduct = asyncHandler(async (req, res) => {
 
   const product = new Product({
     name,
-    image: `/public/images/${req.file.filename}`,
+    image: `public/images/${req.file.filename}`,
     category,
     description,
     price,
@@ -63,16 +63,15 @@ const updateProduct = asyncHandler(async (req, res) => {
     if (price) product.price = price;
 
     if (req.file) {
-      // delete old image
-      const image = product.image;
-      unlink(`c/Users/muham/OneDrive/Desktop/Project/Detective-Den-Conan-Merch-Shop/api/${image}`, (err) => {
+      // delete image
+      unlink(`./${product.image}`, (err) => {
         if (err) {
           console.error(err);
           return;
         }
       });
 
-      product.image = `/public/images/${req.file.filename}`;
+      product.image = `public/images/${req.file.filename}`;
     }
 
     const updatedProduct = await product.save();
@@ -86,14 +85,12 @@ const updateProduct = asyncHandler(async (req, res) => {
 // @desc    delete product
 // @route   DELETE /api/products/:id
 // @access  Private/Admin
-
 const deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
   if (product) {
     // delete image
-    const image = product.image;
-    fs.unlink(`${image}`, (err) => {
+    unlink(`./${product.image}`, (err) => {
       if (err) {
         console.error(err);
         return;
