@@ -12,7 +12,7 @@ const DasboardScreen = () => {
         <div>
           <h1>Ini halaman Dashboard</h1>
           <h2>Welcome {userInfo.name}</h2>
-          {userInfo.role === "owner" && <a href="/listallusers">user</a>}
+          {userInfo.role === "superadmin" && <a href="/listallusers">user</a>}
         </div>
       </div>
     </>

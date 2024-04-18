@@ -55,7 +55,7 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password,
-    role: firstUser ? "user" : "owner",
+    role: firstUser ? "user" : "superadmin",
     listalamat: [],
   });
 

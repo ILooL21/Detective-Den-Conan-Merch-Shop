@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const AdminRoute = () => {
   const { userInfo } = useSelector((state) => state.auth);
-  if (userInfo.role === "admin" || userInfo.role === "owner") {
+  if (userInfo.role === "admin" || userInfo.role === "superadmin") {
     return <Outlet />;
   } else {
     toast.error("You are not authorized to view this page");
