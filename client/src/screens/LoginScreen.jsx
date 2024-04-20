@@ -31,7 +31,7 @@ const LoginScreen = () => {
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
-      navigate("/");
+      toast.success("Logged in successfully");
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -52,14 +52,15 @@ const LoginScreen = () => {
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
-        }}
-      >
+        }}>
         <div className="login-auth">
           <div>
             <h1>Log in to Exclusive</h1>
             <h6>Enter your details below</h6>
           </div>
-          <form action="" className="form-login">
+          <form
+            action=""
+            className="form-login">
             <input
               type="email"
               placeholder="Email or Phone Number"
@@ -67,8 +68,6 @@ const LoginScreen = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-          </form>
-          <form action="" className="form-login">
             <input
               type="password"
               placeholder="Password"
@@ -76,22 +75,16 @@ const LoginScreen = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <div className="container-submit-login">
+              <button
+                type="submit"
+                className="button-login"
+                onClick={submitHandler}>
+                Log In
+                <div className="center-loading">{isLoading && <Loader />}</div>
+              </button>
+            </div>
           </form>
-          <div className="container-remember-me">
-            <input type="checkbox" id="checkboxRemember" />
-            <label>Remember me</label>
-          </div>
-          <div className="container-submit-login">
-            <button
-              type="sumbit"
-              className="button-login"
-              onClick={submitHandler}
-            >
-              Log In
-              <div className="center-loading">{isLoading && <Loader />}</div>
-            </button>
-            <a href="">Forgot your password?</a>
-          </div>
 
           <div className="container-dont-have-account">
             <p>Don&apos;t have an account?</p>

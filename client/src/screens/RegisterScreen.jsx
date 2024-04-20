@@ -35,7 +35,7 @@ const RegisterScreen = () => {
       try {
         const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
-        navigate("/");
+        toast.success("Account created successfully");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -56,14 +56,15 @@ const RegisterScreen = () => {
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
-        }}
-      >
+        }}>
         <div className="register-auth">
           <div>
             <h1>Create an account</h1>
             <h6>Enter your details below</h6>
           </div>
-          <form action="" className="form-register">
+          <form
+            action=""
+            className="form-register">
             <input
               type="name"
               placeholder="Enter name"
@@ -72,7 +73,9 @@ const RegisterScreen = () => {
               onChange={(e) => setName(e.target.value)}
             />
           </form>
-          <form action="" className="form-register">
+          <form
+            action=""
+            className="form-register">
             <input
               type="email"
               placeholder="Email or Phone Number"
@@ -81,7 +84,9 @@ const RegisterScreen = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </form>
-          <form action="" className="form-register">
+          <form
+            action=""
+            className="form-register">
             <input
               type="password"
               placeholder="Password"
@@ -90,7 +95,9 @@ const RegisterScreen = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </form>
-          <form action="" className="form-register">
+          <form
+            action=""
+            className="form-register">
             <input
               type="confirmPassword"
               placeholder="Confirm Password"
@@ -103,13 +110,18 @@ const RegisterScreen = () => {
             <button
               type="sumbit"
               className="button-register"
-              onClick={submitHandler}
-            >
+              onClick={submitHandler}>
               Create Account
               <div className="center-loading">{isLoading && <Loader />}</div>
             </button>
-            <button type="sumbit" className="button-register-google">
-              <img src="./src/assets/images/Google-Logo.png" alt="Google" className="image-google"/>
+            <button
+              type="sumbit"
+              className="button-register-google">
+              <img
+                src="./src/assets/images/Google-Logo.png"
+                alt="Google"
+                className="image-google"
+              />
               Sign up with Google
             </button>
           </div>
