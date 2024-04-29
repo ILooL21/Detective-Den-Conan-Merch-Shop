@@ -29,11 +29,12 @@ const getArticleById = asyncHandler(async (req, res) => {
 // @route   POST /api/articles
 // @access  Private/Admin
 const createArticle = asyncHandler(async (req, res) => {
-  const { judul, isi } = req.body;
+  const { judul, isi, penulis } = req.body;
 
   const article = new Article({
     judul,
     isi,
+    penulis,
     images: `public/images/${req.file.filename}`,
   });
 
