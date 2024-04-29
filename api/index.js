@@ -10,6 +10,7 @@ import userRoutes from "./routes/userRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import supportRoutes from "./routes/supportRoutes.js";
+import articleRoutes from "./routes/articleRoutes.js";
 import getCurrentTime from "./utils/getCurrentTime.js";
 
 import { fileURLToPath } from "url";
@@ -51,6 +52,7 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/supports", supportRoutes);
+app.use("/api/articles", articleRoutes);
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
