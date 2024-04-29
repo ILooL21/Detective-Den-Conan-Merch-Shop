@@ -1,0 +1,157 @@
+.container-contact {
+  padding: 24vh 100px;
+  width: 98vw;
+  height: 100vh;
+  align-items: center;
+  gap: 48px;
+}
+.breadcrumb-contact a {
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+}
+.breadcrumb-contact a:hover {
+  color: #db4444;
+  text-decoration: underline;
+}
+.container-contact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container-contact-header h2 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  display: flex;
+  gap: 4px;
+}
+.container-contact-header h3 {
+  color: #db4444;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+.container-menu-form-contact {
+  display: flex;
+  width: 100%;
+  margin-top: 48px;
+}
+.container-menu-form-contact h1 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  margin-bottom: 16px;
+  color: #db4444;
+}
+.menu-contact {
+  width: 40%;
+  padding: 16px;
+}
+.menu-contact h2 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000;
+}
+.menu-contact ul {
+  list-style-type: none;
+}
+.menu-contact a {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.menu-contact a:hover {
+  color: #db4444;
+  text-decoration: underline;
+}
+.menu-contact a:focus {
+  color: #db4444;
+}
+.container-button-contact {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+  gap: 16px;
+}
+.button-contact-save {
+  background-color: #db4444;
+  color: white;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 4px;
+  padding: 12px 48px;
+  cursor: pointer;
+}
+.menu-contact-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.menu-contact-header a {
+  background-color: #db4444;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: default;
+}
+.menu-contact-header h2 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000;
+  margin: 0;
+}
+.icon-phone {
+  color: #fff;
+  transform: rotate(90deg);
+}
+.icon-mail {
+  color: #fff;
+}
+hr {
+  border: 1px solid #000;
+}
+.menu-contact-content {
+  padding: 16px 0px 8px;
+}
+.menu-contact-content p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+.button-contact-save:hover {
+  box-shadow: 0px 0px 8px 0px #c4c4c4;
+}
+.container-form-contact {
+  width: 100%;
+  padding: 16px;
+}
+.container-form-contact-up {
+  display: flex;
+  gap: 16px;
+}
+.form-contact {
+  width: 100%;
+  margin-bottom: 32px;
+}
+.form-contact-input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+.form-contact-input:focus {
+  background-color: #f5f5f5;
+  box-shadow: 0px 0px 0px 2px #db4444;
+}
