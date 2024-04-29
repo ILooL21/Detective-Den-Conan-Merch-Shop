@@ -10,10 +10,9 @@ const articleSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
+    penulis: {
+      type: String,
       required: true,
-      ref: "User",
     },
     images: {
       type: String,
