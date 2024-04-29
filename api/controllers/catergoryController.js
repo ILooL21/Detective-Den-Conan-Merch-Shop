@@ -24,4 +24,38 @@ const addCategory = asyncHandler(async (req, res) => {
   res.status(201).json(createdCategory);
 });
 
-export { getCategories, addCategory };
+// @desc    Update a category
+// @route   PUT /api/categories/:id
+// @access  Private/Admin
+const updateCategory = asyncHandler(async (req, res) => {
+  const { name } = req.body;
+
+  const category = await Category.findById(req.params.id);
+
+  if (category) {
+    category.name = name;
+
+    const updatedCategory = await category.save();
+    res.json(updatedCategory);
+  } else {
+    res.status(404);
+    throw new Error("Category not found");
+  }
+});
+
+// @desc    Delete a category
+// @route   DELETE /api/categories/:id
+// @access  Private/Admin
+const deleteCategory = asyncHandler(async (req, res) => {
+  const category = await Category.findById(req.params.id);
+
+  if (category) {
+    await category.remove();
+    res.json({ message: "Category removed" });
+  } else {
+    res.status(404);
+    throw new Error("Category not found");
+  }
+});
+
+export { getCategories, addCategory, updateCategory, deleteCategory };
