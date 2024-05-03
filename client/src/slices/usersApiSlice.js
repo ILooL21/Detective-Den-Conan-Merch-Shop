@@ -50,7 +50,29 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    addAlamat: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/alamat`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    updateAlamat: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/alamat`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
+    deleteAlamat: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/alamat`,
+        method: "DELETE",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation, useGetAllUsersQuery, useChangeRoleMutation, useRefreshTokenMutation } = userApiSlice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation, useGetAllUsersQuery, useChangeRoleMutation, useRefreshTokenMutation, useAddAlamatMutation, useUpdateAlamatMutation, useDeleteAlamatMutation } =
+  userApiSlice;

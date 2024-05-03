@@ -1,14 +1,11 @@
 import { Layout } from "antd";
-import {
-  FacebookOutlined,
-  InstagramOutlined,
-  XOutlined,
-  LinkedinOutlined,
-} from "@ant-design/icons";
+import { useSelector } from "react-redux";
 import "../styles/Footer.css";
 
 const FooterComponent = () => {
   const { Footer } = Layout;
+
+  const { userInfo } = useSelector((state) => state.auth);
 
   return (
     <Layout>
@@ -19,8 +16,7 @@ const FooterComponent = () => {
           justifyContent: "center",
           height: "60vh",
           backgroundColor: "#000",
-        }}
-      >
+        }}>
         <div className="footer-container">
           <div className="footer-links">
             <h1>Exclusive</h1>
@@ -35,11 +31,18 @@ const FooterComponent = () => {
           </div>
           <div className="footer-links">
             <h1>Account</h1>
-            <a href="">My Account</a>
-            <a href="">Login / Register</a>
-            <a href="">Cart</a>
-            <a href="">Whislist</a>
-            <a href="">Shop</a>
+            {userInfo ? (
+              <>
+                <a href="">My Account</a>
+                <a href="">Cart</a>
+                <a href="">Shop</a>
+              </>
+            ) : (
+              <>
+                <a href="">Login / Register</a>
+                <a href="">Shop</a>
+              </>
+            )}
           </div>
           <div className="footer-links">
             <h1>Quick Link</h1>
@@ -47,23 +50,6 @@ const FooterComponent = () => {
             <a href="">Terms Of Use</a>
             <a href="">FAQ</a>
             <a href="">Contact</a>
-          </div>
-          <div className="footer-sosmed">
-            <h1>Social Media</h1>
-            <div className="footer-sosemed-links">
-              <a href="">
-                <FacebookOutlined />
-              </a>
-              <a href="">
-                <InstagramOutlined />
-              </a>
-              <a href="">
-                <XOutlined />
-              </a>
-              <a href="">
-                <LinkedinOutlined />
-              </a>
-            </div>
           </div>
         </div>
       </Footer>
@@ -75,8 +61,7 @@ const FooterComponent = () => {
           height: "5vh",
           backgroundColor: "#000",
           borderTop: "1px solid #444",
-        }}
-      >
+        }}>
         <div className="footer-cr">
           <a>© Copyright 2024. All right reserved</a>
         </div>
