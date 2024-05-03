@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRegisterMutation } from "../slices/usersApiSlice";
-import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
 import "../styles/RegisterScreen.css";
 
@@ -13,7 +12,6 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [register, { isLoading }] = useRegisterMutation();
@@ -33,8 +31,7 @@ const RegisterScreen = () => {
       toast.error("Passwords do not match");
     } else {
       try {
-        const res = await register({ name, email, password }).unwrap();
-        dispatch(setCredentials({ ...res }));
+        await register({ name, email, password }).unwrap();
         toast.success("Account created successfully");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
