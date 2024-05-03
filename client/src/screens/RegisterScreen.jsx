@@ -32,6 +32,10 @@ const RegisterScreen = () => {
     } else {
       try {
         await register({ name, email, password }).unwrap();
+        setName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
         toast.success("Account created successfully");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
@@ -96,7 +100,7 @@ const RegisterScreen = () => {
             action=""
             className="form-register">
             <input
-              type="confirmPassword"
+              type="password"
               placeholder="Confirm Password"
               id="confirmPassword"
               value={confirmPassword}
