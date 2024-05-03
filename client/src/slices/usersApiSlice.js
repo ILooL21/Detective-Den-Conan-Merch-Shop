@@ -57,13 +57,6 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    updateAlamat: builder.mutation({
-      query: (data) => ({
-        url: `${USERS_URL}/alamat`,
-        method: "PUT",
-        body: data,
-      }),
-    }),
     deleteAlamat: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/alamat`,
@@ -74,5 +67,4 @@ export const userApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation, useGetAllUsersQuery, useChangeRoleMutation, useRefreshTokenMutation, useAddAlamatMutation, useUpdateAlamatMutation, useDeleteAlamatMutation } =
-  userApiSlice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation, useGetAllUsersQuery, useChangeRoleMutation, useRefreshTokenMutation, useAddAlamatMutation, useDeleteAlamatMutation } = userApiSlice;
