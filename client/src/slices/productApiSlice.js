@@ -36,3 +36,5 @@ export const productApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+export const { useGetAllProductsQuery, useCreateProductMutation, useUpdateProductMutation, useDeleteProductMutation } = productApiSlice;

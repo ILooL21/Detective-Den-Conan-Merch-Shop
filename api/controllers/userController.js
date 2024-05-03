@@ -254,31 +254,4 @@ const deleteAlamat = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    update alamat
-// @route   PUT /api/users/alamat
-// @access  Private
-
-const updateAlamat = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
-  let oldalamat = req.body.oldalamat;
-  let newalamat = req.body.newalamat;
-
-  if (user) {
-    user.listalamat = user.listalamat.map((listalamat) => (listalamat === oldalamat ? newalamat : listalamat));
-
-    const updatedUser = await user.save();
-
-    res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      role: updatedUser.role,
-      listalamat: updatedUser.listalamat,
-    });
-  } else {
-    res.status(404);
-    throw new Error("User not found");
-  }
-});
-
-export { authUser, registerUser, logoutUser, getUserProfile, getAllUsers, updateUserProfile, changeUserRole, refreshToken, addAlamat, deleteAlamat, updateAlamat };
+export { authUser, registerUser, logoutUser, getUserProfile, getAllUsers, updateUserProfile, changeUserRole, refreshToken, addAlamat, deleteAlamat };

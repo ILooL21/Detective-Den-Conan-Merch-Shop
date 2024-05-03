@@ -73,11 +73,7 @@ const ProfileScreen = () => {
             itemRender={itemRender}
             items={items}
           />
-          {userInfo ? (
-            <h2>
-              Welcome! <h3>{userInfo.name}</h3>
-            </h2>
-          ) : null}
+          {userInfo ? <h2>Welcome! {userInfo.name}</h2> : null}
         </div>
         <div className="container-menu-form-profile">
           <div className="menu-profile">
@@ -88,7 +84,7 @@ const ProfileScreen = () => {
               </li>
 
               <li>
-                <Link to="/profile">Address Book</Link>
+                <Link to="/addressbook">Address Book</Link>
               </li>
               <li>
                 <Link to="/profile">My Order</Link>

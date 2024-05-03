@@ -24,3 +24,5 @@ export const supportApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+export const { useGetAllSupportsQuery, useCreateSupportMutation, useDeleteSupportMutation } = supportApiSlice;
