@@ -18,6 +18,10 @@ const ContactScreen = () => {
     e.preventDefault();
     try {
       await createSupport({ email, subject, message });
+      if (!email || !subject || !message) {
+        toast.error("Please fill in all fields");
+        return;
+      }
       toast.success("Message sent successfully, wait for a reply from the admin via email");
       setEmail("");
       setSubject("");

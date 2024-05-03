@@ -14,6 +14,7 @@ import DashboardScreen from "./screens/DashboardScreen.jsx";
 import ListUserScreen from "./screens/ListUserScreen.jsx";
 import ContactScreen from "./screens/ContactScreen.jsx";
 import ListAddressScreen from "./screens/ListAddressScreen.jsx";
+import ListSupportScreen from "./screens/SupportScreen.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
 import OwnerRoute from "./components/OwnerRoute.jsx";
@@ -49,6 +50,10 @@ const router = createBrowserRouter(
           <Route
             path="/dashboard"
             element={<DashboardScreen />}
+          />
+          <Route
+            path="/support"
+            element={<ListSupportScreen />}
           />
           <Route
             path=""
