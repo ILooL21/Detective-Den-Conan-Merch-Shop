@@ -35,3 +35,5 @@ export const articleApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+export const { useGetAllArticlesQuery, useCreateArticleMutation, useUpdateArticleMutation, useDeleteArticleMutation } = articleApiSlice;

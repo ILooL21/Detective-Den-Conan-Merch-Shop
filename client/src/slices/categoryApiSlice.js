@@ -33,3 +33,5 @@ export const categoryApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+export const { useGetAllCategoriesQuery, useCreateCategoryMutation, useUpdateCategoryMutation, useDeleteCategoryMutation } = categoryApiSlice;
