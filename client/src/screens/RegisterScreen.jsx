@@ -111,16 +111,6 @@ const RegisterScreen = () => {
               Create Account
               <div className="center-loading">{isLoading && <Loader />}</div>
             </button>
-            <button
-              type="sumbit"
-              className="button-register-google">
-              <img
-                src="./src/assets/images/Google-Logo.png"
-                alt="Google"
-                className="image-google"
-              />
-              Sign up with Google
-            </button>
           </div>
 
           <div className="container-dont-have-account">
