@@ -1,0 +1,105 @@
+.container-address {
+  padding: 24vh 100px;
+  width: 98vw;
+  height: auto;
+  align-items: center;
+  gap: 48px;
+}
+.breadcrumb-address a {
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+}
+.breadcrumb-address a:hover {
+  color: #db4444;
+  text-decoration: underline;
+}
+.container-address-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container-address-header h2 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  display: flex;
+  gap: 4px;
+}
+.container-address-header span {
+  color: #db4444;
+}
+.container-address-header h3 {
+  color: #db4444;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+.container-address-add {
+  align-items: center;
+  margin-top: 48px;
+}
+.container-address-add h3 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  margin-bottom: 16px;
+}
+.container-address-add textarea {
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #f5f5f5;
+  resize: none;
+}
+.container-address-add textarea:focus {
+  outline: none;
+  background-color: #f5f5f5;
+  box-shadow: 0px 0px 0px 2px #db4444;
+}
+.container-address-add button {
+  width: 100%;
+  padding: 8px;
+  background-color: #db4444;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 32px;
+}
+.container-address-add button:hover {
+  box-shadow: 0px 0px 8px 0px #c4c4c4;
+}
+.container-address-list {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  border: solid 2px #db4444;
+  background-color: rgb(219, 68, 68, 0.1);
+  border-radius: 8px;
+  margin-top: 32px;
+  gap: 16px;
+}
+.container-address-list p {
+  width: 100%;
+  height: 100%;
+  word-wrap: break-word;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+  margin: 16px;
+}
+.container-address-list button {
+  background-color: #db4444;
+  color: #fff;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+}
+.container-address-list button:hover {
+  box-shadow: 0px 0px 8px 0px #c4c4c4;
+}

@@ -26,6 +26,9 @@
   display: flex;
   gap: 4px;
 }
+.container-contact-header span {
+  color: #db4444;
+}
 .container-contact-header h3 {
   color: #db4444;
   font-size: 14px;
