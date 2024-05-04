@@ -73,7 +73,7 @@ const ProfileScreen = () => {
             itemRender={itemRender}
             items={items}
           />
-          {userInfo ? <h2>Welcome! {userInfo.name}</h2> : null}
+          {userInfo ? <h2>Welcome! <span>{userInfo.name}</span></h2> : null}
         </div>
         <div className="container-menu-form-profile">
           <div className="menu-profile">
@@ -106,7 +106,6 @@ const ProfileScreen = () => {
                 onChange={(e) => setName(e.target.value)}
                 className="form-profile-input"></Form.Control>
             </Form.Group>
-            <div className="container-email-address">
               <Form.Group
                 className="form-profile"
                 controlId="email">
@@ -119,8 +118,6 @@ const ProfileScreen = () => {
                   className="form-profile-input"
                   disabled></Form.Control>
               </Form.Group>
-            </div>
-
             <Form.Group
               className="form-profile"
               controlId="password">

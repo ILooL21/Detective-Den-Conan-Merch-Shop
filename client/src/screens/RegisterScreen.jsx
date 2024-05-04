@@ -99,7 +99,7 @@ const RegisterScreen = () => {
             action=""
             className="form-register">
             <input
-              type="confirmPassword"
+              type="password"
               placeholder="Confirm Password"
               id="confirmPassword"
               value={confirmPassword}
