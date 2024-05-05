@@ -37,6 +37,7 @@ const RegisterScreen = () => {
         setPassword("");
         setConfirmPassword("");
         toast.success("Account created successfully");
+        navigate("/login");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -68,7 +69,7 @@ const RegisterScreen = () => {
             className="form-register">
             <input
               type="name"
-              placeholder="Enter name"
+              placeholder="Enter Username"
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -79,7 +80,7 @@ const RegisterScreen = () => {
             className="form-register">
             <input
               type="email"
-              placeholder="Email or Phone Number"
+              placeholder="Enter Email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
