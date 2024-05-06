@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Category from "../models/categoryModel.js";
+import Product from "../models/productModel.js";
 
 // @desc    Fetch all categories
 // @route   GET /api/categories
@@ -33,9 +34,18 @@ const updateCategory = asyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id);
 
   if (category) {
+    const products = await Product.find({ category: category.name });
+    if (products) {
+      products.map(async (product) => {
+        product.category = name;
+        await product.save();
+      });
+    }
+
     category.name = name;
 
     const updatedCategory = await category.save();
+
     res.json(updatedCategory);
   } else {
     res.status(404);
