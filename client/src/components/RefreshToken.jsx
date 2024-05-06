@@ -16,7 +16,7 @@ const RefreshToken = () => {
     const refresh = async () => {
       try {
         const res = await refreshToken({ id: userInfo._id }).unwrap();
-        dispatch(setCredentials(res));
+        dispatch(setCredentials({ ...res }));
       } catch (err) {
         console.error(err);
       }
