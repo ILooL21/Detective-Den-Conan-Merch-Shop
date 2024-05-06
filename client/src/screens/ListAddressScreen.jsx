@@ -20,6 +20,10 @@ const ListAddressScreen = () => {
   const AddClickHandler = async (e) => {
     e.preventDefault();
     try {
+      if (!listAlamatBaru) {
+        toast.error("Please fill in all fields");
+        return;
+      }
       const res = await addAlamat({
         id: userInfo._id,
         alamat: listAlamatBaru,

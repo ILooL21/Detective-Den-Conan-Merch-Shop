@@ -60,8 +60,6 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    generateToken(res, user._id);
-
     res.status(201).json({
       _id: user._id,
       name: user.name,
@@ -212,6 +210,10 @@ const addAlamat = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
+    if (!req.body.alamat) {
+      res.status(400);
+      throw new Error("Alamat is required");
+    }
     user.listalamat.push(req.body.alamat);
 
     const updatedUser = await user.save();

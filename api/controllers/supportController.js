@@ -22,12 +22,11 @@ const addSupport = AsyncHandler(async (req, res) => {
 // @access  Private/Admin
 const getSupports = AsyncHandler(async (req, res) => {
   const supports = await Support.find({});
-  console.log(supports);
 
   //jika support panjang nya 0
   if (supports.length === 0) {
-    res.status(404);
-    throw new Error("Any support not found");
+    //kirim status 200 dan kirim pesan "Tidak ada support yang tersedia"
+    res.status(200).json({ message: "Tidak ada support yang tersedia" });
   }
 
   res.status(200).json(supports);

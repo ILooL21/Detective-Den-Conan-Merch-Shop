@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRegisterMutation } from "../slices/usersApiSlice";
-import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
 import "../styles/RegisterScreen.css";
 
@@ -13,7 +12,6 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [register, { isLoading }] = useRegisterMutation();
@@ -33,9 +31,13 @@ const RegisterScreen = () => {
       toast.error("Passwords do not match");
     } else {
       try {
-        const res = await register({ name, email, password }).unwrap();
-        dispatch(setCredentials({ ...res }));
+        await register({ name, email, password }).unwrap();
+        setName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
         toast.success("Account created successfully");
+        navigate("/login");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -67,7 +69,7 @@ const RegisterScreen = () => {
             className="form-register">
             <input
               type="name"
-              placeholder="Enter name"
+              placeholder="Enter Username"
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -78,7 +80,7 @@ const RegisterScreen = () => {
             className="form-register">
             <input
               type="email"
-              placeholder="Email or Phone Number"
+              placeholder="Enter Email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -113,16 +115,6 @@ const RegisterScreen = () => {
               onClick={submitHandler}>
               Create Account
               <div className="center-loading">{isLoading && <Loader />}</div>
-            </button>
-            <button
-              type="sumbit"
-              className="button-register-google">
-              <img
-                src="./src/assets/images/Google-Logo.png"
-                alt="Google"
-                className="image-google"
-              />
-              Sign up with Google
             </button>
           </div>
 
