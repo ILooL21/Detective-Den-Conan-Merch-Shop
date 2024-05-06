@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useUpdateCategoryMutation } from "../../../slices/categoryApiSlice";
 import PropType from "prop-types";
-import { toast } from "react-toastify";
 import { Modal, Button, Form } from "react-bootstrap";
 
 const EditCategoryModal = (props) => {
@@ -18,8 +17,7 @@ const EditCategoryModal = (props) => {
 
   const handleSave = async () => {
     await updateCategory({ id: categoryId, name: categoryName });
-    toast.success("Kategori berhasil diupdate");
-    handleClose();
+    window.location.reload();
   };
 
   return (

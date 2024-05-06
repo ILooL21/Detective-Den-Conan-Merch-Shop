@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useCreateCategoryMutation } from "../../../slices/categoryApiSlice";
-import { toast } from "react-toastify";
 import { Modal, Button, Form } from "react-bootstrap";
 
 const AddCategoryModal = () => {
@@ -14,8 +13,7 @@ const AddCategoryModal = () => {
 
   const handleSave = async () => {
     await createCategory({ name: categoryName });
-    toast.success("Kategori berhasil ditambahkan");
-    handleClose();
+    window.location.reload();
   };
 
   return (
