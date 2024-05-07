@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import RefreshToken from "../components/RefreshToken";
+import { Breadcrumb } from "antd";
 import "../styles/Dashboard.css";
 
 const DasboardScreen = () => {
@@ -9,28 +10,39 @@ const DasboardScreen = () => {
     <>
       <div className="container-dashboard">
         <RefreshToken />
-        <div>
-          <h1>Ini halaman Dashboard</h1>
+          <div className="container-dashboard-header">
+          <Breadcrumb
+            className="breadcrumb-dashboard"
+            items={[
+              {
+                title: <a href="/">Home</a>,
+              },
+              {
+                title: "Dashboard",
+              },
+            ]}/>
+          </div>
+        <div className="container-dashboard-main">
           <h2>Welcome {userInfo.name}</h2>
-          <ul>
+          <div className="container-content-dashboard">
             {userInfo.role === "superadmin" && (
-              <li>
-                <a href="/listallusers">user</a>
-              </li>
+              <div className="content-dashboard">
+                <a href="/listallusers">User</a>
+              </div>
             )}
-            <li>
-              <a href="/support">support</a>
-            </li>
-            <li>
-              <a href="/listcategories">list kategori</a>
-            </li>
-            <li>
-              <a href="/listproducts">list product</a>
-            </li>
-            <li>
-              <a href="/listarticles">list artikel</a>
-            </li>
-          </ul>
+            <div className="content-dashboard">
+              <a href="/support">Support</a>
+            </div>
+            <div className="content-dashboard">
+              <a href="/listcategories">List Kategori</a>
+            </div>
+            <div className="content-dashboard">
+              <a href="/listproducts">List Product</a>
+            </div>
+            <div className="content-dashboard">
+              <a href="/listarticles">List Artikel</a>
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useUpdateCategoryMutation } from "../../../slices/categoryApiSlice";
 import PropType from "prop-types";
+import { EditOutlined } from "@ant-design/icons";
 import { Modal, Button, Form } from "react-bootstrap";
 
 const EditCategoryModal = (props) => {
@@ -22,7 +23,9 @@ const EditCategoryModal = (props) => {
 
   return (
     <>
-      <button onClick={handleShow}>Edit</button>
+      <button onClick={handleShow}>
+      <EditOutlined />
+      </button>
       <Modal
         show={show}
         onHide={handleClose}>

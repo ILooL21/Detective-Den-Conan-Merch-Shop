@@ -1,11 +1,12 @@
 import { useGetAllUsersQuery, useChangeRoleMutation } from "../slices/usersApiSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Table, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Loader from "../components/Loader";
 import { setCredentials } from "../slices/authSlice";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { FaSearch } from "react-icons/fa";
+import { Breadcrumb } from "antd";
 import "../styles/ListUserScreen.css";
 
 const ListUserScreen = () => {
@@ -59,10 +60,25 @@ const ListUserScreen = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <div className="d-flex justify-content-between align-items-center my-3">
-            <h3 className="">Users</h3>
+          <div className="container-list-user-header">
+            <Breadcrumb
+            className="breadcrumb-list-user"
+            items={[
+              {
+                title: <a href="/">Home</a>,
+              },
+              {
+                title: <a href="/dashboard">Dashboard</a>,
+              },
+              {
+                title: "List User",
+              },
+            ]}
+          />
+        </div>
             <div className="d-flex align-items-center">
               <input
-                className="form-control"
+                className="input-search-user"
                 type="text"
                 placeholder="Search by email"
                 value={search}
@@ -71,17 +87,15 @@ const ListUserScreen = () => {
               />
               <Button
                 type="submit" // Menjadikan button sebagai tombol submit
-                className="btn btn-primary ms-2">
+                className="button-list-user">
                 <FaSearch />
               </Button>
             </div>
           </div>
         </form>
       </div>
-      <Table
-        striped
-        bordered
-        hover>
+      <table
+        className="table-list-user">
         <thead>
           <tr>
             <th>No.</th>
@@ -118,7 +132,7 @@ const ListUserScreen = () => {
             </tr>
           ))}
         </tbody>
-      </Table>
+      </table>
       {isLoading && <Loader />}
     </div>
   );
