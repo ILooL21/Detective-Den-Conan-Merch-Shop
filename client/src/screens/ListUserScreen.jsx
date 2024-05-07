@@ -14,14 +14,14 @@ const ListUserScreen = () => {
 
   const dispatch = useDispatch();
 
-  const { data } = useGetAllUsersQuery();
+  const { data: users } = useGetAllUsersQuery();
   const [changeRole, { isLoading }] = useChangeRoleMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    setList(data);
-  }, [data]);
+    setList(users);
+  }, [users]);
 
   const clickHandler = async (id) => {
     try {
@@ -36,16 +36,17 @@ const ListUserScreen = () => {
 
   const searchHandler = () => {
     if (search !== "") {
-      const results = data?.filter((user) => {
-        return user.email.toLowerCase().startsWith(search.toLowerCase());
+      const regex = new RegExp(search, "i");
+      const results = users?.filter((user) => {
+        return regex.test(user.name);
       });
       if (results.length === 0) {
-        toast.error("User not found");
+        toast.error("User tidak ditemukan");
       } else {
         setList(results);
       }
     } else {
-      setList(data);
+      setList(users);
     }
   };
 

@@ -18,8 +18,9 @@ const ListArticleScreen = () => {
 
   const searchHandler = () => {
     if (search !== "") {
-      const results = articles?.filter((category) => {
-        return category.judul.toLowerCase().startsWith(search.toLowerCase());
+      const regex = new RegExp(search, "i");
+      const results = articles?.filter((article) => {
+        return regex.test(article.judul);
       });
       if (results.length === 0) {
         toast.error("Artikel tidak ditemukan");
