@@ -18,13 +18,9 @@ export const articleApiSlice = apiSlice.injectEndpoints({
     }),
     updateArticle: builder.mutation({
       query: (data) => ({
-        url: `${ARTICLE_URL}/${data.id}`,
+        url: `${ARTICLE_URL}/${data.get("id")}`,
         method: "PUT",
-        body: {
-          judul: data.judul,
-          isi: data.isi,
-          penulis: data.penulis,
-        },
+        body: data,
       }),
     }),
     deleteArticle: builder.mutation({

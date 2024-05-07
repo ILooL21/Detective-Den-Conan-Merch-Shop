@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
+import Article from "../models/articleModel.js";
 import generateToken from "../utils/generateToken.js";
 
 // @desc    Auth user & get token
@@ -135,7 +136,22 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   const { name, email, password } = req.body;
 
+  //cari artikel yang penulisnya atau editor nya adalah user yang sedang diupdate
+  const articles = await Article.find({ $or: [{ penulis: user.name }, { editor: user.name }] });
+
   if (user) {
+    if (articles) {
+      articles.map(async (article) => {
+        if (article.penulis === user.name) {
+          article.penulis = name;
+        }
+        if (article.editor === user.name) {
+          article.editor = name;
+        }
+        await article.save();
+      });
+    }
+
     if (name) user.name = name;
     if (email) user.email = email;
     if (password) user.password = password;
