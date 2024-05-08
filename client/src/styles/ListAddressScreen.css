@@ -82,22 +82,24 @@
   background-color: rgb(219, 68, 68, 0.1);
   border-radius: 8px;
   margin-top: 32px;
-  gap: 16px;
 }
 .container-address-list p {
-  width: 100%;
+  width: 90%;
   height: 100%;
+  margin: auto 0;
+  padding: 16px;
   word-wrap: break-word;
   font-size: 18px;
   font-weight: 500;
   line-height: 21px;
-  margin: 16px;
 }
 .container-address-list button {
   background-color: #db4444;
   color: #fff;
-  width: 100px;
+  width: 10%;
+  height: auto;
   border: none;
+  border-radius: 0px 4px 4px 0px;
   cursor: pointer;
 }
 .container-address-list button:hover {

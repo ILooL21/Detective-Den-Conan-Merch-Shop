@@ -117,3 +117,19 @@
   width: 100%;
   z-index: 1;
 }
+.search-bar-header {
+  width: 248px;
+  height: 38px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  border: none;
+  padding: 7px 12px 7px 20px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+.search-bar-header:focus {
+  outline: none;
+  background-color: #f5f5f5 !important;
+  box-shadow: 0px 0px 0px 2px #db4444;
+}

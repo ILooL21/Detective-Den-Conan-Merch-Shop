@@ -95,18 +95,8 @@ const HeaderComponent = () => {
         <Input
           placeholder="What are you looking for?"
           suffix={<SearchOutlined style={{ fontSize: "20px" }} />}
-          style={{
-            width: "248px",
-            height: "38px",
-            borderRadius: "5px",
-            backgroundColor: "#F5F5F5",
-            border: "none",
-            padding: "7px 12px 7px 20px",
-            fontSize: "12px",
-            fontWeight: "400",
-            lineHeight: "18px",
-          }}
           onPressEnter={onSearch}
+          className="search-bar-header"
         />
         <div className="menu">
           <Link to="/">Home</Link>
