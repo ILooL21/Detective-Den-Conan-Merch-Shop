@@ -34,8 +34,9 @@ const ListCategoryScreen = () => {
 
   const searchHandler = () => {
     if (search !== "") {
+      const regex = new RegExp(search, "i");
       const results = categories?.filter((category) => {
-        return category.name.toLowerCase().startsWith(search.toLowerCase());
+        return regex.test(category.name);
       });
       if (results.length === 0) {
         toast.error("Kategori tidak ditemukan");

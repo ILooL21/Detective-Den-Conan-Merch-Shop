@@ -52,7 +52,7 @@ const addProduct = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const { name, category, description, price } = req.body;
+  const { name, category, description, price, stock } = req.body;
 
   const product = await Product.findById(req.params.id);
 
@@ -61,6 +61,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     if (category) product.category = category;
     if (description) product.description = description;
     if (price) product.price = price;
+    if (stock) product.countInStock = stock;
 
     if (req.file) {
       // delete image

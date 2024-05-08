@@ -29,12 +29,13 @@ const getArticleById = asyncHandler(async (req, res) => {
 // @route   POST /api/articles
 // @access  Private/Admin
 const createArticle = asyncHandler(async (req, res) => {
-  const { judul, isi, penulis } = req.body;
+  const { judul, isi } = req.body;
 
   const article = new Article({
     judul,
     isi,
-    penulis,
+    penulis: req.user.name,
+    editor: req.user.name,
     images: `public/images/${req.file.filename}`,
   });
 
@@ -54,6 +55,8 @@ const updateArticle = asyncHandler(async (req, res) => {
     if (judul) article.judul = judul;
     if (isi) article.isi = isi;
 
+    console.log(req.file);
+
     if (req.file) {
       //delete image
       unlink(article.images, (err) => {
@@ -65,6 +68,8 @@ const updateArticle = asyncHandler(async (req, res) => {
 
       article.images = `public/images/${req.file.filename}`;
     }
+
+    article.editor = req.user.name;
 
     const updatedArticle = await article.save();
     res.json(updatedArticle);
