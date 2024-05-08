@@ -18,14 +18,9 @@ export const productApiSlice = apiSlice.injectEndpoints({
     }),
     updateProduct: builder.mutation({
       query: (data) => ({
-        url: `${PRODUCT_URL}/${data.id}`,
+        url: `${PRODUCT_URL}/${data.get("id")}`,
         method: "PUT",
-        body: {
-          name: data.name,
-          price: data.price,
-          description: data.description,
-          category: data.category,
-        },
+        body: data,
       }),
     }),
     deleteProduct: builder.mutation({
