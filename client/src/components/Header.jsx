@@ -106,6 +106,7 @@ const HeaderComponent = () => {
           />
           <div className="menu">
             <Link to="/">Home</Link>
+            <Link to="/katalog">Katalog</Link>
             <Link to="/news">News</Link>
             <Link to="/wiki">Wiki</Link>
             <Link to="/riddle">Riddle</Link>
