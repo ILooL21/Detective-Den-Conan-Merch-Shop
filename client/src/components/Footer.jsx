@@ -20,8 +20,7 @@ const FooterComponent = () => {
         <div className="footer-container">
           <div className="footer-links">
             <h1>Exclusive</h1>
-            <h6>Subscribe</h6>
-            <a href="">Get 10% off your first order</a>
+            <a href="/katalog">Get 10% off your first order</a>
           </div>
           <div className="footer-links">
             <h1>Support</h1>
@@ -33,23 +32,23 @@ const FooterComponent = () => {
             <h1>Account</h1>
             {userInfo ? (
               <>
-                <a href="">My Account</a>
-                <a href="">Cart</a>
-                <a href="">Shop</a>
+                <a href="/profile">My Account</a>
+                <a href="/cart">Cart</a>
+                <a href="/katalog">Shop</a>
               </>
             ) : (
               <>
-                <a href="">Login / Register</a>
-                <a href="">Shop</a>
+                <a href="/login">Login / Register</a>
+                <a href="/katalog">Shop</a>
               </>
             )}
           </div>
           <div className="footer-links">
             <h1>Quick Link</h1>
-            <a href="">Privacy Policy</a>
-            <a href="">Terms Of Use</a>
-            <a href="">FAQ</a>
-            <a href="">Contact</a>
+            <a>Privacy Policy</a>
+            <a>Terms Of Use</a>
+            <a>FAQ</a>
+            <a>Contact</a>
           </div>
         </div>
       </Footer>

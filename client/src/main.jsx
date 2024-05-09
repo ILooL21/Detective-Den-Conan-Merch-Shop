@@ -11,10 +11,11 @@ import LoginScreen from "./screens/LoginScreen.jsx";
 import RegisterScreen from "./screens/RegisterScreen.jsx";
 import ProfileScreen from "./screens/ProfileScreen.jsx";
 import DashboardScreen from "./screens/DashboardScreen.jsx";
-import ListUserScreen from "./screens/ListUserScreen.jsx";
 import ContactScreen from "./screens/ContactScreen.jsx";
-import ListAddressScreen from "./screens/ListAddressScreen.jsx";
+import KatalogScreen from "./screens/KatalogScreen.jsx";
 import ListSupportScreen from "./screens/SupportScreen.jsx";
+import ListUserScreen from "./screens/ListUserScreen.jsx";
+import ListAddressScreen from "./screens/ListAddressScreen.jsx";
 import ListCategoryScreen from "./screens/ListCategoryScreen.jsx";
 import ListArticleScreen from "./screens/ListArticleScreen.jsx";
 import ListProductScreen from "./screens/ListProductScreen.jsx";
@@ -43,6 +44,10 @@ const router = createBrowserRouter(
       <Route
         path="/contact"
         element={<ContactScreen />}
+      />
+      <Route
+        path="/katalog"
+        element={<KatalogScreen />}
       />
       <Route
         path=""
