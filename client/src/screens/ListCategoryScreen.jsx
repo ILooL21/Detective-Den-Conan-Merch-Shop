@@ -4,7 +4,7 @@ import AddCategoryModal from "../components/admin/category/AddCategoryModal";
 import EditCategoryModal from "../components/admin/category/EditCategoryModal";
 import { FaSearch } from "react-icons/fa";
 import { DeleteOutlined } from "@ant-design/icons";
-import {  Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import { Breadcrumb } from "antd";
@@ -24,6 +24,10 @@ const ListCategoryScreen = () => {
   };
 
   const handleDelete = async (categoryId) => {
+    if (countProducts(categoryId) > 0) {
+      toast.error("Kategori tidak bisa dihapus karena masih memiliki produk");
+      return;
+    }
     await deleteCategory({ id: categoryId });
     window.location.reload();
   };
@@ -56,42 +60,42 @@ const ListCategoryScreen = () => {
   return (
     <div className="container-list-category ">
       <div className="container-list-category-header">
-          <Breadcrumb
-            className="breadcrumb-list-category"
-            items={[
-              {
-                title: <a href="/">Home</a>,
-              },
-              {
-                title: <a href="/dashboard">Dashboard</a>,
-              },
-              {
-                title: "List Category",
-              },
-            ]}
-          />
-        </div>
+        <Breadcrumb
+          className="breadcrumb-list-category"
+          items={[
+            {
+              title: <a href="/">Home</a>,
+            },
+            {
+              title: <a href="/dashboard">Dashboard</a>,
+            },
+            {
+              title: "List Category",
+            },
+          ]}
+        />
+      </div>
       <form onSubmit={searchSubmit}>
         <div className="container-search-category">
           <div className="button-add-category">
-          <AddCategoryModal />
+            <AddCategoryModal />
           </div>
           <div className="d-flex">
             <input
-                className="input-search-category"
-                type="text"
-                placeholder="Search by email"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                style={{ width: "200px" }}
-              />
-              <Button
-                type="submit" // Menjadikan button sebagai tombol submit
-                className="button-list-category">
-                <FaSearch />
-              </Button>
-            </div>
+              className="input-search-category"
+              type="text"
+              placeholder="Search by email"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{ width: "200px" }}
+            />
+            <Button
+              type="submit" // Menjadikan button sebagai tombol submit
+              className="button-list-category">
+              <FaSearch />
+            </Button>
           </div>
+        </div>
       </form>
       {isLoading ? (
         <h2>Loading...</h2>
@@ -112,14 +116,14 @@ const ListCategoryScreen = () => {
                 <td className="container-action-category">
                   <div className="container-edit-category">
                     <EditCategoryModal
-                    categoryId={category._id}
-                    Name={category.name}
+                      categoryId={category._id}
+                      Name={category.name}
                     />
                   </div>
                   <div className="container-delete-category">
-                  <button onClick={() => handleDelete(category._id)}>
-                    <DeleteOutlined />
-                  </button>
+                    <button onClick={() => handleDelete(category._id)}>
+                      <DeleteOutlined />
+                    </button>
                   </div>
                 </td>
               </tr>

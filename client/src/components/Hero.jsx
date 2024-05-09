@@ -52,7 +52,7 @@ const Hero = () => {
         </Card>
         <div className="container-view-products">
           <button className="view-product">
-            <Link to="/products">View All Products</Link>
+            <Link to="/katalog">View All Products</Link>
           </button>
         </div>
       </div>
