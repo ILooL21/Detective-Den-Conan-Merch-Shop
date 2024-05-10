@@ -9,6 +9,12 @@ export const productApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getSingleProduct: builder.query({
+      query: (id) => ({
+        url: `${PRODUCT_URL}/${id}`,
+        method: "GET",
+      }),
+    }),
     createProduct: builder.mutation({
       query: (data) => ({
         url: `${PRODUCT_URL}`,
@@ -32,4 +38,4 @@ export const productApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAllProductsQuery, useCreateProductMutation, useUpdateProductMutation, useDeleteProductMutation } = productApiSlice;
+export const { useGetAllProductsQuery, useGetSingleProductQuery, useCreateProductMutation, useUpdateProductMutation, useDeleteProductMutation } = productApiSlice;
