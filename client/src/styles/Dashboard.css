@@ -1,7 +1,7 @@
 .container-dashboard {
-  padding: 24vh 100px;
-  width: 98vw;
-  height: 100vh;
+  padding: 200px 120px;
+  width: 100%;
+  height: auto;
   align-items: center;
   gap: 48px;
 }
