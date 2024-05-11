@@ -3,6 +3,7 @@ import { useGetAllProductsQuery } from "../slices/productApiSlice";
 import { useGetAllCategoriesQuery } from "../slices/categoryApiSlice";
 import { Card } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import "../styles/KatalogScreen.css";
 
 const KatalogScreen = () => {
   const [searchParams] = useSearchParams();
@@ -39,7 +40,7 @@ const KatalogScreen = () => {
   };
 
   return (
-    <div style={{ padding: "25vh 100px" }}>
+    <div className="container-katalog">
       <h1>Katalog Screen</h1>
       <div>
         {isLoading ? (
