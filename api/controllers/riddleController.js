@@ -34,9 +34,10 @@ const getRiddleById = expressAsyncHandler(async (req, res) => {
 // @route   POST /api/riddles
 // @access  Private/Admin
 const addRiddle = expressAsyncHandler(async (req, res) => {
-  const { kronologi } = req.body;
+  const { title, kronologi } = req.body;
 
   const riddle = new Riddle({
+    title,
     kronologi,
     image: `public/images/${req.file.filename}`,
   });
@@ -49,11 +50,12 @@ const addRiddle = expressAsyncHandler(async (req, res) => {
 // @route   PUT /api/riddles/:id
 // @access  Private/Admin
 const updateRiddle = expressAsyncHandler(async (req, res) => {
-  const { kronologi, tersangka, clue, answer } = req.body;
+  const { title, kronologi, tersangka, clue, answer } = req.body;
 
   const riddle = await Riddle.findById(req.params.id);
 
   if (riddle) {
+    if (title) riddle.title = title;
     if (kronologi) riddle.kronologi = kronologi;
     if (tersangka) riddle.tersangka = tersangka;
     if (clue) riddle.clue = clue;
@@ -93,7 +95,7 @@ const deleteRiddle = expressAsyncHandler(async (req, res) => {
     });
 
     await riddle.deleteOne({ _id: req.params.id });
-    res.status(204).json({ message: "Riddle removed" });
+    res.status(204);
   } else {
     res.status(404);
     throw new Error("Riddle not found");

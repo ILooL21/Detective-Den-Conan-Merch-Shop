@@ -25,6 +25,7 @@ const ListProductScreen = () => {
       });
       if (results.length === 0) {
         toast.error("Produk tidak ditemukan");
+        setList(products);
       } else {
         setList(results);
       }

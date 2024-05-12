@@ -57,3 +57,5 @@ export const riddleApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+export const { useGetAllRiddlesQuery, useGetSingleRiddleQuery, useCreateRiddleMutation, useUpdateRiddleMutation, useDeleteRiddleMutation, useAddTersangkaMutation, useDeleteTersangkaMutation, useAnswerRiddleMutation } = riddleApiSlice;

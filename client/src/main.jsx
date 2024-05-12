@@ -19,6 +19,7 @@ import ListAddressScreen from "./screens/ListAddressScreen.jsx";
 import ListCategoryScreen from "./screens/ListCategoryScreen.jsx";
 import ListArticleScreen from "./screens/ListArticleScreen.jsx";
 import ListProductScreen from "./screens/ListProductScreen.jsx";
+import ListRiddleScreen from "./screens/ListRiddleScreen.jsx";
 import ProductDetailScreen from "./screens/ProductDetailScreen.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
@@ -79,6 +80,10 @@ const router = createBrowserRouter(
           <Route
             path="/listproducts"
             element={<ListProductScreen />}
+          />
+          <Route
+            path="/listriddles"
+            element={<ListRiddleScreen />}
           />
           <Route
             path=""

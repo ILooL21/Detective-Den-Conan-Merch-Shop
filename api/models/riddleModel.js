@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const riddleSchema = mongoose.Schema(
   {
+    title: {
+      type: String,
+      required: true,
+    },
     image: {
       type: String,
       required: true,

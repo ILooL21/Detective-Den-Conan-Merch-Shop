@@ -4,4 +4,5 @@ const HomeScreen = () => {
   
   return <Hero />;
 };
+
 export default HomeScreen;

@@ -10,7 +10,7 @@ const DasboardScreen = () => {
     <>
       <div className="container-dashboard">
         <RefreshToken />
-          <div className="container-dashboard-header">
+        <div className="container-dashboard-header">
           <Breadcrumb
             className="breadcrumb-dashboard"
             items={[
@@ -20,8 +20,9 @@ const DasboardScreen = () => {
               {
                 title: "Dashboard",
               },
-            ]}/>
-          </div>
+            ]}
+          />
+        </div>
         <div className="container-dashboard-main">
           <h2>Welcome {userInfo.name}</h2>
           <div className="container-content-dashboard">
@@ -41,6 +42,9 @@ const DasboardScreen = () => {
             </div>
             <div className="content-dashboard">
               <a href="/listarticles">List Artikel</a>
+            </div>
+            <div className="content-dashboard">
+              <a href="/listriddles">List Riddle</a>
             </div>
           </div>
         </div>
