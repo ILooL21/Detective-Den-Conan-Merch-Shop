@@ -1,4 +1,7 @@
-import { useGetAllCategoriesQuery, useDeleteCategoryMutation } from "../slices/categoryApiSlice";
+import {
+  useGetAllCategoriesQuery,
+  useDeleteCategoryMutation,
+} from "../slices/categoryApiSlice";
 import { useGetAllProductsQuery } from "../slices/productApiSlice";
 import AddCategoryModal from "../components/admin/category/AddCategoryModal";
 import EditCategoryModal from "../components/admin/category/EditCategoryModal";
@@ -20,7 +23,8 @@ const ListCategoryScreen = () => {
   const { data: products } = useGetAllProductsQuery();
 
   const countProducts = (categoryId) => {
-    return products?.filter((product) => product.category === categoryId).length;
+    return products?.filter((product) => product.category === categoryId)
+      .length;
   };
 
   const handleDelete = async (categoryId) => {
@@ -84,14 +88,15 @@ const ListCategoryScreen = () => {
             <input
               className="input-search-category"
               type="text"
-              placeholder="Search by email"
+              placeholder="Search by name"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               style={{ width: "200px" }}
             />
             <Button
               type="submit" // Menjadikan button sebagai tombol submit
-              className="button-list-category">
+              className="button-list-category"
+            >
               <FaSearch />
             </Button>
           </div>
@@ -113,17 +118,19 @@ const ListCategoryScreen = () => {
               <tr key={category._id}>
                 <td>{category.name}</td>
                 <td>{countProducts(category.name)}</td>
-                <td className="container-action-category">
-                  <div className="container-edit-category">
-                    <EditCategoryModal
-                      categoryId={category._id}
-                      Name={category.name}
-                    />
-                  </div>
-                  <div className="container-delete-category">
-                    <button onClick={() => handleDelete(category._id)}>
-                      <DeleteOutlined />
-                    </button>
+                <td>
+                  <div className="container-action-category">
+                    <div className="container-edit-category">
+                      <EditCategoryModal
+                        categoryId={category._id}
+                        Name={category.name}
+                      />
+                    </div>
+                    <div className="container-delete-category">
+                      <button onClick={() => handleDelete(category._id)}>
+                        <DeleteOutlined />
+                      </button>
+                    </div>
                   </div>
                 </td>
               </tr>

@@ -1,10 +1,16 @@
-import { useGetAllProductsQuery, useDeleteProductMutation } from "../slices/productApiSlice";
+import {
+  useGetAllProductsQuery,
+  useDeleteProductMutation,
+} from "../slices/productApiSlice";
 import AddProductModal from "../components/admin/product/AddProductModal";
 import EditProductModal from "../components/admin/product/EditProductModal";
 import { FaSearch } from "react-icons/fa";
-import { Table, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Breadcrumb } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
+import "../styles/ListProductScreen.css";
 
 const ListProductScreen = () => {
   const [list, setList] = useState([]);
@@ -44,41 +50,50 @@ const ListProductScreen = () => {
   };
 
   return (
-    <div
-      style={{
-        marginTop: "150px",
-        marginInline: "50px",
-      }}>
-      <AddProductModal />
+    <div className="container-list-product">
+      <div className="container-list-product-header">
+        <Breadcrumb
+          className="breadcrumb-list-product"
+          items={[
+            {
+              title: <a href="/">Home</a>,
+            },
+            {
+              title: <a href="/dashboard">Dashboard</a>,
+            },
+            {
+              title: "List Product",
+            },
+          ]}
+        />
+      </div>
       <form onSubmit={searchSubmit}>
-        <div className="d-flex justify-content-between align-items-center my-3">
-          <div className="d-flex align-items-center">
+        <div className="container-search-product">
+          <div className="button-add-product">
+            <AddProductModal />
+          </div>
+          <div className="d-flex">
             <input
-              className="form-control"
+              className="input-search-product"
               type="text"
-              placeholder="Cari berdasarkan nama"
+              placeholder="Search by name"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              style={{ width: "200px" }}
             />
             <Button
-              type="submit"
-              variant="outline-primary"
-              className="mx-2">
+              type="submit" // Menjadikan button sebagai tombol submit
+              className="button-list-product"
+            >
               <FaSearch />
             </Button>
           </div>
         </div>
       </form>
-      <h1>Daftar Product</h1>
       {isLoading ? (
         <h2>Loading....</h2>
       ) : (
-        <Table
-          striped
-          bordered
-          hover
-          responsive
-          className="table-sm">
+        <table className="table-list-product">
           <thead>
             <tr>
               <th>Nama</th>
@@ -99,8 +114,8 @@ const ListProductScreen = () => {
                   <img
                     src={`http://localhost:8080/${product.image}`}
                     style={{
-                      width: "200px",
-                      height: "200px",
+                      width: "160px",
+                      height: "auto",
                     }}
                   />
                 </td>
@@ -110,26 +125,29 @@ const ListProductScreen = () => {
                 <td>{product.countInStock}</td>
                 <td>{product.rating}</td>
                 <td>
-                  <EditProductModal
-                    productId={product._id}
-                    name={product.name}
-                    price={product.price}
-                    stock={product.countInStock}
-                    description={product.description}
-                    image={product.image}
-                    category={product.category}
-                  />
-                  <Button
-                    variant="danger"
-                    className="btn-sm"
-                    onClick={() => deleteHandler(product._id)}>
-                    Hapus
-                  </Button>
+                  <div className="container-action-product">
+                    <div className="container-edit-product">
+                      <EditProductModal
+                        productId={product._id}
+                        name={product.name}
+                        price={product.price}
+                        stock={product.countInStock}
+                        description={product.description}
+                        image={product.image}
+                        category={product.category}
+                      />
+                    </div>
+                    <div className="container-delete-product">
+                      <button onClick={() => deleteHandler(product._id)}>
+                        <DeleteOutlined />
+                      </button>
+                    </div>
+                  </div>
                 </td>
               </tr>
             ))}
           </tbody>
-        </Table>
+        </table>
       )}
     </div>
   );
