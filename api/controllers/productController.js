@@ -44,6 +44,8 @@ const addProduct = asyncHandler(async (req, res) => {
     price,
   });
 
+  console.log(product);
+
   const createdProduct = await product.save();
   res.status(201).json(createdProduct);
 });

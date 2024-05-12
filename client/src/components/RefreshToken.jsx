@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../slices/authSlice";
+import { useRefreshTokenMutation } from "../slices/usersApiSlice";
 import { useEffect } from "react";
+import { logout } from "../slices/authSlice";
 import { toast } from "react-toastify";
 
 const RefreshToken = () => {
@@ -8,12 +9,20 @@ const RefreshToken = () => {
 
   const dispatch = useDispatch();
 
+  const [refreshTokenMutation] = useRefreshTokenMutation();
+
   useEffect(() => {
-    if (userInfo && userInfo.expiresAt < new Date().getTime()) {
-      dispatch(logout());
-      toast.error("Session expired, please login again");
-    }
-  });
+    const refreshToken = async () => {
+      try {
+        await refreshTokenMutation({ id: userInfo._id });
+      } catch (err) {
+        console.error(err);
+        dispatch(logout());
+        toast.error("Session expired, please login again");
+      }
+    };
+    refreshToken();
+  }, [dispatch, refreshTokenMutation, userInfo._id]);
 };
 
 export default RefreshToken;

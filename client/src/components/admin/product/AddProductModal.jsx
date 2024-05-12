@@ -42,7 +42,7 @@ const AddProductModal = () => {
 
   return (
     <>
-      <button onClick={handleShow}>Tambah Product</button>
+      <Button onClick={handleShow}>Tambah Product</Button>
       <Modal
         show={show}
         onHide={handleClose}>

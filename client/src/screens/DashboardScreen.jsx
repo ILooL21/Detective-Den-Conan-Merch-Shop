@@ -9,6 +9,24 @@ const DasboardScreen = () => {
   
   return (
     <>
+      <div className="container-dashboard">
+        <RefreshToken />
+        <div className="container-dashboard-header">
+          <Breadcrumb
+            className="breadcrumb-dashboard"
+            items={[
+              {
+                title: <a href="/">Home</a>,
+              },
+              {
+                title: "Dashboard",
+              },
+            ]}
+          />
+        </div>
+        <div className="container-dashboard-main">
+          <h2>Welcome {userInfo.name}</h2>
+          <div className="container-content-dashboard">
       <div
         style={{
           display: "flex",
@@ -48,6 +66,9 @@ const DasboardScreen = () => {
                 <QuestionOutlined className="icon-navbar-dashboard"/>
                 Support
               </a>
+            </div>
+            <div className="content-dashboard">
+              <a href="/listriddles">List Riddle</a>
             </div>
           </div>
         </div>

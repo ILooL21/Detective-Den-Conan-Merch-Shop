@@ -57,7 +57,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     role: firstUser ? "user" : "superadmin",
-    listalamat: [],
+    listalamat,
   });
 
   if (user) {
@@ -170,26 +170,17 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @access  Private
 const changeUserRole = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body.id);
-  const userlogin = await User.findById(req.body.userId);
 
   if (user) {
     if (user.role === "user") {
       await User.findByIdAndUpdate(req.body.id, { role: "admin" });
       res.json({
-        _id: userlogin._id,
-        name: userlogin.name,
-        email: userlogin.email,
-        role: userlogin.role,
-        listalamat: userlogin.listalamat,
+        message: "User role changed to admin",
       });
     } else if (user.role === "admin") {
       await User.findByIdAndUpdate(req.body.id, { role: "user" });
       res.json({
-        _id: userlogin._id,
-        name: userlogin.name,
-        email: userlogin.email,
-        role: userlogin.role,
-        listalamat: userlogin.listalamat,
+        message: "User role changed to user",
       });
     }
   } else {
@@ -205,13 +196,11 @@ const refreshToken = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body.id);
 
   if (user) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      listalamat: user.listalamat,
-    });
+    if (!req.cookies.jwt) {
+      return res.status(304).json({ message: "You are not logged in" });
+    } else {
+      return res.status(200).json({ message: "you are logged in" });
+    }
   } else {
     res.status(404);
     throw new Error("User not found");

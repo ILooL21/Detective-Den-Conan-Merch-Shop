@@ -1,8 +1,6 @@
 import { useGetAllUsersQuery, useChangeRoleMutation } from "../slices/usersApiSlice";
-import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import Loader from "../components/Loader";
-import { setCredentials } from "../slices/authSlice";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { FaSearch } from "react-icons/fa";
@@ -13,12 +11,8 @@ const ListUserScreen = () => {
   const [list, setList] = useState([]);
   const [search, setSearch] = useState("");
 
-  const dispatch = useDispatch();
-
   const { data: users } = useGetAllUsersQuery();
   const [changeRole, { isLoading }] = useChangeRoleMutation();
-
-  const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     setList(users);
@@ -26,9 +20,7 @@ const ListUserScreen = () => {
 
   const clickHandler = async (id) => {
     try {
-      const res = await changeRole({ id: id, userId: userInfo._id }).unwrap();
-      console.log(res);
-      dispatch(setCredentials(res));
+      await changeRole({ id: id }).unwrap();
     } catch (err) {
       console.error(err);
     }
@@ -61,22 +53,22 @@ const ListUserScreen = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <div className="d-flex justify-content-between align-items-center my-3">
-          <div className="container-list-user-header">
-            <Breadcrumb
-            className="breadcrumb-list-user"
-            items={[
-              {
-                title: <a href="/">Home</a>,
-              },
-              {
-                title: <a href="/dashboard">Dashboard</a>,
-              },
-              {
-                title: "List User",
-              },
-            ]}
-          />
-        </div>
+            <div className="container-list-user-header">
+              <Breadcrumb
+                className="breadcrumb-list-user"
+                items={[
+                  {
+                    title: <a href="/">Home</a>,
+                  },
+                  {
+                    title: <a href="/dashboard">Dashboard</a>,
+                  },
+                  {
+                    title: "List User",
+                  },
+                ]}
+              />
+            </div>
             <div className="d-flex align-items-center">
               <input
                 className="input-search-user"
@@ -87,7 +79,7 @@ const ListUserScreen = () => {
                 style={{ width: "200px" }}
               />
               <Button
-                type="submit" // Menjadikan button sebagai tombol submit
+                type="submit"
                 className="button-list-user">
                 <FaSearch />
               </Button>
@@ -95,8 +87,7 @@ const ListUserScreen = () => {
           </div>
         </form>
       </div>
-      <table
-        className="table-list-user">
+      <table className="table-list-user">
         <thead>
           <tr>
             <th>No.</th>
@@ -108,9 +99,7 @@ const ListUserScreen = () => {
         </thead>
         <tbody>
           {list?.map((user) => (
-            <tr
-              key={user._id}
-              onSubmit={clickHandler}>
+            <tr key={user._id}>
               <td>{list.indexOf(user) + 1}</td>
               <td>{user.name}</td>
               <td>{user.email}</td>

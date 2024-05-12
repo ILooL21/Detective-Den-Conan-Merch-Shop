@@ -3,6 +3,7 @@ import { useGetAllProductsQuery } from "../slices/productApiSlice";
 import { useGetAllCategoriesQuery } from "../slices/categoryApiSlice";
 import { Card } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import ProductNotFoundScreen from "./ProductNotFoundScreen";
 import "../styles/KatalogScreen.css";
 
 const KatalogScreen = () => {
@@ -68,11 +69,12 @@ const KatalogScreen = () => {
                 )}
             </div>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
-              {list &&
+              {list && list.length > 0 ? (
                 list.map((product) => (
                   <Card
                     key={product._id}
-                    style={{ width: "18rem", margin: "0.5rem" }}>
+                    style={{ width: "18rem", margin: "0.5rem", cursor: "pointer" }}
+                    onClick={() => navigate(`/product/${product._id}`)}>
                     <Card.Img
                       variant="top"
                       src={`http://localhost:8080/${product.image}`}
@@ -83,7 +85,10 @@ const KatalogScreen = () => {
                       <Card.Text>{product.category}</Card.Text>
                     </Card.Body>
                   </Card>
-                ))}
+                ))
+              ) : (
+                <ProductNotFoundScreen />
+              )}
             </div>
           </div>
         )}
