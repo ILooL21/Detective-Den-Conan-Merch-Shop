@@ -2,7 +2,7 @@ import { Breadcrumb } from "antd";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import { Form } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 import { useCreateSupportMutation } from "../slices/supportApiSlice";
 import { toast } from "react-toastify";
@@ -47,6 +47,15 @@ const ContactScreen = () => {
 
     return isLast ? <span>{currentRoute.title}</span> : <Link to={`/${paths.join("/")}`}>{currentRoute.title}</Link>;
   }
+
+  useEffect(() => {
+    const textareas = document.querySelectorAll("textarea");
+    textareas.forEach((textarea) => {
+      textarea.style.height = "auto";
+      textarea.style.height = textarea.scrollHeight + "px";
+    });
+  }, [message]);
+
   return (
     <>
       <div className="container-contact">

@@ -3,6 +3,7 @@ import { useUpdateProductMutation } from "../../../slices/productApiSlice";
 import { useGetAllCategoriesQuery } from "../../../slices/categoryApiSlice";
 import PropType from "prop-types";
 import { Modal, Button, Form } from "react-bootstrap";
+import { EditOutlined } from "@ant-design/icons";
 
 const EditProductModal = (props) => {
   let productId = props.productId;
@@ -48,7 +49,9 @@ const EditProductModal = (props) => {
 
   return (
     <>
-      <button onClick={handleShow}>Edit</button>
+      <button onClick={handleShow}>
+        <EditOutlined />
+      </button>
       <Modal
         show={show}
         onHide={handleClose}>

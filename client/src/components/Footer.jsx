@@ -14,7 +14,7 @@ const FooterComponent = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          height: "60vh",
+          height: "300px",
           backgroundColor: "#000",
         }}>
         <div className="footer-container">
@@ -24,9 +24,9 @@ const FooterComponent = () => {
           </div>
           <div className="footer-links">
             <h1>Support</h1>
-            <a href="">111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</a>
+            <a href="">Jl. Panglima Sudirman No.125, Sawah, Banjarmendalan, Kec. Lamongan, Kabupaten Lamongan, Jawa Timur 62212</a>
             <a href="">exclusive@gmail.com</a>
-            <a href="">+88015-88888-9999</a>
+            <a href="">+62815-8888-9999</a>
           </div>
           <div className="footer-links">
             <h1>Account</h1>
@@ -45,10 +45,10 @@ const FooterComponent = () => {
           </div>
           <div className="footer-links">
             <h1>Quick Link</h1>
-            <a>Privacy Policy</a>
-            <a>Terms Of Use</a>
-            <a>FAQ</a>
-            <a>Contact</a>
+            <a href="">Privacy Policy</a>
+            <a href="">Terms Of Use</a>
+            <a href="">FAQ</a>
+            <a href="">Contact</a>
           </div>
         </div>
       </Footer>
@@ -57,7 +57,7 @@ const FooterComponent = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          height: "5vh",
+          height: "60px",
           backgroundColor: "#000",
           borderTop: "1px solid #444",
         }}>

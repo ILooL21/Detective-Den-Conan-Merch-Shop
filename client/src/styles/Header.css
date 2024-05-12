@@ -3,11 +3,8 @@
   text-decoration: none;
   font-size: 24px;
   font-weight: 700;
-  letter-spacing: 3%;
   line-height: 24px;
-  width: 223px;
-  height: 48px;
-  margin-right: 24px;
+  width: 202px;
 }
 .logo:hover {
   color: #db4444;
@@ -42,12 +39,12 @@
   line-height: 24px;
   color: #000;
   text-decoration: none;
-  gap: 16px;
+  gap: 8px;
 }
 .menu a {
   color: #000;
   text-decoration: none;
-  padding: 12px;
+  padding: 8px;
 }
 .menu a:hover {
   color: #db4444;
@@ -107,7 +104,7 @@
   text-decoration: none;
 }
 .icons {
-  font-size: 20px;
+  font-size: 24px;
 }
 .icons:hover {
   color: #db4444;
@@ -122,14 +119,12 @@
   height: 38px;
   border-radius: 8px;
   background-color: #f5f5f5;
-  border: none;
   padding: 7px 12px 7px 20px;
+  border: none;
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
 }
-.search-bar-header:focus {
-  outline: none;
-  background-color: #f5f5f5 !important;
-  box-shadow: 0px 0px 0px 2px #db4444;
+.search-bar-header:hover {
+  background-color: #f1f1f1;
 }

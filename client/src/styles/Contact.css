@@ -1,7 +1,7 @@
 .container-contact {
-  padding: 24vh 100px;
-  width: 98vw;
-  height: 100vh;
+  padding: 200px 120px;
+  width: 100%;
+  height: auto;
   align-items: center;
   gap: 48px;
 }
@@ -153,8 +153,10 @@ hr {
   border: none;
   background-color: #f5f5f5;
   border-radius: 4px;
+  resize: none;
 }
 .form-contact-input:focus {
   background-color: #f5f5f5;
+  outline: none;
   box-shadow: 0px 0px 0px 2px #db4444;
 }

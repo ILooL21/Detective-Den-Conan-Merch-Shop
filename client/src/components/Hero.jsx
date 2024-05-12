@@ -10,7 +10,6 @@ const Hero = () => {
   return (
     <>
       <RefreshToken />
-
       <div className="container-hero">
         <div className="image-home-main-container">
           <img
