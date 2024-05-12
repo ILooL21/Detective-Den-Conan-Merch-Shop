@@ -79,7 +79,6 @@ const updateRiddle = expressAsyncHandler(async (req, res) => {
     }
 
     const updatedRiddle = await riddle.save();
-    console.log(updatedRiddle);
     res.status(200).json(updatedRiddle);
   } else {
     res.status(404);
