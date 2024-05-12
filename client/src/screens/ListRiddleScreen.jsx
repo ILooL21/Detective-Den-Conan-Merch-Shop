@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useGetAllRiddlesQuery, useDeleteRiddleMutation } from "../slices/riddleApiSlice";
+import AddRiddleModal from "../components/admin/riddle/AddRiddleModal";
 import { FaSearch } from "react-icons/fa";
 import { Table, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -10,6 +12,8 @@ const ListRiddleScreen = () => {
 
   const { data: riddles, isLoading } = useGetAllRiddlesQuery();
   const [deleteRiddle] = useDeleteRiddleMutation();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setList(riddles);
@@ -37,6 +41,10 @@ const ListRiddleScreen = () => {
     window.location.reload();
   };
 
+  const EditRedirect = (riddleId) => {
+    navigate(`/editriddle/${riddleId}`);
+  };
+
   const searchSubmit = (e) => {
     e.preventDefault();
     searchHandler();
@@ -49,6 +57,7 @@ const ListRiddleScreen = () => {
         marginInline: "50px",
       }}>
       <h1>List Riddle Screen</h1>
+      <AddRiddleModal />
       <form onSubmit={searchSubmit}>
         <div className="d-flex justify-content-between align-items-center my-3">
           <div className="d-flex align-items-center">
@@ -83,6 +92,7 @@ const ListRiddleScreen = () => {
                 <th>Title</th>
                 <th>Thumbnail</th>
                 <th>Jumlah Tersangka</th>
+                <th>Clue</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -102,7 +112,13 @@ const ListRiddleScreen = () => {
                     />
                   </td>
                   <td>{riddle.tersangka.length}</td>
+                  <td>{riddle.clue == "" ? "Setting Clue terlebih dahulu" : riddle.clue}</td>
                   <td>
+                    <Button
+                      className="btn btn-primary"
+                      onClick={() => EditRedirect(riddle._id)}>
+                      Edit
+                    </Button>
                     <Button
                       className="btn btn-danger"
                       onClick={() => deleteHandler(riddle._id)}>

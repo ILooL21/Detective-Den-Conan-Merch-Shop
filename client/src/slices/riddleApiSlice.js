@@ -46,6 +46,7 @@ export const riddleApiSlice = apiSlice.injectEndpoints({
       query: (data) => ({
         url: `${RIDDLE_URL}/tersangka/${data.id}`,
         method: "DELETE",
+        body: data,
       }),
     }),
     answerRiddle: builder.mutation({

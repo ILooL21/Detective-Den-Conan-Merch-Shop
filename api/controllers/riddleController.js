@@ -1,6 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
 import Riddle from "../models/riddleModel.js";
 import { unlink } from "node:fs";
+import e from "express";
 
 // @desc    Fetch all riddles
 // @route   GET /api/riddles
@@ -50,16 +51,21 @@ const addRiddle = expressAsyncHandler(async (req, res) => {
 // @route   PUT /api/riddles/:id
 // @access  Private/Admin
 const updateRiddle = expressAsyncHandler(async (req, res) => {
-  const { title, kronologi, tersangka, clue, answer } = req.body;
+  const { title, kronologi, clue, pelaku, alasan } = req.body;
 
   const riddle = await Riddle.findById(req.params.id);
 
   if (riddle) {
     if (title) riddle.title = title;
     if (kronologi) riddle.kronologi = kronologi;
-    if (tersangka) riddle.tersangka = tersangka;
     if (clue) riddle.clue = clue;
-    if (answer) riddle.answer = answer;
+    if (pelaku && alasan) {
+      if (riddle.answer.length === 0) {
+        riddle.answer.push({ pelaku, alasan });
+      } else {
+        await Riddle.updateOne({ _id: req.params.id }, { $set: { "answer.0.pelaku": pelaku, "answer.0.alasan": alasan } });
+      }
+    }
 
     if (req.file) {
       unlink(`./${riddle.image}`, (err) => {
@@ -73,6 +79,7 @@ const updateRiddle = expressAsyncHandler(async (req, res) => {
     }
 
     const updatedRiddle = await riddle.save();
+    console.log(updatedRiddle);
     res.status(200).json(updatedRiddle);
   } else {
     res.status(404);
@@ -95,7 +102,7 @@ const deleteRiddle = expressAsyncHandler(async (req, res) => {
     });
 
     await riddle.deleteOne({ _id: req.params.id });
-    res.status(204);
+    res.status(204).json({ message: "Riddle removed" });
   } else {
     res.status(404);
     throw new Error("Riddle not found");
@@ -135,6 +142,10 @@ const deleteTersangka = expressAsyncHandler(async (req, res) => {
 
   if (riddle) {
     riddle.tersangka = riddle.tersangka.filter((t) => t.tersangka !== tersangka);
+
+    if (riddle.answer[0].pelaku === tersangka) {
+      await Riddle.updateOne({ _id: req.params.id }, { $pull: { answer: { pelaku: tersangka } } });
+    }
 
     const updatedRiddle = await riddle.save();
     res.status(200).json(updatedRiddle);
