@@ -104,7 +104,7 @@ const ListUserScreen = () => {
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.role}</td>
-              <td className="d-grid gap-2">
+              <td className="container-action-list-user">
                 {user.role === "admin" ? (
                   <Button
                     variant="primary"
