@@ -2,6 +2,7 @@ import { useState } from "react";
 import PropType from "prop-types";
 import { useUpdateArticleMutation } from "../../../slices/articleApiSlice";
 import { Modal, Button, Form } from "react-bootstrap";
+import { EditOutlined } from "@ant-design/icons";
 
 const EditArticleModal = (props) => {
   let articleId = props.articleId;
@@ -37,10 +38,10 @@ const EditArticleModal = (props) => {
 
   return (
     <>
-      <button onClick={handleShow}>Edit</button>
-      <Modal
-        show={show}
-        onHide={handleClose}>
+      <button onClick={handleShow}>
+        <EditOutlined />
+      </button>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Artikel</Modal.Title>
         </Modal.Header>
@@ -56,15 +57,9 @@ const EditArticleModal = (props) => {
             </Form.Group>
             <Form.Group controlId="imageArticle">
               <Form.Label>Gambar</Form.Label>
-              <Form.Control
-                type="file"
-                onChange={handleImage}
-              />
+              <Form.Control type="file" onChange={handleImage} />
               {preview ? (
-                <img
-                  src={preview}
-                  style={{ width: "100px" }}
-                />
+                <img src={preview} style={{ width: "100px" }} />
               ) : (
                 <img
                   src={`http://localhost:8080/${imageArticle}`}
@@ -84,9 +79,7 @@ const EditArticleModal = (props) => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="primary"
-            onClick={handleSave}>
+          <Button variant="primary" onClick={handleSave}>
             Simpan
           </Button>
         </Modal.Footer>
