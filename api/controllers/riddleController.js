@@ -107,7 +107,6 @@ const addTersangka = expressAsyncHandler(async (req, res) => {
   const { tersangka, alibi } = req.body;
 
   const riddle = await Riddle.findById(req.params.id);
-  console.log(riddle);
 
   if (riddle) {
     if (!tersangka || !alibi) {
