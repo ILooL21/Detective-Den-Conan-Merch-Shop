@@ -1,6 +1,7 @@
 .container-profile {
-  padding: 24vh 100px;
-  width: 98vw;
+  padding: 200px 120px;
+  width: 100%;
+  height: auto;
   align-items: center;
 }
 .breadcrumb-profile a {
