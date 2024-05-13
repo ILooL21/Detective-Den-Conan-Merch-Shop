@@ -1,7 +1,4 @@
-import {
-  useGetAllCategoriesQuery,
-  useDeleteCategoryMutation,
-} from "../slices/categoryApiSlice";
+import { useGetAllCategoriesQuery, useDeleteCategoryMutation } from "../slices/categoryApiSlice";
 import { useGetAllProductsQuery } from "../slices/productApiSlice";
 import AddCategoryModal from "../components/admin/category/AddCategoryModal";
 import EditCategoryModal from "../components/admin/category/EditCategoryModal";
@@ -23,8 +20,7 @@ const ListCategoryScreen = () => {
   const { data: products } = useGetAllProductsQuery();
 
   const countProducts = (categoryId) => {
-    return products?.filter((product) => product.category === categoryId)
-      .length;
+    return products?.filter((product) => product.category === categoryId).length;
   };
 
   const handleDelete = async (categoryId) => {
@@ -95,8 +91,7 @@ const ListCategoryScreen = () => {
             />
             <Button
               type="submit" // Menjadikan button sebagai tombol submit
-              className="button-list-category"
-            >
+              className="button-list-category">
               <FaSearch />
             </Button>
           </div>
@@ -117,7 +112,7 @@ const ListCategoryScreen = () => {
             {list?.map((category) => (
               <tr key={category._id}>
                 <td>{category.name}</td>
-                <td>{countProducts(category.name)}</td>
+                <td>{countProducts(category.name) > 0 ? countProducts(category.name) : 0}</td>
                 <td>
                   <div className="container-action-category">
                     <div className="container-edit-category">

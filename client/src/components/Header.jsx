@@ -3,12 +3,7 @@ import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
 import { Layout, Input, Dropdown, Space } from "antd";
-import {
-  SearchOutlined,
-  ShoppingCartOutlined,
-  DownOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { SearchOutlined, ShoppingCartOutlined, DownOutlined, UserOutlined } from "@ant-design/icons";
 import "../styles/Header.css";
 
 const HeaderComponent = () => {
@@ -32,9 +27,7 @@ const HeaderComponent = () => {
 
   const onSearch = (value) => {
     if (searchParams.has("category")) {
-      navigate(
-        `/katalog?search=${value}&category=${searchParams.get("category")}`
-      );
+      navigate(`/katalog?search=${value}&category=${searchParams.get("category")}`);
     } else {
       navigate(`/katalog?search=${value}`);
     }
@@ -46,7 +39,9 @@ const HeaderComponent = () => {
     {
       key: "1",
       label: (
-        <a href="/profile" className="dropdown-content">
+        <a
+          href="/profile"
+          className="dropdown-content">
           Profile
         </a>
       ),
@@ -54,7 +49,9 @@ const HeaderComponent = () => {
     {
       key: "2",
       label: (
-        <a href="/dashboard" className="dropdown-content">
+        <a
+          href="/dashboard"
+          className="dropdown-content">
           Dashboard
         </a>
       ),
@@ -76,12 +73,11 @@ const HeaderComponent = () => {
             height: "36px",
             backgroundColor: "#000",
             gap: "8px",
-          }}
-        >
-          <a className="promo">
-            Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
-          </a>
-          <a className="detail-promo" href="/">
+          }}>
+          <a className="promo">Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</a>
+          <a
+            className="detail-promo"
+            href="/">
             ShopNow
           </a>
         </Header>
@@ -95,17 +91,17 @@ const HeaderComponent = () => {
             width: "100%",
             height: "100px",
             padding: "0 80px",
-          }}
-        >
+          }}>
           <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               gap: "24px",
-            }}
-          >
-            <a className="logo" href="/">
+            }}>
+            <a
+              className="logo"
+              href="/">
               MERCHANDISE DETECTIVE&apos;S DEN
             </a>
             <Input
@@ -129,21 +125,16 @@ const HeaderComponent = () => {
               alignItems: "center",
               justifyContent: "center",
               gap: "24px",
-            }}
-          >
+            }}>
             {userInfo ? (
               <Dropdown
                 menu={{
-                  items:
-                    userInfo?.role === "user"
-                      ? items.filter((item) => item.key != "2")
-                      : items,
+                  items: userInfo?.role === "user" ? items.filter((item) => item.key != "2") : items,
                 }}
                 className="menu-user"
                 overlayStyle={{
                   width: "150px",
-                }}
-              >
+                }}>
                 <div className="menu-login">
                   <a onClick={(e) => e.preventDefault()}>
                     <Space>
@@ -168,8 +159,7 @@ const HeaderComponent = () => {
                 justifyContent: "center",
                 color: "#000",
               }}
-              to={userInfo ? `/cart?userid=${userInfo._id}` : "/login"}
-            >
+              to={userInfo ? `/cart/${userInfo._id}` : "/login"}>
               <ShoppingCartOutlined className="icons" />
             </Link>
           </div>
