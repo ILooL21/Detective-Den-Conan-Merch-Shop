@@ -22,6 +22,8 @@ import ListProductScreen from "./screens/ListProductScreen.jsx";
 import ListRiddleScreen from "./screens/ListRiddleScreen.jsx";
 import ProductDetailScreen from "./screens/ProductDetailScreen.jsx";
 import EditRiddlePage from "./components/admin/riddle/EditRiddlePage.jsx";
+import RiddleScreen from "./screens/RiddleScreen.jsx";
+import RiddleGameScreen from "./screens/RiddleGameScreen.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
 import OwnerRoute from "./components/OwnerRoute.jsx";
@@ -55,6 +57,14 @@ const router = createBrowserRouter(
       <Route
         path="/product/:id"
         element={<ProductDetailScreen />}
+      />
+      <Route
+        path="/riddle"
+        element={<RiddleScreen />}
+      />
+      <Route
+        path="/riddle/:id"
+        element={<RiddleGameScreen />}
       />
       <Route
         path=""
