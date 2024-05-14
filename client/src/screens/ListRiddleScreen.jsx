@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetAllRiddlesQuery, useDeleteRiddleMutation } from "../slices/riddleApiSlice";
+import {
+  useGetAllRiddlesQuery,
+  useDeleteRiddleMutation,
+} from "../slices/riddleApiSlice";
 import AddRiddleModal from "../components/admin/riddle/AddRiddleModal";
 import { FaSearch } from "react-icons/fa";
-import { Table, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Breadcrumb } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";
+import "../styles/ListRiddleScreen.css";
 
 const ListRiddleScreen = () => {
   const [list, setList] = useState([]);
@@ -51,86 +57,100 @@ const ListRiddleScreen = () => {
   };
 
   return (
-    <div
-      style={{
-        marginTop: "150px",
-        marginInline: "50px",
-      }}>
-      <h1>List Riddle Screen</h1>
-      <AddRiddleModal />
+    <div className="container-list-riddle">
+      <div className="container-list-riddle-header">
+        <Breadcrumb
+          className="breadcrumb-list-riddle"
+          items={[
+            {
+              title: <a href="/">Home</a>,
+            },
+            {
+              title: <a href="/dashboard">Dashboard</a>,
+            },
+            {
+              title: "List Riddle",
+            },
+          ]}
+        />
+      </div>
       <form onSubmit={searchSubmit}>
-        <div className="d-flex justify-content-between align-items-center my-3">
-          <div className="d-flex align-items-center">
+        <div className="container-search-riddle">
+          <div className="button-add-riddle">
+            <AddRiddleModal />
+          </div>
+          <div className="d-flex">
             <input
-              className="form-control"
+              className="input-search-riddle"
               type="text"
-              placeholder="Cari berdasarkan nama"
+              placeholder="Search by title"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              style={{ width: "200px" }}
             />
             <Button
-              type="submit"
-              className="btn btn-primary ms-2"
-              onClick={searchHandler}>
+              type="submit" // Menjadikan button sebagai tombol submit
+              className="button-list-riddle"
+            >
               <FaSearch />
             </Button>
           </div>
         </div>
       </form>
-      <div>
-        {isLoading ? (
-          <h2>Loading...</h2>
-        ) : (
-          <Table
-            striped
-            bordered
-            hover
-            responsive>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Title</th>
-                <th>Thumbnail</th>
-                <th>Jumlah Tersangka</th>
-                <th>Clue</th>
-                <th>Action</th>
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : (
+        <table className="table-list-product">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Title</th>
+              <th>Thumbnail</th>
+              <th>Jumlah Tersangka</th>
+              <th>Clue</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {list?.map((riddle, index) => (
+              <tr key={riddle._id}>
+                <td>{index + 1}</td>
+                <td>{riddle.title}</td>
+                <td>
+                  <img
+                    src={`http://localhost:8080/${riddle.image}`}
+                    alt={riddle.title}
+                    style={{
+                      width: "160px",
+                      height: "auto",
+                    }}
+                  />
+                </td>
+                <td>{riddle.tersangka.length}</td>
+                <td>
+                  {riddle.clue == ""
+                    ? "Setting Clue terlebih dahulu"
+                    : riddle.clue}
+                </td>
+                <td>
+                  <div className="container-action-product">
+                    <div className="container-edit-product">
+                      <button onClick={() => EditRedirect(riddle._id)}>
+                        <EditOutlined />
+                      </button>
+                    </div>
+                    <div className="container-delete-product">
+                      <button onClick={() => deleteHandler(riddle._id)}>
+                        <DeleteOutlined />
+                      </button>
+                    </div>
+                  </div>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {list?.map((riddle, index) => (
-                <tr key={riddle._id}>
-                  <td>{index + 1}</td>
-                  <td>{riddle.title}</td>
-                  <td>
-                    <img
-                      src={`http://localhost:8080/${riddle.image}`}
-                      alt={riddle.title}
-                      style={{
-                        width: "200px",
-                        height: "200px",
-                      }}
-                    />
-                  </td>
-                  <td>{riddle.tersangka.length}</td>
-                  <td>{riddle.clue == "" ? "Setting Clue terlebih dahulu" : riddle.clue}</td>
-                  <td>
-                    <Button
-                      className="btn btn-primary"
-                      onClick={() => EditRedirect(riddle._id)}>
-                      Edit
-                    </Button>
-                    <Button
-                      className="btn btn-danger"
-                      onClick={() => deleteHandler(riddle._id)}>
-                      Delete
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        )}
-      </div>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
