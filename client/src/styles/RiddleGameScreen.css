@@ -1,0 +1,158 @@
+.container-riddle-game-screen {
+  padding: 200px 100px;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  gap: 48px;
+}
+.container-riddle-game-screen-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0px 24px 0px;
+}
+.container-riddle-game-screen-header span {
+  color: #db4444;
+}
+.breadcrumb-riddle-game-screen a {
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+}
+.breadcrumb-riddle-game-screen a:hover {
+  color: #db4444;
+  text-decoration: underline;
+}
+.container-riddle-game-screen-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+}
+.container-riddle-game-screen-body h1 {
+  font-size: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.container-riddle-game-screen-body img {
+  display: flex;
+  justify-content: center;
+  width: 720px;
+  height: auto;
+  border-radius: 16px;
+}
+.kronologi-game-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 720px;
+  height: auto;
+  background-color: #f5f5f5;
+  box-shadow: 0px 0px 8px 0px #c4c4c4;
+  border: solid 1px #c4c4c4;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.list-tersangka-game-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+.tersangka-game-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 720px;
+  height: auto;
+  background-color: #f5f5f5;
+  box-shadow: 0px 0px 8px 0px #c4c4c4;
+  border-radius: 8px;
+  border: solid 1px #c4c4c4;
+  font-size: 16px;
+  font-weight: 400;
+}
+.tersangka-game-screen h5 {
+  font-size: 24px;
+  border-bottom: solid 1px #c4c4c4;
+  width: 100%;
+  text-align: center;
+  padding: 8px 0px;
+}
+.container-radio-game-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 720px;
+  height: auto;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.radio-game-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.radio-game-screen input[type="radio"] {
+  display: none;
+}
+.radio-game-screen label {
+	display: block;
+	padding: 16px 40px;
+	background: #f5f5f5;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: 400;
+	min-width: 200px;
+	white-space: nowrap;
+	position: relative;
+	transition: 0.2s ease-in-out 0s;
+}
+.radio-game-screen label:hover {
+  box-shadow: 0px 0px 8px 0px #c4c4c4;
+}
+.radio-game-screen label:after,
+.radio-game-screen label:before {
+	content: "";
+	position: absolute;
+	border-radius: 50%;
+}
+.radio-game-screen label:after {
+	height: 20px;
+	width: 20px;
+	border: 2px solid #db4444;
+	left: 12px;
+	top: calc(50% - 10px);
+}
+.radio-game-screen label:before {
+	background: #db4444;
+	height: 12px;
+	width: 12px;
+	left: 16px;
+	top: 23.5px;
+	transform: scale(5);
+	opacity: 0;
+	visibility: hidden;
+}
+.radio-game-screen [type="radio"]:checked ~ label {
+  box-shadow: 0px 0px 8px 0px #db4444;
+}
+.radio-game-screen [type="radio"]:checked ~ label::before {
+	opacity: 1;
+	visibility: visible;
+	transform: scale(1);
+}
+hr {
+  width: 90%;
+  border: none;
+  border-top: solid 1px rgb(0, 0, 0, 0.5);
+}
