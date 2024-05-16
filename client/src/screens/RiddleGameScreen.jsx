@@ -9,8 +9,29 @@ const RiddleGameScreen = () => {
   const { id } = useParams();
   const [jawaban, setJawaban] = useState("");
   const [tersangka, setTersangka] = useState([]);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const { data: riddle, isLoading } = useGetSingleRiddleQuery(id);
+
+  const handleClick = () => {
+    if (!isClicked) {
+      setIsClicked(true);
+    }
+  };
+
+  useEffect(() => {
+    let timer;
+    timer = setTimeout(() => {
+      setIsDisabled(false);
+    }, 60000);
+    if (isClicked) {
+      timer = setTimeout(() => {
+        setIsDisabled(true);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [isClicked]);
 
   useEffect(() => {
     if (!isLoading) setTersangka(riddle.tersangka);
@@ -58,7 +79,42 @@ const RiddleGameScreen = () => {
             ))}
           </div>
           <hr />
-          <h3>Siapakah Pembunuhnya?</h3>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "900px",
+              position: "relative",
+            }}
+          >
+            <h3>Siapakah Pembunuhnya?</h3>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                position: "absolute",
+                right: "0",
+                gap: "0px",
+              }}
+            >
+              <label className="label-game-screen">Click and Hover me</label>
+              <div
+                className={`tooltip-game-screen ${
+                  isDisabled ? "disabled" : ""
+                }`}
+                onClick={handleClick}
+                style={{ pointerEvents: isDisabled ? "none" : "auto" }}
+              >
+                Clue
+                {!isDisabled && isClicked && (
+                  <span className="tooltiptext-game-screen">{riddle.clue}</span>
+                )}
+              </div>
+            </div>
+          </div>
           <div className="container-radio-game-screen">
             {tersangka.map((tersangka, index) => (
               <div key={index} className="radio-game-screen">
