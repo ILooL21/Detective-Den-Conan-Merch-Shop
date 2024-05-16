@@ -82,7 +82,7 @@ const EditRiddlePage = () => {
       textarea.style.height = "auto";
       textarea.style.height = textarea.scrollHeight + "px";
     });
-  }, [kronologi]);
+  }, [kronologi, alibi, alasan]);
 
   return (
     <div className="container-edit-riddle">
@@ -178,6 +178,7 @@ const EditRiddlePage = () => {
               </Form.Group>
               <Form.Group
                 controlId="alibi"
+                value={alibi}
                 className="container-form-edit-riddle-alibi"
               >
                 <Form.Label>Alibi</Form.Label>

@@ -21,17 +21,15 @@ const RiddleGameScreen = () => {
   };
 
   useEffect(() => {
-    let timer;
-    timer = setTimeout(() => {
+    setTimeout(() => {
       setIsDisabled(false);
     }, 60000);
     if (isClicked) {
-      timer = setTimeout(() => {
+      setTimeout(() => {
         setIsDisabled(true);
-      }, 3000);
+      }, 10000);
     }
-    return () => clearTimeout(timer);
-  }, [isClicked]);
+  }, [isClicked, setIsDisabled]);
 
   useEffect(() => {
     if (!isLoading) setTersangka(riddle.tersangka);
