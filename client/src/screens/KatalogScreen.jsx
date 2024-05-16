@@ -3,6 +3,7 @@ import { useGetAllProductsQuery } from "../slices/productApiSlice";
 import { useGetAllCategoriesQuery } from "../slices/categoryApiSlice";
 import { Card } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { Breadcrumb } from "antd";
 import ProductNotFoundScreen from "./ProductNotFoundScreen";
 import "../styles/KatalogScreen.css";
 
@@ -14,7 +15,8 @@ const KatalogScreen = () => {
   const { data: categories } = useGetAllCategoriesQuery();
 
   const countProducts = (categoryName) => {
-    return products?.filter((product) => product.category === categoryName).length;
+    return products?.filter((product) => product.category === categoryName)
+      .length;
   };
 
   useEffect(() => {
@@ -24,14 +26,19 @@ const KatalogScreen = () => {
       updatedList = products?.filter((product) => regex.test(product.name));
     }
     if (searchParams.has("category")) {
-      updatedList = updatedList?.filter((product) => product.category === searchParams.get("category"));
+      updatedList = updatedList?.filter(
+        (product) => product.category === searchParams.get("category")
+      );
     }
     setList(updatedList);
   }, [products, searchParams]);
 
   const handleCategoryChange = (categoryName) => {
     //jika category checked, kemudian di-uncheck maka hapus category dari searchParams
-    if (searchParams.has("category") && searchParams.get("category") === categoryName) {
+    if (
+      searchParams.has("category") &&
+      searchParams.get("category") === categoryName
+    ) {
       searchParams.delete("category");
       navigate(`?${searchParams.toString()}`);
       return;
@@ -41,48 +48,74 @@ const KatalogScreen = () => {
   };
 
   return (
-    <div className="container-katalog">
-      <h1>Katalog Screen</h1>
-      <div>
+    <div className="container-katalog-screen">
+      <div className="container-katalog-screen-header">
+        <Breadcrumb
+          className="breadcrumb-katalog-screen"
+          items={[
+            {
+              title: <a href="/">Home</a>,
+            },
+            {
+              title: "Katalog",
+            },
+          ]}
+        />
+      </div>
+      <div className="container-katalog-screen-body">
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
-          <div>
-            <h1>Products</h1>
-            <div>
+          <>
+            <div className="container-katalog-screen-filter">
               <h3>Categories</h3>
-              {categories &&
+              <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "center",
+                gap: "16px",
+                width: "100%",
+                padding: "8px 16px",
+                flexWrap: "wrap",
+              }}>
+                {categories &&
                 categories.map(
                   (category) =>
                     countProducts(category.name) > 0 && (
-                      <div key={category._id}>
+                      <div key={category._id} className="katalog-screen-filter">
                         <input
                           type="checkbox"
                           name="category"
                           value={category.name}
                           onChange={() => handleCategoryChange(category.name)}
-                          checked={searchParams.has("category") && searchParams.get("category") === category.name}
+                          checked={
+                            searchParams.has("category") &&
+                            searchParams.get("category") === category.name
+                          }
                         />
                         <label>{category.name}</label>
                       </div>
                     )
                 )}
+              </div>
             </div>
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
+            <div className="container-katalog-screen-card">
               {list && list.length > 0 ? (
                 list.map((product) => (
                   <Card
                     key={product._id}
-                    style={{ width: "18rem", margin: "0.5rem", cursor: "pointer" }}
-                    onClick={() => navigate(`/product/${product._id}`)}>
+                    className="card-katalog-screen"
+                    onClick={() => navigate(`/product/${product._id}`)}
+                  >
                     <Card.Img
                       variant="top"
                       src={`http://localhost:8080/${product.image}`}
                     />
-                    <Card.Body>
-                      <Card.Title>{product.name}</Card.Title>
-                      <Card.Text>{product.price}</Card.Text>
-                      <Card.Text>{product.category}</Card.Text>
+                    <Card.Body className="card-body-katalog-screen">
+                      <h5>{product.name}</h5>
+                      <p>{product.price}</p>
+                      <p>{product.category}</p>
                     </Card.Body>
                   </Card>
                 ))
@@ -90,7 +123,7 @@ const KatalogScreen = () => {
                 <ProductNotFoundScreen />
               )}
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>
