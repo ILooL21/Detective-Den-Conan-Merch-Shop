@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import Article from "../models/articleModel.js";
 import generateToken from "../utils/generateToken.js";
+import generateCart from "../utils/generateCart.js";
 
 // @desc    Auth user & get token
 // @route   POST /api/users/auth
@@ -57,8 +58,9 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     role: firstUser ? "user" : "superadmin",
-    listalamat,
   });
+
+  generateCart(user._id);
 
   if (user) {
     res.status(201).json({
