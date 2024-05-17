@@ -13,6 +13,7 @@ const RefreshToken = () => {
 
   useEffect(() => {
     const refreshToken = async () => {
+      if (!userInfo) return;
       try {
         const response = await refreshTokenMutation({ id: userInfo._id });
         if (response.data.message === "You are not logged in") {
@@ -26,7 +27,7 @@ const RefreshToken = () => {
       }
     };
     refreshToken();
-  }, [dispatch, refreshTokenMutation, userInfo._id]);
+  }, [dispatch, refreshTokenMutation, userInfo]);
 };
 
 export default RefreshToken;
