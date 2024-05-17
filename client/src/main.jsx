@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import store from "./store";
 import { Provider } from "react-redux";
 import HomeScreen from "./screens/HomeScreen";
+import WikiScreen from "./screens/WikiScreen.jsx";
 import LoginScreen from "./screens/LoginScreen.jsx";
 import RegisterScreen from "./screens/RegisterScreen.jsx";
 import ProfileScreen from "./screens/ProfileScreen.jsx";
@@ -38,6 +39,10 @@ const router = createBrowserRouter(
         index={true}
         path="/"
         element={<HomeScreen />}
+      />
+      <Route
+        path="/wiki"
+        element={<WikiScreen/>}
       />
       <Route
         path="/login"
