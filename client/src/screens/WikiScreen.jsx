@@ -1,13 +1,26 @@
 import { Table, Image } from "react-bootstrap";
+import { Breadcrumb } from "antd";
 import "../styles/WikiScreen.css";
 
 const WikiScreen = () => {
   return (
     <>
       <div className="container-wiki">
-        <h1>Here Wiki Page</h1>
+      <div className="container-riddle-screen-header">
+        <Breadcrumb
+          className="breadcrumb-riddle-screen"
+          items={[
+            {
+              title: <a href="/">Home</a>,
+            },
+            {
+              title: "Wiki",
+            },
+          ]}
+        />
+        </div>
 
-        <h3>Protagonists</h3>
+        <h3 style={{marginTop: "24px"}}>Protagonists</h3>
         <p
           style={{
             width: "100%",

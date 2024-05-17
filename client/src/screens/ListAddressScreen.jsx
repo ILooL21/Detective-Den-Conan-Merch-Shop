@@ -3,7 +3,6 @@ import { setCredentials } from "../slices/authSlice";
 import { useEffect, useState } from "react";
 import { useAddAlamatMutation, useDeleteAlamatMutation } from "../slices/usersApiSlice";
 import { Breadcrumb } from "antd";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "../styles/ListAddressScreen.css";
 
@@ -49,23 +48,6 @@ const ListAddressScreen = () => {
     }
   };
 
-  const items = [
-    {
-      path: "/",
-      title: "Home",
-    },
-    {
-      path: "/addressbook",
-      title: "List Address Screen",
-    },
-  ];
-
-  function itemRender(currentRoute, params, items, paths) {
-    const isLast = currentRoute?.path === items[items.length - 1]?.path;
-
-    return isLast ? <span>{currentRoute.title}</span> : <Link to={`/${paths.join("/")}`}>{currentRoute.title}</Link>;
-  }
-
   useEffect(() => {
     const setAddressList = async () => {
       await setListAlamat(userInfo.listalamat);
@@ -85,10 +67,19 @@ const ListAddressScreen = () => {
     <>
       <div className="container-address">
         <div className="container-address-header">
-          <Breadcrumb
-            className="breadcrumb-address"
-            itemRender={itemRender}
-            items={items}
+        <Breadcrumb
+          className="breadcrumb-address"
+          items={[
+            {
+              title: <a href="/">Home</a>,
+            },
+            {
+              title: <a href="/profile">Profile</a>,
+            },
+            {
+              title: "My Address Book",
+            },
+          ]}
           />
         </div>
         <div className="container-address-add">

@@ -47,31 +47,21 @@ const ProfileScreen = () => {
       toast.error(err?.data?.message || err.error);
     }
   };
-  const items = [
-    {
-      path: "/",
-      title: "Home",
-    },
-    {
-      path: "/profile",
-      title: "My Account",
-    },
-  ];
-
-  function itemRender(currentRoute, params, items, paths) {
-    const isLast = currentRoute?.path === items[items.length - 1]?.path;
-
-    return isLast ? <span>{currentRoute.title}</span> : <Link to={`/${paths.join("/")}`}>{currentRoute.title}</Link>;
-  }
   return (
     <>
       <div className="container-profile">
         <RefreshToken />
         <div className="container-profile-header">
-          <Breadcrumb
-            className="breadcrumb-profile"
-            itemRender={itemRender}
-            items={items}
+        <Breadcrumb
+          className="breadcrumb-profile"
+          items={[
+            {
+              title: <a href="/">Home</a>,
+            },
+            {
+              title: "Profile",
+            },
+          ]}
           />
           {userInfo ? <h2>Welcome! <span>{userInfo.name}</span></h2> : null}
         </div>

@@ -16,13 +16,15 @@ const App = () => {
   const isWikiPage = location.pathname.startsWith("/wiki");
   const isProductPage = location.pathname.startsWith("/product/");
   const isCartPage = location.pathname.startsWith("/cart");
+  const isProfilePage = location.pathname.startsWith("/profile");
+  const isAddressPage = location.pathname.startsWith("/addressbook");
 
   return (
     <>
-      {(isContactPage || isRiddlePage || isDashboardPage || isRootPage || isSupportPage || isKatalogPage || isNewsPage || isWikiPage || isProductPage || isCartPage) && <Header />}
+      {(isContactPage || isRiddlePage || isDashboardPage || isRootPage || isSupportPage || isKatalogPage || isNewsPage || isWikiPage || isProductPage || isCartPage || isProfilePage || isAddressPage) && <Header />}
       <ToastContainer />
       <Outlet />
-      {(isContactPage || isRiddlePage || isDashboardPage || isRootPage || isSupportPage || isKatalogPage || isNewsPage || isWikiPage || isProductPage || isCartPage) && <Footer />}
+      {(isContactPage || isRiddlePage || isDashboardPage || isRootPage || isSupportPage || isKatalogPage || isNewsPage || isWikiPage || isProductPage || isCartPage || isProfilePage || isAddressPage) && <Footer />}
     </>
   );
 };
