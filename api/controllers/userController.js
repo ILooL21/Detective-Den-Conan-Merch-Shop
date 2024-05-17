@@ -139,46 +139,47 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   const { name, email, password } = req.body;
 
-  const articles = await Article.find({ $or: [{ penulis: user.name }, { editor: user.name }] });
-
-  const review = await Product.find({ "review.name": user.name });
-
-  if (user) {
-    if (articles) {
-      articles.map(async (article) => {
-        if (article.penulis === user.name) {
-          article.penulis = name;
-        }
-        if (article.editor === user.name) {
-          article.editor = name;
-        }
-        await article.save();
-      });
-    }
-
-    if (review) {
-      review.map(async (product) => {
-        product.review.map(async (rev) => {
-          if (rev.name === user.name) {
-            rev.name = name;
-          }
-          await product.save();
-        });
-      });
-    }
-
-    if (name) user.name = name;
-    if (email) user.email = email;
-    if (password) user.password = password;
-
-    const updatedUser = await user.save();
-
-    res.json(updatedUser);
-  } else {
+  if (!user) {
     res.status(404);
     throw new Error("User not found");
   }
+
+  // Update articles
+  const articles = await Article.find({ $or: [{ penulis: user.name }, { editor: user.name }] });
+
+  for (const article of articles) {
+    if (article.penulis === user.name) {
+      article.penulis = name;
+    }
+    if (article.editor === user.name) {
+      article.editor = name;
+    }
+    await article.save();
+  }
+
+  // Update reviews
+  const products = await Product.find({ "review.name": user.name });
+
+  for (const product of products) {
+    for (const rev of product.review) {
+      if (rev.name === user.name) {
+        rev.name = name;
+      }
+    }
+    await product.save();
+  }
+
+  // Update user information
+  if (name) user.name = name;
+  if (email) user.email = email;
+  if (password) user.password = password;
+
+  const updatedUser = await user.save();
+
+  res.json(updatedUser);
 });
+
+export default updateUserProfile;
 
 // @desc    Change user role
 // @route   Put /api/users/changeRole
