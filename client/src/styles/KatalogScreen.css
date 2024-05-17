@@ -55,16 +55,16 @@
   flex-direction: column;
   width: 100%;
   height: auto;
-  gap: 16px;
+  gap: 28px;
   background-color: #fff;
-  box-shadow: 0px 0px 8px 0px #c4c4c4;
+  border: solid 1px #c4c4c4;
   padding: 8px;
   border-radius: 8px;
   margin-bottom: 28px;
 }
 .container-katalog-screen-filter h3 {
   margin: 0;
-  font-size: 24px;
+  font-size: 40px;
 }
 .katalog-screen-filter {
   display: flex;
@@ -75,6 +75,9 @@
   padding: 4px 8px;
   gap: 8px;
   border-radius: 16px;
+  border: solid 1px #c4c4c4;
+}
+.katalog-screen-filter:hover {
   box-shadow: 0px 0px 8px 0px #c4c4c4;
 }
 .katalog-screen-filter label {
@@ -84,7 +87,6 @@
 .katalog-screen-filter input {
   cursor: pointer;
 }
-
 .container-katalog-screen-card {
   display: flex;
   justify-content: center;
@@ -104,7 +106,7 @@
 .card-katalog-screen img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px 8px 0px 0px;
 }
 .card-body-katalog-screen {

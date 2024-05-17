@@ -100,7 +100,6 @@ const ListProductScreen = () => {
               <th>Nama</th>
               <th>Gambar</th>
               <th>Kategori</th>
-              <th>Deskripsi</th>
               <th>Harga</th>
               <th>Stok</th>
               <th>Rating</th>
@@ -121,7 +120,6 @@ const ListProductScreen = () => {
                   />
                 </td>
                 <td>{product.category}</td>
-                <td>{product.description}</td>
                 <td>Rp. {product.price}</td>
                 <td>{product.countInStock}</td>
                 <td>{product.rating}</td>
