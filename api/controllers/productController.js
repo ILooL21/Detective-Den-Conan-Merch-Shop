@@ -118,7 +118,6 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
     await product.deleteOne({ _id: req.params.id });
 
-    // delete product from cart
     const carts = await Cart.find({ "items.product": product.name });
 
     if (carts.length > 0) {
@@ -135,4 +134,41 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 });
 
-export { getProducts, getProductById, addProduct, updateProduct, deleteProduct };
+//@desc   rating
+//@route  POST /api/products/:id/reviews
+//@access Private
+const createProductReview = asyncHandler(async (req, res) => {
+  const { rating } = req.body;
+
+  const product = await Product.findById(req.params.id);
+
+  if (product) {
+    //cek apakah product sudah di review oleh user
+    const alreadyReviewed = product.review.find((r) => r.name === req.user.name);
+
+    if (alreadyReviewed) {
+      product.review.forEach((review) => {
+        if (review.name === req.user.name) {
+          review.rating = Number(rating);
+        }
+      });
+      await product.save();
+      return res.status(201).json({ message: "Review updated" });
+    } else {
+      const review = {
+        name: req.user.name,
+        rating: Number(rating),
+      };
+
+      product.review.push(review);
+
+      await product.save();
+      res.status(201).json({ message: "Review added" });
+    }
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+
+export { getProducts, getProductById, addProduct, updateProduct, deleteProduct, createProductReview };

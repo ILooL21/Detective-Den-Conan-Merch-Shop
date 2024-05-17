@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import Article from "../models/articleModel.js";
+import Product from "../models/productModel.js";
 import generateToken from "../utils/generateToken.js";
 import generateCart from "../utils/generateCart.js";
 
@@ -138,8 +139,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   const { name, email, password } = req.body;
 
-  //cari artikel yang penulisnya atau editor nya adalah user yang sedang diupdate
   const articles = await Article.find({ $or: [{ penulis: user.name }, { editor: user.name }] });
+
+  const review = await Product.find({ "review.name": user.name });
 
   if (user) {
     if (articles) {
@@ -151,6 +153,17 @@ const updateUserProfile = asyncHandler(async (req, res) => {
           article.editor = name;
         }
         await article.save();
+      });
+    }
+
+    if (review) {
+      review.map(async (product) => {
+        product.review.map(async (rev) => {
+          if (rev.name === user.name) {
+            rev.name = name;
+          }
+          await product.save();
+        });
       });
     }
 

@@ -1,5 +1,15 @@
 import mongoose from "mongoose";
 
+const reviewSchema = mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    rating: { type: Number, required: true, max: 5, min: 1 },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const productSchema = mongoose.Schema(
   {
     name: {
@@ -27,6 +37,7 @@ const productSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    review: [reviewSchema],
     rating: {
       type: Number,
       default: 0,
@@ -36,6 +47,11 @@ const productSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
+productSchema.pre("save", function (next) {
+  this.rating = this.review.reduce((acc, item) => item.rating + acc, 0) / this.review.length;
+  next();
+});
 
 const Product = mongoose.model("Product", productSchema);
 export default Product;
