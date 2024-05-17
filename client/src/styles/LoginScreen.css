@@ -1,6 +1,9 @@
 .container-login {
-  padding: 24vh 0px;
-  width: 98vw;
+  padding: 100px 0px;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  gap: 48px;
   display: flex;
 }
 .image-auth-container {
