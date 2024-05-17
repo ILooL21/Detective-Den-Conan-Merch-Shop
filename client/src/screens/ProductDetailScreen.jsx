@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Breadcrumb } from "antd";
+import { Breadcrumb, Rate } from "antd";
 import { TruckOutlined, RetweetOutlined } from "@ant-design/icons";
 import {
   useGetSingleProductQuery,
-  useReviewsProductMutation,
+  // useReviewsProductMutation,
 } from "../slices/productApiSlice";
 import { useAddProductToCartMutation } from "../slices/cartApiSlice";
 import { toast } from "react-toastify";
@@ -16,12 +15,12 @@ const ProductDetailScreen = () => {
 
   const [quantity, setQuantity] = useState(1);
 
-  const { userInfo } = useSelector((state) => state.auth);
-  const [userRating, setUserRating] = useState("");
+  // const { userInfo } = useSelector((state) => state.auth);
+  // const [userRating, setUserRating] = useState("");
 
-  const { data: product, isLoading, refetch } = useGetSingleProductQuery(id);
+  const { data: product, isLoading } = useGetSingleProductQuery(id);
   const [addProductToCart] = useAddProductToCartMutation();
-  const [ReviewProduct] = useReviewsProductMutation();
+  // const [ReviewProduct] = useReviewsProductMutation();
 
   const handleAddProductToCart = async () => {
     try {
@@ -46,30 +45,30 @@ const ProductDetailScreen = () => {
     setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
   };
 
-  const ReviewHandle = async (rating) => {
-    if (rating === "") return;
-    try {
-      const data = {
-        id: product._id,
-        rating: rating,
-      };
-      await ReviewProduct(data);
-      refetch();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const ReviewHandle = async (rating) => {
+  //   if (rating === "") return;
+  //   try {
+  //     const data = {
+  //       id: product._id,
+  //       rating: rating,
+  //     };
+  //     await ReviewProduct(data);
+  //     refetch();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (product && product.review) {
-      const userReview = product.review.find(
-        (review) => review.name === userInfo.name
-      );
-      if (userReview) {
-        setUserRating(userReview.rating);
-      }
-    }
-  }, [product, userInfo]);
+  // useEffect(() => {
+  //   if (product && product.review) {
+  //     const userReview = product.review.find(
+  //       (review) => review.name === userInfo.name
+  //     );
+  //     if (userReview) {
+  //       setUserRating(userReview.rating);
+  //     }
+  //   }
+  // }, [product, userInfo]);
 
   return (
     <div className="container-detail-product">
@@ -109,39 +108,74 @@ const ProductDetailScreen = () => {
               src={`http://localhost:8080/${product.image}`}
             />
             <div className="container-detail-product-title">
-              <h1>{product.name}</h1>
               <div
                 style={{
                   display: "flex",
-                  alignItems: "center",
+                  flexDirection: "column",
                   width: "100%",
-                  border: "1px solid #000",
+                  gap: "0px",
+                  border: "1px solid #c4c4c4",
+                  borderRadius: "8px",
+                  padding: "16px",
                 }}
               >
-                <p className="detail-product-rating">{product.rating}</p>
-                <select
-                  value={userRating}
-                  onChange={(e) => ReviewHandle(e.target.value)}
+                <h1>{product.name}</h1>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100%",
+                    height: "40px",
+                    margin: "0",
+                    padding: "0",
+                    gap: "8px",
+                  }}
                 >
-                  <option value="">Select Rating</option>
-                  {[...Array(5).keys()].map((x) => (
-                    <option key={x} value={x + 1}>
-                      {x + 1}
-                    </option>
-                  ))}
-                </select>
-                <p className="detail-product-stock">{product.countInStock}</p>
+                  <a className="detail-product-rating">{product.rating}</a>
+                  {/* <Rate value={userRating}
+                    onChange={(e) => ReviewHandle(e.target.value)}/> */}
+                  <Rate
+                    className="rating-icon-product"
+                    disabled
+                    value={product.rating}
+                  />
+                  {/* <select
+                    value={userRating}
+                    onChange={(e) => ReviewHandle(e.target.value)}
+                  >
+                    <option value="">Select Rating</option>
+                    {[...Array(5).keys()].map((x) => (
+                      <option key={x} value={x + 1}>
+                        {x + 1}
+                      </option>
+                    ))}
+                  </select> */}
+                  <span
+                    style={{
+                      color: "#000",
+                      fontSize: "24px",
+                      height: "100%",
+                      padding: "0",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    |
+                  </span>
+                  <a className="detail-product-stock">
+                    Stock: {product.countInStock}
+                  </a>
+                </div>
+                  <span className="detail-product-price">Rp. {product.price}</span>
               </div>
               <div
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   width: "100%",
-                  height: "200px",
-                  border: "1px solid #000",
+                  height: "160px",
+                  margin: "0",
                 }}
               >
-                <p className="detail-product-price">Rp. {product.price}</p>
                 <p className="detail-product-description">
                   {product.description}
                 </p>
