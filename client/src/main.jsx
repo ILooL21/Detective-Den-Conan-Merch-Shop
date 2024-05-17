@@ -24,6 +24,7 @@ import ProductDetailScreen from "./screens/ProductDetailScreen.jsx";
 import EditRiddlePage from "./components/admin/riddle/EditRiddlePage.jsx";
 import RiddleScreen from "./screens/RiddleScreen.jsx";
 import RiddleGameScreen from "./screens/RiddleGameScreen.jsx";
+import CartScreen from "./screens/cartScreen.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
 import OwnerRoute from "./components/OwnerRoute.jsx";
@@ -109,6 +110,10 @@ const router = createBrowserRouter(
             />
           </Route>
         </Route>
+        <Route
+          path="/cart"
+          element={<CartScreen />}
+        />
         <Route
           path="/profile"
           element={<ProfileScreen />}
