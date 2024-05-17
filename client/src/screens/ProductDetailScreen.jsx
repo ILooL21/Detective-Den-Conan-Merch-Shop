@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useGetSingleProductQuery, useReviewsProductMutation } from "../slices/productApiSlice";
+import { Breadcrumb } from "antd";
+import { TruckOutlined, RetweetOutlined } from "@ant-design/icons";
+import {
+  useGetSingleProductQuery,
+  useReviewsProductMutation,
+} from "../slices/productApiSlice";
 import { useAddProductToCartMutation } from "../slices/cartApiSlice";
 import { toast } from "react-toastify";
+import "../styles/ProductDetailScreen.css";
 
 const ProductDetailScreen = () => {
   let { id } = useParams();
@@ -32,6 +38,14 @@ const ProductDetailScreen = () => {
     }
   };
 
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const handleDecrement = () => {
+    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+  };
+
   const ReviewHandle = async (rating) => {
     if (rating === "") return;
     try {
@@ -48,7 +62,9 @@ const ProductDetailScreen = () => {
 
   useEffect(() => {
     if (product && product.review) {
-      const userReview = product.review.find((review) => review.name === userInfo.name);
+      const userReview = product.review.find(
+        (review) => review.name === userInfo.name
+      );
       if (userReview) {
         setUserRating(userReview.rating);
       }
@@ -56,57 +72,154 @@ const ProductDetailScreen = () => {
   }, [product, userInfo]);
 
   return (
-    <div
-      style={{
-        padding: "25vh 100px",
-      }}>
-      <h1>Product Detail Screen</h1>
+    <div className="container-detail-product">
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <img
-                  src={`http://localhost:8080/${product.image}`}
-                  style={{
-                    width: "300px",
-                    height: "300px",
-                  }}
-                />
-              </td>
-              <td>
-                <h1>{product.name}</h1>
-                <p>{product.description}</p>
-                <p>{product.price}</p>
-                <p>{product.category}</p>
-                <p>{product.countInStock}</p>
-                <p>{product.rating}</p>
-                
+        <div className="container-detail-product-header">
+          <Breadcrumb
+            className="breadcrumb-detail-product"
+            items={[
+              {
+                title: <a href="/">Home</a>,
+              },
+              {
+                title: <a href="/katalog">Katalog</a>,
+              },
+              {
+                title: <p>{product.name}</p>,
+              },
+            ]}
+          />
+        </div>
+      )}
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div className="container-detail-product-body">
+          <div className="container-detail-product-main">
+            <div className="container-side-image-product">
+              <img src={`http://localhost:8080/${product.image}`} />
+              <img src={`http://localhost:8080/${product.image}`} />
+              <img src={`http://localhost:8080/${product.image}`} />
+              <img src={`http://localhost:8080/${product.image}`} />
+            </div>
+            <img
+              className="image-product-detail"
+              src={`http://localhost:8080/${product.image}`}
+            />
+            <div className="container-detail-product-title">
+              <h1>{product.name}</h1>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100%",
+                  border: "1px solid #000",
+                }}
+              >
+                <p className="detail-product-rating">{product.rating}</p>
                 <select
                   value={userRating}
-                  onChange={(e) => ReviewHandle(e.target.value)}>
+                  onChange={(e) => ReviewHandle(e.target.value)}
+                >
                   <option value="">Select Rating</option>
                   {[...Array(5).keys()].map((x) => (
-                    <option
-                      key={x}
-                      value={x + 1}>
+                    <option key={x} value={x + 1}>
                       {x + 1}
                     </option>
                   ))}
                 </select>
-                <br />
-                <input
-                  type="number"
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
-                />
-                <button onClick={handleAddProductToCart}>Add to Cart</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                <p className="detail-product-stock">{product.countInStock}</p>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                  height: "200px",
+                  border: "1px solid #000",
+                }}
+              >
+                <p className="detail-product-price">Rp. {product.price}</p>
+                <p className="detail-product-description">
+                  {product.description}
+                </p>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  width: "100%",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100%",
+                    gap: "24px",
+                  }}
+                >
+                  {/* <input
+                    type="number"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  /> */}
+                  <div className="product-quantity">
+                    <input
+                      type="button"
+                      value="-"
+                      className="quantity-minus"
+                      onClick={handleDecrement}
+                    />
+                    <input
+                      type="number"
+                      step="1"
+                      min="1"
+                      name="quantity"
+                      value={quantity}
+                      onChange={(e) => setQuantity(Number(e.target.value))}
+                      title="Qty"
+                      className="input-text-quantity"
+                      size="4"
+                      pattern=""
+                    />
+                    <input
+                      type="button"
+                      value="+"
+                      className="quantity-plus"
+                      onClick={handleIncrement}
+                    />
+                  </div>
+                  <button
+                    className="button-product-to-cart"
+                    onClick={handleAddProductToCart}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+              <div className="container-detail-product-delivery">
+                <div className="detail-product-delivery-first">
+                  <TruckOutlined />
+                  <div className="product-delivery-first-text">
+                    <h6>Free Delivery</h6>
+                    <a>Enter your postal code for Delivery Availability</a>
+                  </div>
+                </div>
+                <div className="detail-product-delivery-second">
+                  <RetweetOutlined />
+                  <div className="product-delivery-second-text">
+                    <h6>Return Delivery</h6>
+                    <a>Free 30 Days Delivery Returns. Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
