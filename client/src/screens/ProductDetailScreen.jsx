@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useGetSingleProductQuery } from "../slices/productApiSlice";
+import { useGetSingleProductQuery, useReviewsProductMutation } from "../slices/productApiSlice";
 import { useAddProductToCartMutation } from "../slices/cartApiSlice";
 import { toast } from "react-toastify";
 
@@ -9,8 +10,12 @@ const ProductDetailScreen = () => {
 
   const [quantity, setQuantity] = useState(1);
 
-  const { data: product, isLoading } = useGetSingleProductQuery(id);
+  const { userInfo } = useSelector((state) => state.auth);
+  const [userRating, setUserRating] = useState("");
+
+  const { data: product, isLoading, refetch } = useGetSingleProductQuery(id);
   const [addProductToCart] = useAddProductToCartMutation();
+  const [ReviewProduct] = useReviewsProductMutation();
 
   const handleAddProductToCart = async () => {
     try {
@@ -26,6 +31,29 @@ const ProductDetailScreen = () => {
       console.error(error);
     }
   };
+
+  const ReviewHandle = async (rating) => {
+    if (rating === "") return;
+    try {
+      const data = {
+        id: product._id,
+        rating: rating,
+      };
+      await ReviewProduct(data);
+      refetch();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (product && product.review) {
+      const userReview = product.review.find((review) => review.name === userInfo.name);
+      if (userReview) {
+        setUserRating(userReview.rating);
+      }
+    }
+  }, [product, userInfo]);
 
   return (
     <div
@@ -55,7 +83,20 @@ const ProductDetailScreen = () => {
                 <p>{product.category}</p>
                 <p>{product.countInStock}</p>
                 <p>{product.rating}</p>
-                {/* input jumlah product yang akan di masukkan ke cart*/}
+                
+                <select
+                  value={userRating}
+                  onChange={(e) => ReviewHandle(e.target.value)}>
+                  <option value="">Select Rating</option>
+                  {[...Array(5).keys()].map((x) => (
+                    <option
+                      key={x}
+                      value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
+                </select>
+                <br />
                 <input
                   type="number"
                   value={quantity}
