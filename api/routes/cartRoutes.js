@@ -4,6 +4,9 @@ import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.route("/:id").get(protect, getCartById).put(protect, addProductToCart).delete(protect, deleteProductInCart).put(protect, decreaseProductInCart);
+router.route("/").get(protect, getCartById);
+router.route("/addproduct").put(protect, addProductToCart);
+router.route("/decreaseproduct").put(protect, decreaseProductInCart);
+router.route("/deleteproduct").delete(protect, deleteProductInCart);
 
 export default router;

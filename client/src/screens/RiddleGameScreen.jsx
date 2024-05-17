@@ -21,19 +21,18 @@ const RiddleGameScreen = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsDisabled(false);
-    }, 60000);
-    if (isClicked) {
+    if (!isLoading) {
+      setTersangka(riddle.tersangka);
       setTimeout(() => {
-        setIsDisabled(true);
-      }, 10000);
+        setIsDisabled(false);
+      }, 15000);
+      if (isClicked) {
+        setTimeout(() => {
+          setIsDisabled(true);
+        }, 15000);
+      }
     }
-  }, [isClicked, setIsDisabled]);
-
-  useEffect(() => {
-    if (!isLoading) setTersangka(riddle.tersangka);
-  }, [riddle, isLoading]);
+  }, [isClicked, setIsDisabled, riddle, isLoading]);
 
   return (
     <div className="container-riddle-game-screen">
@@ -69,7 +68,9 @@ const RiddleGameScreen = () => {
           <div className="list-tersangka-game-screen">
             {tersangka.map((tersangka, index) => (
               // list tersangka
-              <div className="tersangka-game-screen" key={index}>
+              <div
+                className="tersangka-game-screen"
+                key={index}>
                 <h5>{tersangka.tersangka}</h5>
                 <p>Alibi:</p>
                 <p>{tersangka.alibi}</p>
@@ -84,8 +85,7 @@ const RiddleGameScreen = () => {
               alignItems: "center",
               width: "900px",
               position: "relative",
-            }}
-          >
+            }}>
             <h3>Siapakah Pembunuhnya?</h3>
             <div
               style={{
@@ -96,26 +96,22 @@ const RiddleGameScreen = () => {
                 position: "absolute",
                 right: "0",
                 gap: "0px",
-              }}
-            >
-              <label className="label-game-screen">Click and Hover me</label>
+              }}>
+              <label className="label-game-screen">Hint</label>
               <div
-                className={`tooltip-game-screen ${
-                  isDisabled ? "disabled" : ""
-                }`}
+                className={`tooltip-game-screen ${isDisabled ? "disabled" : ""}`}
                 onClick={handleClick}
-                style={{ pointerEvents: isDisabled ? "none" : "auto" }}
-              >
+                style={{ pointerEvents: isDisabled ? "none" : "auto" }}>
                 Clue
-                {!isDisabled && isClicked && (
-                  <span className="tooltiptext-game-screen">{riddle.clue}</span>
-                )}
+                {!isDisabled && isClicked && <span className="tooltiptext-game-screen">{riddle.clue}</span>}
               </div>
             </div>
           </div>
           <div className="container-radio-game-screen">
             {tersangka.map((tersangka, index) => (
-              <div key={index} className="radio-game-screen">
+              <div
+                key={index}
+                className="radio-game-screen">
                 <input
                   type="radio"
                   id={`tersangka-${index}`}
@@ -123,13 +119,14 @@ const RiddleGameScreen = () => {
                   value={tersangka.tersangka}
                   onChange={(e) => setJawaban(e.target.value)}
                 />
-                <label htmlFor={`tersangka-${index}`}>
-                  {tersangka.tersangka}
-                </label>
+                <label htmlFor={`tersangka-${index}`}>{tersangka.tersangka}</label>
               </div>
             ))}
           </div>
-          <ResultRiddleModal id={id} jawaban={jawaban} />
+          <ResultRiddleModal
+            id={id}
+            jawaban={jawaban}
+          />
         </div>
       )}
     </div>

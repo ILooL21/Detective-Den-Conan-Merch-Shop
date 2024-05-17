@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Product from "../models/productModel.js";
+import Cart from "../models/cartModel.js";
 import { unlink } from "node:fs";
 
 // @desc    Fetch all products
@@ -57,6 +58,8 @@ const updateProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
   if (product) {
+    const oldName = product.name; // Simpan nama produk lama
+
     if (name) product.name = name;
     if (category) product.category = category;
     if (description) product.description = description;
@@ -64,18 +67,33 @@ const updateProduct = asyncHandler(async (req, res) => {
     if (stock) product.countInStock = stock;
 
     if (req.file) {
-      // delete image
-      unlink(`./${product.image}`, (err) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-      });
+      try {
+        // delete image
+        await unlink(`./${product.image}`);
+      } catch (err) {
+        console.error(err);
+      }
 
       product.image = `public/images/${req.file.filename}`;
     }
 
     const updatedProduct = await product.save();
+
+    const carts = await Cart.find({ "items.product": oldName });
+
+    if (carts.length > 0) {
+      carts.forEach(async (cart) => {
+        const item = cart.items.find((item) => item.product === oldName);
+        item.product = updatedProduct.name;
+        item.image = updatedProduct.image;
+        item.price = updatedProduct.price;
+
+        await cart.save();
+      });
+    }
+
+    await carts.save();
+
     res.json(updatedProduct);
   } else {
     res.status(404);
@@ -99,6 +117,17 @@ const deleteProduct = asyncHandler(async (req, res) => {
     });
 
     await product.deleteOne({ _id: req.params.id });
+
+    // delete product from cart
+    const carts = await Cart.find({ "items.product": product.name });
+
+    if (carts.length > 0) {
+      carts.forEach(async (cart) => {
+        cart.items = cart.items.filter((item) => item.product !== product.name);
+        await cart.save();
+      });
+    }
+
     res.json({ message: "Product removed" });
   } else {
     res.status(404);

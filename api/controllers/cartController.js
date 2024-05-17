@@ -1,12 +1,13 @@
 import expressAsyncHandler from "express-async-handler";
 import Cart from "../models/cartModel.js";
+import e from "express";
 
 // @desc    Fetch single cart dari id pemilik
-// @route   GET /api/carts/:id
+// @route   GET /api/carts/
 // @access  Private
 
 const getCartById = expressAsyncHandler(async (req, res) => {
-  const cart = await Cart.findOne({ user: req.params.id });
+  const cart = await Cart.findOne({ user: req.user._id });
 
   if (cart) {
     res.status(200).json(cart);
@@ -17,10 +18,10 @@ const getCartById = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    tambah jumlah product di cart
-// @route   PUT /api/carts/:id
+// @route   PUT /api/carts/addproduct
 // @access  Private
 const addProductToCart = expressAsyncHandler(async (req, res) => {
-  const { product, quantity, price } = req.body;
+  const { product, quantity, price, image } = req.body;
 
   const cart = await Cart.findOne({ user: req.user._id });
 
@@ -28,13 +29,17 @@ const addProductToCart = expressAsyncHandler(async (req, res) => {
     const item = cart.items.find((i) => i.product == product);
 
     if (item) {
-      item.quantity += 1;
+      if (quantity) {
+        item.quantity = parseInt(quantity);
+      } else {
+        item.quantity += 1;
+      }
     } else {
-      cart.items.push({ product, quantity, price });
+      cart.items.push({ product, quantity, price, image });
     }
 
     await cart.save();
-    res.status(200).json({ message: "Product added to cart" });
+    res.status(200).json(cart);
   } else {
     res.status(404);
     throw new Error("Cart not found");
@@ -42,7 +47,7 @@ const addProductToCart = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    kurangi jumlah product di cart
-// @route   PUT /api/carts/:id
+// @route   PUT /api/carts/decreaseproduct
 // @access  Private
 
 const decreaseProductInCart = expressAsyncHandler(async (req, res) => {
@@ -60,7 +65,7 @@ const decreaseProductInCart = expressAsyncHandler(async (req, res) => {
         cart.items.pull(item);
       }
       await cart.save();
-      res.status(200).json({ message: "Product decreased in cart" });
+      res.status(200).json(cart);
     } else {
       res.status(404);
       throw new Error("Product not found in cart");
@@ -72,12 +77,12 @@ const decreaseProductInCart = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    hapus product di cart
-// @route   DELETE /api/carts/:id
+// @route   DELETE /api/carts/deleteproduct
 // @access  Private
 const deleteProductInCart = expressAsyncHandler(async (req, res) => {
   const { product } = req.body;
 
-  const cart = await Cart.findOne({ _id: req.params.id });
+  const cart = await Cart.findOne({ user: req.user._id });
 
   if (cart) {
     const item = cart.items.find((i) => i.product == product);
@@ -85,7 +90,7 @@ const deleteProductInCart = expressAsyncHandler(async (req, res) => {
     if (item) {
       cart.items.pull(item);
       await cart.save();
-      res.status(200).json({ message: "Product removed from cart" });
+      res.status(200).json(cart);
     } else {
       res.status(404);
       throw new Error("Product not found in cart");

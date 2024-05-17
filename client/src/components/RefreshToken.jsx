@@ -14,7 +14,11 @@ const RefreshToken = () => {
   useEffect(() => {
     const refreshToken = async () => {
       try {
-        await refreshTokenMutation({ id: userInfo._id });
+        const response = await refreshTokenMutation({ id: userInfo._id });
+        if (response.data.message === "You are not logged in") {
+          dispatch(logout());
+          toast.error("Session expired, please login again");
+        }
       } catch (err) {
         console.error(err);
         dispatch(logout());

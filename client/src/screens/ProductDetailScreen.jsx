@@ -1,10 +1,31 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetSingleProductQuery } from "../slices/productApiSlice";
+import { useAddProductToCartMutation } from "../slices/cartApiSlice";
+import { toast } from "react-toastify";
 
 const ProductDetailScreen = () => {
   let { id } = useParams();
 
+  const [quantity, setQuantity] = useState(1);
+
   const { data: product, isLoading } = useGetSingleProductQuery(id);
+  const [addProductToCart] = useAddProductToCartMutation();
+
+  const handleAddProductToCart = async () => {
+    try {
+      const data = {
+        image: product.image,
+        product: product.name,
+        price: product.price,
+        quantity: quantity,
+      };
+      await addProductToCart(data);
+      toast.success("Product added to cart");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div
@@ -34,7 +55,13 @@ const ProductDetailScreen = () => {
                 <p>{product.category}</p>
                 <p>{product.countInStock}</p>
                 <p>{product.rating}</p>
-                <button>Add to Cart</button>
+                {/* input jumlah product yang akan di masukkan ke cart*/}
+                <input
+                  type="number"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                />
+                <button onClick={handleAddProductToCart}>Add to Cart</button>
               </td>
             </tr>
           </tbody>

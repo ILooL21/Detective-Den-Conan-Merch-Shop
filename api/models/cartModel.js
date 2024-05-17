@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const cartItemSchema = mongoose.Schema(
   {
+    image: {
+      type: String,
+      required: true,
+    },
     product: {
       type: String,
       required: true,
