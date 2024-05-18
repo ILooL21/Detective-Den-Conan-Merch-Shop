@@ -25,11 +25,11 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
   } else {
     //check stock
     for (let i = 0; i < orderItems.length; i++) {
-      const product = await Product.findById(orderItems[i].product).select("countInStock");
-
-      if (product.countInStock < orderItems[i].quantity) {
+      const item = orderItems[i];
+      const product = await Product.findById(item.product);
+      if (product.stock < item.quantity) {
         res.status(400);
-        throw new Error(`Product ${orderItems[i].name} is out of stock`);
+        throw new Error("Stock tidak mencukupi");
       }
     }
 
@@ -74,7 +74,7 @@ const updateOrder = expressAsyncHandler(async (req, res) => {
       order.resi = resi;
     }
     if (status) {
-      order.status = status;
+      order.status = "Dikirim";
     }
 
     const updatedOrder = await order.save();
@@ -86,4 +86,61 @@ const updateOrder = expressAsyncHandler(async (req, res) => {
   }
 });
 
-export { getOrders, addOrderItems, getMyOrders, updateOrder };
+// @desc    paid order
+// @route   PUT /api/orders/:id/paid
+// @access  Private
+
+const paidOrder = expressAsyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+
+  if (order) {
+    order.status = "Diproses";
+
+    const updatedOrder = await order.save();
+
+    res.json(updatedOrder);
+  } else {
+    res.status(404);
+    throw new Error("Order not found");
+  }
+});
+
+// @desc    selesai order
+// @route   Put /api/orders/:id/selesai
+// @access  Private
+
+const selesaiOrder = expressAsyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+
+  if (order) {
+    order.status = "Selesai";
+
+    const updatedOrder = await order.save();
+
+    res.json(updatedOrder);
+  } else {
+    res.status(404);
+    throw new Error("Order not found");
+  }
+});
+
+// @desc    cancel order
+// @route   Put /api/orders/:id/cancel
+// @access  Private
+
+const cancelOrder = expressAsyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+
+  if (order) {
+    order.status = "Dibatalkan";
+
+    const updatedOrder = await order.save();
+
+    res.json(updatedOrder);
+  } else {
+    res.status(404);
+    throw new Error("Order not found");
+  }
+});
+
+export { getOrders, addOrderItems, getMyOrders, updateOrder, cancelOrder, paidOrder, selesaiOrder };
