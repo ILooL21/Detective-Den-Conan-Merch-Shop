@@ -213,18 +213,24 @@ const ListAddressScreen = () => {
         {listAlamat.map((alamat, index) => (
           <div className="container-address-list" key={index}>
             <p>{alamat}</p>
-            <button
-              onClick={() => {
-                DeleteClickHandler(alamat);
-              }}>
-              Delete
-            </button>
-            <button
+            <div
+            style={{
+              display: "flex",
+              gap: "8px"
+            }}>
+              <button className="container-select-address-button"
               onClick={() => {
                 SelectClickHandler(alamat);
               }}>
               Select
             </button>
+            <button className="container-delete-address-button"
+              onClick={() => {
+                DeleteClickHandler(alamat);
+              }}>
+              Delete
+            </button>
+            </div>
           </div>
         ))}
       </div>
