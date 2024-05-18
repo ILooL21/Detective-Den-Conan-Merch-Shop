@@ -13,16 +13,17 @@ const WikiScreen = () => {
         <h1>Halaman Wiki Karakter</h1>
 
         <h3>Protagonists</h3>
+        <hr
+          style={{
+            marginLeft: "10.5vh",
+            width: "175vh",
+          }}
+        />
         <p
           style={{
             marginLeft: "10.5vh",
             textAlign: "justify",
           }}>
-          <hr
-            style={{
-              width: "175vh",
-            }}
-          />
           {`Serial ini berkisah tentang Shinichi Kudo dan "versi anak-anaknya", Conan Edogawa, serta kekasih dan sahabatnya Ran Mouri dan ayahnya Kogoro Mouri.`}
         </p>
 
@@ -96,16 +97,17 @@ const WikiScreen = () => {
         </Table>
 
         <h3>Detective Boys</h3>
+        <hr
+          style={{
+            marginLeft: "10.5vh",
+            width: "175vh",
+          }}
+        />
         <p
           style={{
             marginLeft: "10.5vh",
             textAlign: "justify",
           }}>
-          <hr
-            style={{
-              width: "175vh",
-            }}
-          />
           {`The Detective Boys adalah sebuah Kelompok di Tokyo, Jepang yang terdiri dari Detektif sekolah dasar yang dengannya Conan Edogawa memecahkan kejahatan yang sesekali dialaminya dan Teman Sekelas Sekolah Dasar Teitan.`}
         </p>
 
@@ -179,16 +181,17 @@ const WikiScreen = () => {
         </Table>
 
         <h3>Family & Friends</h3>
+        <hr
+          style={{
+            marginLeft: "10.5vh",
+            width: "175vh",
+          }}
+        />
         <p
           style={{
             marginLeft: "10.5vh",
             textAlign: "justify",
           }}>
-          <hr
-            style={{
-              width: "175vh",
-            }}
-          />
           {`mereka adalah orang-orang yang memiliki hubungan dekat dan personal dengan para karakter utama dan sering membantu mereka memecahkan sebuah kasus`}
         </p>
 
@@ -465,15 +468,14 @@ const WikiScreen = () => {
           </tbody>
         </Table>
 
-        <h3>
-          Law enforcement
-          <hr
-            style={{
-              width: "175vh",
-            }}
-          />
-          <br /> Tokyo Metropolitan Police District
-        </h3>
+        <h3>Law enforcement</h3>
+        <hr
+          style={{
+            marginLeft: "10.5vh",
+            width: "175vh",
+          }}
+        />
+        <h3>Tokyo Metropolitan Police</h3>
         <p
           style={{
             marginLeft: "10.5vh",
@@ -1081,16 +1083,17 @@ const WikiScreen = () => {
         </Table>
 
         <h3>Black Organization</h3>
+        <hr
+          style={{
+            marginLeft: "10.5vh",
+            width: "175vh",
+          }}
+        />
         <p
           style={{
             marginLeft: "10.5vh",
             textAlign: "justify",
           }}>
-          <hr
-            style={{
-              width: "175vh",
-            }}
-          />
           {`"The Black Organization" berperan sebagai antagonis utama dalam serial ini. Ini adalah sindikat kriminal rahasia dengan tujuan tersembunyi. Untuk mencapai tujuan tersebut, mereka melakukan berbagai kejahatan untuk menjaga kerahasiaannya, menghilangkan hambatan, dan mengumpulkan dana dan sumber daya untuk proyek penelitian misteriusnya. Para anggota organisasi diberi kode nama berdasarkan minuman beralkohol. Pemimpinnya adalah Renya Karasuma dan anggota pertama yang muncul adalah Gin dan Vodka, yang bertanggung jawab untuk mengubah Shinichi Kudo menjadi seorang anak dengan obat misterius APTX 4869. Mereka adalah musuh bebuyutan Conan Edogawa.`}
         </p>
 
@@ -1429,16 +1432,17 @@ const WikiScreen = () => {
         </Table>
 
         <h3>Magic Kaito</h3>
+        <hr
+          style={{
+            marginLeft: "10.5vh",
+            width: "175vh",
+          }}
+        />
         <p
           style={{
             marginLeft: "10.5vh",
             textAlign: "justify",
           }}>
-          <hr
-            style={{
-              width: "175vh",
-            }}
-          />
           {`Magic Kaito adalah serial manga shōnen Jepang tahun 1987 yang ditulis dan diilustrasikan oleh Gosho Aoyama. Bercerita tentang Kaito Kuroba yang mengetahui apa yang dilakukan ayahnya sebelum dia meninggal. Dia mengambil nama samaran ayahnya dan menjadi Phantom Thief Kid yang baru. Pemeran utama serial ini juga muncul dalam serial Detektif Conan sebagai kolaborasi sempurna antara detektif hebat dan pencuri hantu hebat, yang dapat disamakan dengan Sherlock Holmes vs. Arsene Lupin.`}
         </p>
 
