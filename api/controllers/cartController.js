@@ -1,6 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import Cart from "../models/cartModel.js";
-import e from "express";
+import Product from "../models/productModel.js";
 
 // @desc    Fetch single cart dari id pemilik
 // @route   GET /api/carts/
@@ -10,7 +10,13 @@ const getCartById = expressAsyncHandler(async (req, res) => {
   const cart = await Cart.findOne({ user: req.user._id });
 
   if (cart) {
-    res.status(200).json(cart);
+    let stock = [];
+    for (let i = 0; i < cart.items.length; i++) {
+      const product = await Product.findOne({ name: cart.items[i].product });
+
+      stock.push({ product: cart.items[i].product, stock: product.countInStock });
+    }
+    res.status(200).json({ cart, stock });
   } else {
     res.status(404);
     throw new Error("Cart not found");
