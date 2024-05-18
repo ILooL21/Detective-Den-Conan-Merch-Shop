@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userInfo: localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : null,
+  selectedAddress: localStorage.getItem('selectedAddress') || '',
 };
 
 const authSlice = createSlice({
@@ -13,13 +14,18 @@ const authSlice = createSlice({
       state.userInfo = action.payload;
       localStorage.setItem("userInfo", JSON.stringify({ ...action.payload }));
     },
+    setSelectedAddress: (state, action) => {
+      state.selectedAddress = action.payload;
+      localStorage.setItem('selectedAddress', action.payload);
+    },
     logout: (state, action) => {
       state.userInfo = null;
       localStorage.removeItem("userInfo");
+      localStorage.removeItem('selectedAddress');
     },
   },
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { setCredentials, setSelectedAddress, logout } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -100,7 +100,6 @@ const ListArticleScreen = () => {
               <th>Thumbnail</th>
               <th>Penulis</th>
               <th>Editor</th>
-              <th>Isi</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -119,7 +118,6 @@ const ListArticleScreen = () => {
                 </td>
                 <td>{article.penulis}</td>
                 <td>{article.editor}</td>
-                <td>{article.isi}</td>
                 <td>
                   <div className="container-action-product">
                     <div className="container-edit-product">
