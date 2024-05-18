@@ -13,10 +13,8 @@ import supportRoutes from "./routes/supportRoutes.js";
 import articleRoutes from "./routes/articleRoutes.js";
 import riddleRoutes from "./routes/riddleRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 import getCurrentTime from "./utils/getCurrentTime.js";
-import generateCart from "./utils/generateCart.js";
-import User from "./models/userModel.js";
-import Cart from "./models/cartModel.js";
 
 import { fileURLToPath } from "url";
 
@@ -46,18 +44,6 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// async function SummonCart(req, res, next) {
-//   const allusers = await User.find({});
-//   allusers.forEach(async (user) => {
-//     const hasCart = await Cart.findOne({ user: user._id });
-//     if (!hasCart) {
-//       await generateCart(user._id);
-//     }
-//   });
-//   next();
-// }
-// app.use(SummonCart);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -72,6 +58,7 @@ app.use("/api/supports", supportRoutes);
 app.use("/api/articles", articleRoutes);
 app.use("/api/riddles", riddleRoutes);
 app.use("/api/carts", cartRoutes);
+app.use("/api/orders", orderRoutes);
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
