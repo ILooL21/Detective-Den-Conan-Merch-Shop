@@ -3,6 +3,7 @@ import { Breadcrumb } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
 import { useGetCartsByIDQuery, useDeleteProductInCartMutation, useAddProductToCartMutation, useDecreaseProductInCartMutation } from "../slices/cartApiSlice";
+import { useAddOrderItemsMutation } from "../slices/orderApiSlice";
 import { toast } from "react-toastify";
 import "../styles/CartScreen.css";
 
@@ -13,6 +14,7 @@ const CartScreen = () => {
   const [deleteProductInCart] = useDeleteProductInCartMutation();
   const [addProductToCart] = useAddProductToCartMutation();
   const [decreaseProductInCart] = useDecreaseProductInCartMutation();
+  const [addOrderItems] = useAddOrderItemsMutation();
 
   const handleDeleteProductInCart = async (product) => {
     try {
@@ -87,7 +89,19 @@ const CartScreen = () => {
       totalPrice: totalPrice,
     };
 
-    console.log(data);
+    try {
+      const res = await addOrderItems(data).unwrap();
+      //jika error maka toast error
+      if (res.error) {
+        toast.error(res.error.message);
+        return;
+      } else {
+        toast.success("Order berhasil dibuat");
+      }
+      refetch();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {

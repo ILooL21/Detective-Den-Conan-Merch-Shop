@@ -179,8 +179,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   res.json(updatedUser);
 });
 
-export default updateUserProfile;
-
 // @desc    Change user role
 // @route   Put /api/users/changeRole
 // @access  Private
