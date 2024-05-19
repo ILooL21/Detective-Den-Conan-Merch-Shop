@@ -23,7 +23,25 @@ export const orderApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    cancelOrder: builder.mutation({
+      query: (id) => ({
+        url: `${ORDER_URL}/${id}/cancel`,
+        method: "PUT",
+      }),
+    }),
+    paidOrder: builder.mutation({
+      query: (id) => ({
+        url: `${ORDER_URL}/${id}/paid`,
+        method: "PUT",
+      }),
+    }),
+    selesaiOrder: builder.mutation({
+      query: (id) => ({
+        url: `${ORDER_URL}/${id}/selesai`,
+        method: "PUT",
+      }),
+    }),
   }),
 });
 
-export const { useGetOrdersQuery, useAddOrderItemsMutation, useGetMyOrdersQuery, useUpdateOrderMutation } = orderApiSlice;
+export const { useGetOrdersQuery, useAddOrderItemsMutation, useGetMyOrdersQuery, useUpdateOrderMutation, useCancelOrderMutation, usePaidOrderMutation, useSelesaiOrderMutation } = orderApiSlice;

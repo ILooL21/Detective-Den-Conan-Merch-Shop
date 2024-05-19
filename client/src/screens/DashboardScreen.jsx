@@ -49,6 +49,12 @@ const DasboardScreen = () => {
               </a>
             </div>
             <div>
+              <a href="/listorders">
+                <BarsOutlined className="icon-navbar-dashboard" />
+                List Order
+              </a>
+            </div>
+            <div>
               <a href="/support">
                 <QuestionOutlined className="icon-navbar-dashboard" />
                 Support

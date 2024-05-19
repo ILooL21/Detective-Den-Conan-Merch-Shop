@@ -39,7 +39,6 @@ const ProfileScreen = () => {
           email: email,
           password: password,
         }).unwrap();
-        console.log(res);
         dispatch(setCredentials({ ...res }));
         toast.success("Profile updated successfully");
       }
@@ -52,18 +51,22 @@ const ProfileScreen = () => {
       <div className="container-profile">
         <RefreshToken />
         <div className="container-profile-header">
-        <Breadcrumb
-          className="breadcrumb-profile"
-          items={[
-            {
-              title: <a href="/">Home</a>,
-            },
-            {
-              title: "Profile",
-            },
-          ]}
+          <Breadcrumb
+            className="breadcrumb-profile"
+            items={[
+              {
+                title: <a href="/">Home</a>,
+              },
+              {
+                title: "Profile",
+              },
+            ]}
           />
-          {userInfo ? <h2>Welcome! <span>{userInfo.name}</span></h2> : null}
+          {userInfo ? (
+            <h2>
+              Welcome! <span>{userInfo.name}</span>
+            </h2>
+          ) : null}
         </div>
         <div className="container-menu-form-profile">
           <div className="menu-profile">
@@ -77,7 +80,7 @@ const ProfileScreen = () => {
                 <Link to="/addressbook">Address Book</Link>
               </li>
               <li>
-                <Link to="/profile">My Order</Link>
+                <Link to="/myorders">My Order</Link>
               </li>
             </ul>
           </div>
@@ -96,18 +99,18 @@ const ProfileScreen = () => {
                 onChange={(e) => setName(e.target.value)}
                 className="form-profile-input"></Form.Control>
             </Form.Group>
-              <Form.Group
-                className="form-profile"
-                controlId="email">
-                <label>Email Address</label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="form-profile-input"
-                  disabled></Form.Control>
-              </Form.Group>
+            <Form.Group
+              className="form-profile"
+              controlId="email">
+              <label>Email Address</label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-profile-input"
+                disabled></Form.Control>
+            </Form.Group>
             <Form.Group
               className="form-profile"
               controlId="password">

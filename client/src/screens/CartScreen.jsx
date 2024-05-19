@@ -2,24 +2,19 @@ import { useSelector } from "react-redux";
 import { Breadcrumb } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
-import {
-  useGetCartsByIDQuery,
-  useDeleteProductInCartMutation,
-  useAddProductToCartMutation,
-  useDecreaseProductInCartMutation,
-} from "../slices/cartApiSlice";
+import { useGetCartsByIDQuery, useDeleteProductInCartMutation, useAddProductToCartMutation, useDecreaseProductInCartMutation } from "../slices/cartApiSlice";
+import { useAddOrderItemsMutation } from "../slices/orderApiSlice";
+import { toast } from "react-toastify";
 import "../styles/CartScreen.css";
 
 const CartScreen = () => {
-  // const [alamat, setAlamat] = useState("");
   const { selectedAddress } = useSelector((state) => state.auth);
-  // const userInfo = useSelector((state) => state.auth.userInfo);
-  //   const { selectedAddress } = useSelector((state) => state.auth);
 
   const { data: carts, isLoading, refetch } = useGetCartsByIDQuery();
   const [deleteProductInCart] = useDeleteProductInCartMutation();
   const [addProductToCart] = useAddProductToCartMutation();
   const [decreaseProductInCart] = useDecreaseProductInCartMutation();
+  const [addOrderItems] = useAddOrderItemsMutation();
 
   const handleDeleteProductInCart = async (product) => {
     try {
@@ -51,6 +46,59 @@ const CartScreen = () => {
       };
       await decreaseProductInCart(data);
       refetch(); // Refetch data after decreasing quantity
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCheckout = async () => {
+    const items = carts.cart.items
+      .filter((item) => {
+        const stock = carts.stock.find((stock) => stock.product === item.product);
+        return stock && stock.stock >= item.quantity;
+      })
+      .map((item) => {
+        return {
+          product: item.product,
+          quantity: item.quantity,
+          price: item.price,
+        };
+      });
+
+    const totalPrice = carts.cart.items.reduce((acc, item) => {
+      const stock = carts.stock.find((stock) => stock.product === item.product);
+      if (stock.stock < item.quantity) {
+        return acc;
+      }
+      return acc + item.price * item.quantity;
+    }, 0);
+
+    if (items.length === 0) {
+      toast.error("Tambahkan item terlebih dahulu");
+      return;
+    }
+
+    if (selectedAddress === "") {
+      toast.error("Pilih alamat terlebih dahulu");
+      return;
+    }
+
+    const data = {
+      orderItems: items,
+      shippingAddress: selectedAddress,
+      totalPrice: totalPrice,
+    };
+
+    try {
+      const res = await addOrderItems(data).unwrap();
+      //jika error maka toast error
+      if (res.error) {
+        toast.error(res.error.message);
+        return;
+      } else {
+        toast.success("Order berhasil dibuat");
+      }
+      refetch();
     } catch (error) {
       console.error(error);
     }
@@ -89,12 +137,13 @@ const CartScreen = () => {
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
+                <th>Keterangan</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {carts?.items?.length ? (
-                carts.items.map((cart) => (
+              {carts?.cart.items?.length ? (
+                carts.cart.items.map((cart) => (
                   <tr key={cart._id}>
                     <td>
                       <img
@@ -118,7 +167,7 @@ const CartScreen = () => {
                         <input
                           type="button"
                           value="-"
-                          className="quantity-minus"
+                          className={cart.quantity === 1 ? "quantity-minus disabled" : "quantity-minus"}
                           onClick={() => handleDecreaseQuantity(cart)}
                           disabled={cart.quantity === 1}
                         />
@@ -128,7 +177,6 @@ const CartScreen = () => {
                           min="1"
                           name="quantity"
                           value={cart.quantity}
-                          // onChange={(e) => setQuantity(Number(e.target.value))}
                           title="Qty"
                           className="input-text-quantity-cart"
                           size="4"
@@ -137,20 +185,31 @@ const CartScreen = () => {
                         <input
                           type="button"
                           value="+"
-                          className="quantity-plus"
+                          className={carts.stock.find((stock) => stock.product === cart.product).stock <= cart.quantity ? "quantity-plus disabled" : "quantity-plus"}
                           onClick={() => handleIncreaseQuantity(cart)}
+                          disabled={carts.stock.find((stock) => stock.product === cart.product).stock <= cart.quantity}
                         />
                       </div>
                     </td>
-                    <td>{cart.price * cart.quantity}</td>
+                    <td>
+                      {carts.stock.find((stock) => stock.product === cart.product).stock < cart.quantity
+                        ? "Rp 0,00"
+                        : (cart.price * cart.quantity).toLocaleString("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                          })}
+                    </td>
+                    <td>
+                      {carts.stock.map((stock, index) => {
+                        if (stock.product === cart.product) {
+                          return stock.stock < cart.quantity ? <p key={index}>Stock Habis Tidak Bisa Dibeli</p> : <p key={index}>Stock: {stock.stock}</p>;
+                        }
+                      })}
+                    </td>
                     <td>
                       <div className="container-action-product">
                         <div className="container-delete-product">
-                          <button
-                            onClick={() =>
-                              handleDeleteProductInCart(cart.product)
-                            }
-                          >
+                          <button onClick={() => handleDeleteProductInCart(cart.product)}>
                             <DeleteOutlined />
                           </button>
                         </div>
@@ -171,20 +230,13 @@ const CartScreen = () => {
               gap: "32px",
               width: "100%",
               height: "auto",
-            }}
-          >
+            }}>
             <div className="selected-address-cart">
               <div className="selected-address-cart-header">
-                <h4>Alamatku</h4>
+                <h4>Alamat Pengiriman</h4>
                 <a href="/addressbook">Ganti Alamat</a>
               </div>
-              <div className="selected-address-cart-main">
-                {selectedAddress ? (
-                  <p>{selectedAddress}</p>
-                ) : (
-                  <p>No address selected</p>
-                )}
-              </div>
+              <div className="selected-address-cart-main">{selectedAddress ? <p>{selectedAddress}</p> : <p>No address selected</p>}</div>
             </div>
             <div className="container-payment-cart">
               <h4>Ringkasan Pesanan</h4>
@@ -194,17 +246,34 @@ const CartScreen = () => {
                   <p>Total Price:</p>
                 </div>
                 <div>
-                  <p>x{carts?.totalItems ?? 0}</p>
                   <p>
-                    {carts?.totalPrice?.toLocaleString("id-ID", {
-                      style: "currency",
-                      currency: "IDR",
-                    }) ?? "Rp 0,00"}
+                    x
+                    {carts.cart?.items.reduce((acc, item) => {
+                      const stock = carts.stock.find((stock) => stock.product === item.product);
+                      if (stock.stock < item.quantity) {
+                        return acc;
+                      }
+                      return acc + item.quantity;
+                    }, 0) ?? 0}
+                  </p>
+                  <p>
+                    {carts.cart?.items
+                      .reduce((acc, item) => {
+                        const stock = carts.stock.find((stock) => stock.product === item.product);
+                        if (stock.stock < item.quantity) {
+                          return acc;
+                        }
+                        return acc + item.price * item.quantity;
+                      }, 0)
+                      ?.toLocaleString("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                      }) ?? "Rp 0,00"}
                   </p>
                 </div>
               </div>
               <div className="container-button-checkout">
-                <button>Proses to Checkout</button>
+                <button onClick={handleCheckout}>Checkout</button>
               </div>
             </div>
           </div>

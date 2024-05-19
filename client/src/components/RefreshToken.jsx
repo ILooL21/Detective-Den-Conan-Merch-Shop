@@ -19,11 +19,13 @@ const RefreshToken = () => {
         if (response.data.message === "You are not logged in") {
           dispatch(logout());
           toast.error("Session expired, please login again");
+          return;
         }
       } catch (err) {
         console.error(err);
         dispatch(logout());
         toast.error("Session expired, please login again");
+        return;
       }
     };
     refreshToken();

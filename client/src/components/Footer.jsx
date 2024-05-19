@@ -48,7 +48,7 @@ const FooterComponent = () => {
             <a href="">Privacy Policy</a>
             <a href="">Terms Of Use</a>
             <a href="">FAQ</a>
-            <a href="">Contact</a>
+            <a href="/contact">Contact</a>
           </div>
         </div>
       </Footer>

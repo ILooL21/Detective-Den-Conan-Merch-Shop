@@ -97,12 +97,6 @@ const ProductDetailScreen = () => {
       ) : (
         <div className="container-detail-product-body">
           <div className="container-detail-product-main">
-            <div className="container-side-image-product">
-              <img src={`http://localhost:8080/${product.image}`} />
-              <img src={`http://localhost:8080/${product.image}`} />
-              <img src={`http://localhost:8080/${product.image}`} />
-              <img src={`http://localhost:8080/${product.image}`} />
-            </div>
             <img
               className="image-product-detail"
               src={`http://localhost:8080/${product.image}`}
@@ -117,8 +111,7 @@ const ProductDetailScreen = () => {
                   border: "1px solid #c4c4c4",
                   borderRadius: "8px",
                   padding: "16px",
-                }}
-              >
+                }}>
                 <h1>{product.name}</h1>
                 <div
                   style={{
@@ -129,8 +122,7 @@ const ProductDetailScreen = () => {
                     margin: "0",
                     padding: "0",
                     gap: "8px",
-                  }}
-                >
+                  }}>
                   <a className="detail-product-rating">{product.rating}</a>
                   {/* <Rate value={userRating}
                     onChange={(e) => ReviewHandle(e.target.value)}/> */}
@@ -157,15 +149,12 @@ const ProductDetailScreen = () => {
                       height: "100%",
                       padding: "0",
                       marginBottom: "4px",
-                    }}
-                  >
+                    }}>
                     |
                   </span>
-                  <a className="detail-product-stock">
-                    Stock: {product.countInStock}
-                  </a>
+                  <a className="detail-product-stock">Stock: {product.countInStock}</a>
                 </div>
-                  <span className="detail-product-price">Rp. {product.price}</span>
+                <span className="detail-product-price">Rp. {product.price}</span>
               </div>
               <div
                 style={{
@@ -174,11 +163,8 @@ const ProductDetailScreen = () => {
                   width: "100%",
                   height: "160px",
                   margin: "0",
-                }}
-              >
-                <p className="detail-product-description">
-                  {product.description}
-                </p>
+                }}>
+                <p className="detail-product-description">{product.description}</p>
               </div>
               <div
                 style={{
@@ -186,16 +172,14 @@ const ProductDetailScreen = () => {
                   alignItems: "center",
                   flexDirection: "column",
                   width: "100%",
-                }}
-              >
+                }}>
                 <div
                   style={{
                     display: "flex",
                     alignItems: "center",
                     width: "100%",
                     gap: "24px",
-                  }}
-                >
+                  }}>
                   {/* <input
                     type="number"
                     value={quantity}
@@ -207,6 +191,7 @@ const ProductDetailScreen = () => {
                       value="-"
                       className="quantity-minus"
                       onClick={handleDecrement}
+                      disabled={quantity <= 1}
                     />
                     <input
                       type="number"
@@ -225,13 +210,14 @@ const ProductDetailScreen = () => {
                       value="+"
                       className="quantity-plus"
                       onClick={handleIncrement}
+                      disabled={product.countInStock === 0 || product.countInStock <= quantity}
                     />
                   </div>
                   <button
                     className="button-product-to-cart"
                     onClick={handleAddProductToCart}
-                  >
-                    Add to Cart
+                    disabled={product.countInStock === 0}>
+                    {product.countInStock === 0 ? "Out of Stock" : "Add to Cart"}
                   </button>
                 </div>
               </div>

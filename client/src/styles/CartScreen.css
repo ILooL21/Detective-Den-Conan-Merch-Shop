@@ -46,6 +46,16 @@
   align-items: center;
   width: 100%;
 }
+/* .quantity-minus,
+.quantity-plus {
+  background-color: red;
+}
+
+.quantity-minus.disabled,
+.quantity-plus.disabled {
+  background-color: white;
+} */
+
 .input-text-quantity-cart {
   width: 60px;
   height: 40px;

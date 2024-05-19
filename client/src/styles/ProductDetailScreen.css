@@ -68,7 +68,7 @@
   font-weight: 600;
   margin: 0;
 }
-.detail-product-rating{
+.detail-product-rating {
   font-size: 16px;
   font-weight: 400;
   height: auto;
@@ -87,7 +87,8 @@
   text-decoration: none;
   color: #000;
 }
-.detail-product-rating:hover, .detail-product-stock:hover {
+.detail-product-rating:hover,
+.detail-product-stock:hover {
   color: #000;
 }
 .detail-product-price {
@@ -103,6 +104,7 @@
   border-radius: 8px;
   padding: 8px;
   margin: 0;
+  white-space: pre-line;
 }
 .product-quantity {
   display: flex;
@@ -120,8 +122,8 @@
   border-left: none;
   border-right: none;
 }
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

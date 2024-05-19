@@ -5,6 +5,7 @@ const orderSchema = mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
     orderItems: [
       {
@@ -23,6 +24,7 @@ const orderSchema = mongoose.Schema(
     },
     resi: {
       type: String,
+      default: "",
     },
     status: {
       type: String,

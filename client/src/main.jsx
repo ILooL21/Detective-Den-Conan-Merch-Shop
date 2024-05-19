@@ -21,6 +21,8 @@ import ListCategoryScreen from "./screens/ListCategoryScreen.jsx";
 import ListArticleScreen from "./screens/ListArticleScreen.jsx";
 import ListProductScreen from "./screens/ListProductScreen.jsx";
 import ListRiddleScreen from "./screens/ListRiddleScreen.jsx";
+import ListOrderScreen from "./screens/ListOrderScreen.jsx";
+import ListMyOrderScreen from "./screens/ListMyOrderScreen.jsx";
 import ProductDetailScreen from "./screens/ProductDetailScreen.jsx";
 import EditRiddlePage from "./components/admin/riddle/EditRiddlePage.jsx";
 import RiddleScreen from "./screens/RiddleScreen.jsx";
@@ -42,7 +44,7 @@ const router = createBrowserRouter(
       />
       <Route
         path="/wiki"
-        element={<WikiScreen/>}
+        element={<WikiScreen />}
       />
       <Route
         path="/login"
@@ -107,6 +109,10 @@ const router = createBrowserRouter(
             element={<EditRiddlePage />}
           />
           <Route
+            path="/listorders"
+            element={<ListOrderScreen />}
+          />
+          <Route
             path=""
             element={<OwnerRoute />}>
             <Route
@@ -126,6 +132,10 @@ const router = createBrowserRouter(
         <Route
           path="/addressbook"
           element={<ListAddressScreen />}
+        />
+        <Route
+          path="/myorders"
+          element={<ListMyOrderScreen />}
         />
       </Route>
     </Route>
