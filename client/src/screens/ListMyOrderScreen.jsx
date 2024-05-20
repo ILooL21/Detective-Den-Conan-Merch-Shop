@@ -1,13 +1,15 @@
 import { useGetMyOrdersQuery, useCancelOrderMutation, useSelesaiOrderMutation } from "../slices/orderApiSlice";
-// import { useNavigate } from "react-router-dom";
+import { useReviewsProductMutation } from "../slices/productApiSlice";
 import { Card } from "react-bootstrap";
+import { Rate } from "antd";
+import { useEffect } from "react";
 
 const ListMyOrderScreen = () => {
-  // const rating = useNavigate();
   const { data: orders, isLoading, refetch } = useGetMyOrdersQuery();
 
   const [cancelOrder] = useCancelOrderMutation();
   const [selesaiOrder] = useSelesaiOrderMutation();
+  const [ratingOrder] = useReviewsProductMutation();
 
   const handleCancelOrder = async (id) => {
     try {
@@ -27,9 +29,18 @@ const ListMyOrderScreen = () => {
     }
   };
 
-  // const handleRating = () => {
-  //   rating("/product");
-  // }
+  const handleRating = async (id, rating) => {
+    try {
+      await ratingOrder({ id, rating });
+      refetch();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   return (
     <div>
@@ -56,6 +67,7 @@ const ListMyOrderScreen = () => {
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Subtotal</th>
+                        {order.status === "Selesai" && <th>Rating</th>}
                       </tr>
                     </thead>
                     <tbody>
@@ -65,6 +77,25 @@ const ListMyOrderScreen = () => {
                           <td>{item.price}</td>
                           <td>{item.quantity}</td>
                           <td>{item.price * item.quantity}</td>
+                          {order.status === "Selesai" ? (
+                            item.rating ? (
+                              <td>
+                                <Rate
+                                  className="rating-icon-product"
+                                  value={item.rating}
+                                  onChange={(value) => handleRating(item.id, value)}
+                                />
+                              </td>
+                            ) : (
+                              <td>
+                                <Rate
+                                  className="rating-icon-product"
+                                  value={0}
+                                  onChange={(value) => handleRating(item.id, value)}
+                                />
+                              </td>
+                            )
+                          ) : null}
                         </tr>
                       ))}
                     </tbody>
@@ -76,13 +107,12 @@ const ListMyOrderScreen = () => {
                 <Card.Text>Status: {order.status}</Card.Text>
                 <Card.Text>Order Date: {new Date(order.createdAt).toLocaleString("id-ID")}</Card.Text>
                 {order.status === "Belum Dibayar" && <Card.Text>Hubungi 1234567890 untuk melakukan pembayaran, admin akan mengonfirmasi pembayaran agar barang segera di proses </Card.Text>}
-                {order.status === "Selesai" && <Card.Text>Barang sudah dikirim, nomor resi akan dikirimkan melalui email</Card.Text>}
+                {order.status === "Diproses" && <Card.Text>Barang sedang diproses, nomor resi akan tertera disini saat barang sudah dikirim. jika ingin melakukan pembatalan segera konfirmasi ke admin sebelum barang dikirim</Card.Text>}
               </Card.Body>
               {(order.status === "Dikirim" || (order.status !== "Dibatalkan" && order.status !== "Selesai")) && (
                 <Card.Footer>
                   {order.status === "Dikirim" && <button onClick={() => handleSelesaiOrder(order._id)}>Selesai</button>}
-                  {order.status !== "Dibatalkan" && order.status !== "Selesai" || order.status !== "Dikirim" && <button onClick={() => handleCancelOrder(order._id)}>Batalkan</button>}
-                  {/* {order.status !== "Selesai" && <button onClick={() => handleCancelOrder(order._id)}>Beri Rating</button>} */}
+                  {(order.status === "Belum Dibayar" || order.status === "Diproses") && <button onClick={() => handleCancelOrder(order._id)}>Batalkan</button>}
                 </Card.Footer>
               )}
             </Card>

@@ -3,12 +3,7 @@ import { Breadcrumb } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  useGetCartsByIDQuery,
-  useDeleteProductInCartMutation,
-  useAddProductToCartMutation,
-  useDecreaseProductInCartMutation,
-} from "../slices/cartApiSlice";
+import { useGetCartsByIDQuery, useDeleteProductInCartMutation, useAddProductToCartMutation, useDecreaseProductInCartMutation } from "../slices/cartApiSlice";
 import { useAddOrderItemsMutation } from "../slices/orderApiSlice";
 import { toast } from "react-toastify";
 import "../styles/CartScreen.css";
@@ -61,13 +56,12 @@ const CartScreen = () => {
   const handleCheckout = async () => {
     const items = carts.cart.items
       .filter((item) => {
-        const stock = carts.stock.find(
-          (stock) => stock.product === item.product
-        );
+        const stock = carts.stock.find((stock) => stock.product === item.product);
         return stock && stock.stock >= item.quantity;
       })
       .map((item) => {
         return {
+          id: item.id,
           product: item.product,
           quantity: item.quantity,
           price: item.price,
@@ -140,14 +134,15 @@ const CartScreen = () => {
         <h2>Loading...</h2>
       ) : (
         <div>
-          <div style={{
-            width: "100%",
-            height: "auto",
-            padding: "16px",
-            margin: "24px 0",
-            borderRadius: "8px",
-            border: "1px solid #c4c4c4",
-          }}>
+          <div
+            style={{
+              width: "100%",
+              height: "auto",
+              padding: "16px",
+              margin: "24px 0",
+              borderRadius: "8px",
+              border: "1px solid #c4c4c4",
+            }}>
             <table className="table-cart">
               <thead>
                 <tr>
@@ -187,14 +182,7 @@ const CartScreen = () => {
                           <input
                             type="button"
                             value="-"
-                            className={
-                              cart.quantity === 1 ||
-                              carts.stock.find(
-                                (stock) => stock.product === cart.product
-                              ).stock <= cart.quantity
-                                ? " border-radius-minus disabled-button-quantity"
-                                : "border-radius-minus quantity-minus"
-                            }
+                            className={cart.quantity === 1 || carts.stock.find((stock) => stock.product === cart.product).stock < cart.quantity ? " border-radius-minus disabled-button-quantity" : "border-radius-minus quantity-minus"}
                             onClick={() => handleDecreaseQuantity(cart)}
                             disabled={cart.quantity === 1}
                           />
@@ -212,54 +200,31 @@ const CartScreen = () => {
                           <input
                             type="button"
                             value="+"
-                            className={
-                              carts.stock.find(
-                                (stock) => stock.product === cart.product
-                              ).stock <= cart.quantity
-                                ? "border-radius-plus disabled-button-quantity"
-                                : "border-radius-plus quantity-plus"
-                            }
+                            className={carts.stock.find((stock) => stock.product === cart.product).stock <= cart.quantity ? "border-radius-plus disabled-button-quantity" : "border-radius-plus quantity-plus"}
                             onClick={() => handleIncreaseQuantity(cart)}
-                            disabled={
-                              carts.stock.find(
-                                (stock) => stock.product === cart.product
-                              ).stock <= cart.quantity
-                            }
+                            disabled={carts.stock.find((stock) => stock.product === cart.product).stock <= cart.quantity}
                           />
                         </div>
                       </td>
                       <td>
-                        {carts.stock.find(
-                          (stock) => stock.product === cart.product
-                        ).stock < cart.quantity
+                        {carts.stock.find((stock) => stock.product === cart.product).stock < cart.quantity
                           ? "Rp 0,00"
-                          : (cart.price * cart.quantity).toLocaleString(
-                              "id-ID",
-                              {
-                                style: "currency",
-                                currency: "IDR",
-                              }
-                            )}
+                          : (cart.price * cart.quantity).toLocaleString("id-ID", {
+                              style: "currency",
+                              currency: "IDR",
+                            })}
                       </td>
                       <td>
                         {carts.stock.map((stock, index) => {
                           if (stock.product === cart.product) {
-                            return stock.stock < cart.quantity ? (
-                              <a key={index}>Stock Habis Tidak Bisa Dibeli</a>
-                            ) : (
-                              <a key={index}>Stock: {stock.stock}</a>
-                            );
+                            return stock.stock < cart.quantity ? <a key={index}>Stock Habis Tidak Bisa Dibeli</a> : <a key={index}>Stock: {stock.stock}</a>;
                           }
                         })}
                       </td>
                       <td>
                         <div className="container-action-product">
                           <div className="container-delete-product">
-                            <button
-                              onClick={() =>
-                                handleDeleteProductInCart(cart.product)
-                              }
-                            >
+                            <button onClick={() => handleDeleteProductInCart(cart.product)}>
                               <DeleteOutlined />
                             </button>
                           </div>
@@ -281,20 +246,13 @@ const CartScreen = () => {
               gap: "32px",
               width: "100%",
               height: "auto",
-            }}
-          >
+            }}>
             <div className="selected-address-cart">
               <div className="selected-address-cart-header">
                 <h4>Alamat Pengiriman</h4>
                 <a href="/addressbook">Ganti Alamat</a>
               </div>
-              <div className="selected-address-cart-main">
-                {selectedAddress ? (
-                  <p>{selectedAddress}</p>
-                ) : (
-                  <p>No address selected</p>
-                )}
-              </div>
+              <div className="selected-address-cart-main">{selectedAddress ? <p>{selectedAddress}</p> : <p>No address selected</p>}</div>
             </div>
             <div className="container-payment-cart">
               <h4>Ringkasan Pesanan</h4>
@@ -307,9 +265,7 @@ const CartScreen = () => {
                   <p>
                     x
                     {carts.cart?.items.reduce((acc, item) => {
-                      const stock = carts.stock.find(
-                        (stock) => stock.product === item.product
-                      );
+                      const stock = carts.stock.find((stock) => stock.product === item.product);
                       if (stock.stock < item.quantity) {
                         return acc;
                       }
@@ -319,9 +275,7 @@ const CartScreen = () => {
                   <p>
                     {carts.cart?.items
                       .reduce((acc, item) => {
-                        const stock = carts.stock.find(
-                          (stock) => stock.product === item.product
-                        );
+                        const stock = carts.stock.find((stock) => stock.product === item.product);
                         if (stock.stock < item.quantity) {
                           return acc;
                         }
