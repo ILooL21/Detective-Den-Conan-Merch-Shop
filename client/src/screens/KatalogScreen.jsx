@@ -34,7 +34,6 @@ const KatalogScreen = () => {
   }, [products, searchParams]);
 
   const handleCategoryChange = (categoryName) => {
-    //jika category checked, kemudian di-uncheck maka hapus category dari searchParams
     if (
       searchParams.has("category") &&
       searchParams.get("category") === categoryName
@@ -125,7 +124,7 @@ const KatalogScreen = () => {
                             currency: "IDR",
                           }) ?? "Rp 0,00"}
                         </p>
-                        <p>{product.category}</p>
+                        <a>{product.rating}⭐</a>
                       </div>
                     </Card.Body>
                   </Card>
