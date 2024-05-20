@@ -80,6 +80,7 @@ const EditProductModal = (props) => {
               <Form.Label>Stock</Form.Label>
               <Form.Control
                 type="number"
+                min="0"
                 value={productStock}
                 onChange={(e) => setProductStock(e.target.value)}
               />

@@ -70,34 +70,38 @@ const KatalogScreen = () => {
             <div className="container-katalog-screen-filter">
               <h3>Categories</h3>
               <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignContent: "center",
-                gap: "16px",
-                width: "100%",
-                padding: "8px 16px",
-                flexWrap: "wrap",
-              }}>
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  gap: "16px",
+                  width: "100%",
+                  padding: "8px 16px",
+                  flexWrap: "wrap",
+                }}
+              >
                 {categories &&
-                categories.map(
-                  (category) =>
-                    countProducts(category.name) > 0 && (
-                      <div key={category._id} className="katalog-screen-filter">
-                        <input
-                          type="checkbox"
-                          name="category"
-                          value={category.name}
-                          onChange={() => handleCategoryChange(category.name)}
-                          checked={
-                            searchParams.has("category") &&
-                            searchParams.get("category") === category.name
-                          }
-                        />
-                        <label>{category.name}</label>
-                      </div>
-                    )
-                )}
+                  categories.map(
+                    (category) =>
+                      countProducts(category.name) > 0 && (
+                        <div
+                          key={category._id}
+                          className="katalog-screen-filter"
+                        >
+                          <input
+                            type="checkbox"
+                            name="category"
+                            value={category.name}
+                            onChange={() => handleCategoryChange(category.name)}
+                            checked={
+                              searchParams.has("category") &&
+                              searchParams.get("category") === category.name
+                            }
+                          />
+                          <label>{category.name}</label>
+                        </div>
+                      )
+                  )}
               </div>
             </div>
             <div className="container-katalog-screen-card">
@@ -114,8 +118,15 @@ const KatalogScreen = () => {
                     />
                     <Card.Body className="card-body-katalog-screen">
                       <h5>{product.name}</h5>
-                      <p>{product.price}</p>
-                      <p>{product.category}</p>
+                      <div>
+                        <p>
+                          {product.price?.toLocaleString("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                          }) ?? "Rp 0,00"}
+                        </p>
+                        <p>{product.category}</p>
+                      </div>
                     </Card.Body>
                   </Card>
                 ))

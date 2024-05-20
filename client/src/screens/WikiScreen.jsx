@@ -1,39 +1,39 @@
 import { Table, Image } from "react-bootstrap";
+import { Breadcrumb } from "antd";
+import "../styles/WikiScreen.css";
 
 const WikiScreen = () => {
   return (
     <>
-      <div
-        style={{
-          marginTop: "20vh",
-          marginLeft: "5.5vh",
-          marginRight: "25.5vh",
-          textAlign: "center",
-        }}>
+      <div className="container-wiki">
+        <div className="container-address-header">
+        <Breadcrumb
+          className="breadcrumb-address"
+          items={[
+            {
+              title: <a href="/">Home</a>,
+            },
+            {
+              title: "Wiki",
+            },
+          ]}
+          />
+        </div>
         <h1>Halaman Wiki Karakter</h1>
-
         <h3>Protagonists</h3>
         <hr
           style={{
-            marginLeft: "10.5vh",
-            width: "175vh",
+            width: "100%",
           }}
         />
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`Serial ini berkisah tentang Shinichi Kudo dan "versi anak-anaknya", Conan Edogawa, serta kekasih dan sahabatnya Ran Mouri dan ayahnya Kogoro Mouri.`}
         </p>
 
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -99,25 +99,17 @@ const WikiScreen = () => {
         <h3>Detective Boys</h3>
         <hr
           style={{
-            marginLeft: "10.5vh",
-            width: "175vh",
+            width: "100%",
           }}
         />
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`The Detective Boys adalah sebuah Kelompok di Tokyo, Jepang yang terdiri dari Detektif sekolah dasar yang dengannya Conan Edogawa memecahkan kejahatan yang sesekali dialaminya dan Teman Sekelas Sekolah Dasar Teitan.`}
         </p>
 
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -183,22 +175,14 @@ const WikiScreen = () => {
         <h3>Family & Friends</h3>
         <hr
           style={{
-            marginLeft: "10.5vh",
-            width: "175vh",
+            width: "100%",
           }}
         />
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`mereka adalah orang-orang yang memiliki hubungan dekat dan personal dengan para karakter utama dan sering membantu mereka memecahkan sebuah kasus`}
         </p>
 
         <Table
-          style={{
-            marginInline: "10.5vh",
-          }}
           bordered
           striped
           hover>
@@ -471,26 +455,18 @@ const WikiScreen = () => {
         <h3>Law enforcement</h3>
         <hr
           style={{
-            marginLeft: "10.5vh",
-            width: "175vh",
+            width: "100%",
           }}
         />
         <h3>Tokyo Metropolitan Police</h3>
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`Tokyo Metropolitan Police adalah lembaga penegak hukum utama yang beroperasi di Tokyo. Mereka bertanggung jawab untuk menangani berbagai kejahatan dan kasus kriminal yang terjadi di kota. Beberapa anggota penting dari kepolisian ini sering muncul dalam cerita dan bekerja sama dengan Conan Edogawa dalam memecahkan berbagai kasus.`}
         </p>
 
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -646,21 +622,14 @@ const WikiScreen = () => {
         </Table>
 
         <h3>Osaka Police District</h3>
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`Osaka Police District adalah lembaga penegak hukum yang beroperasi di wilayah Osaka. Mereka berperan penting dalam menangani kejahatan dan kasus kriminal di area tersebut. Beberapa anggota utama dari kepolisian Osaka sering muncul dalam cerita dan bekerja sama dengan Conan Edogawa serta Hattori Heiji.`}
         </p>
 
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -702,21 +671,14 @@ const WikiScreen = () => {
         </Table>
 
         <h3>Nagano Police District</h3>
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`Nagano Police District adalah lembaga penegak hukum yang beroperasi di wilayah Nagano. Mereka berperan dalam menangani berbagai kejahatan yang terjadi di daerah pegunungan ini.`}
         </p>
 
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -766,10 +728,7 @@ const WikiScreen = () => {
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -836,20 +795,13 @@ const WikiScreen = () => {
         </Table>
 
         <h3>Japanese intelligence agencies</h3>
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`intelijen Jepang muncul untuk menangani kasus-kasus yang melibatkan kejahatan tingkat tinggi dan ancaman nasional, terutama yang berhubungan dengan organisasi kriminal seperti Organisasi Hitam.`}
         </p>
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -904,20 +856,13 @@ const WikiScreen = () => {
         </Table>
 
         <h3>FBI</h3>
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`FBI merupakan Melindungi Amerika Serikat dari operasi intelijen asing, spionase, dan operasi dunia maya. memainkan peran penting dalam memerangi kejahatan internasional, khususnya melawan Organisasi Hitam, sebuah kelompok kriminal besar yang menjadi ancaman global.`}
         </p>
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -976,21 +921,14 @@ const WikiScreen = () => {
         </Table>
 
         <h3>CIA</h3>
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`CIA merupakan badan intelegensi amerika, memainkan peran dalam memerangi kejahatan internasional, terutama yang berkaitan dengan Organisasi Hitam. Agen-agen CIA bekerja dalam bayang-bayang, sering kali menyusup ke dalam organisasi kriminal dan menggunakan berbagai metode intelijen untuk mengumpulkan informasi dan mengungkap aktivitas ilegal.`}
         </p>
 
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -1026,21 +964,14 @@ const WikiScreen = () => {
         </Table>
 
         <h3>MI6</h3>
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`MI6 (juga dikenal sebagai Secret Intelligence Service atau SIS) adalah badan intelijen utama Inggris yang menangani operasi rahasia dan pengumpulan intelijen di luar negeri. `}
         </p>
 
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -1085,25 +1016,17 @@ const WikiScreen = () => {
         <h3>Black Organization</h3>
         <hr
           style={{
-            marginLeft: "10.5vh",
-            width: "175vh",
+            width: "100%",
           }}
         />
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`"The Black Organization" berperan sebagai antagonis utama dalam serial ini. Ini adalah sindikat kriminal rahasia dengan tujuan tersembunyi. Untuk mencapai tujuan tersebut, mereka melakukan berbagai kejahatan untuk menjaga kerahasiaannya, menghilangkan hambatan, dan mengumpulkan dana dan sumber daya untuk proyek penelitian misteriusnya. Para anggota organisasi diberi kode nama berdasarkan minuman beralkohol. Pemimpinnya adalah Renya Karasuma dan anggota pertama yang muncul adalah Gin dan Vodka, yang bertanggung jawab untuk mengubah Shinichi Kudo menjadi seorang anak dengan obat misterius APTX 4869. Mereka adalah musuh bebuyutan Conan Edogawa.`}
         </p>
 
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -1313,10 +1236,7 @@ const WikiScreen = () => {
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
@@ -1434,26 +1354,17 @@ const WikiScreen = () => {
         <h3>Magic Kaito</h3>
         <hr
           style={{
-            marginLeft: "10.5vh",
-            width: "175vh",
+            width: "100%",
           }}
         />
-        <p
-          style={{
-            marginLeft: "10.5vh",
-            textAlign: "justify",
-          }}>
+        <p>
           {`Magic Kaito adalah serial manga shōnen Jepang tahun 1987 yang ditulis dan diilustrasikan oleh Gosho Aoyama. Bercerita tentang Kaito Kuroba yang mengetahui apa yang dilakukan ayahnya sebelum dia meninggal. Dia mengambil nama samaran ayahnya dan menjadi Phantom Thief Kid yang baru. Pemeran utama serial ini juga muncul dalam serial Detektif Conan sebagai kolaborasi sempurna antara detektif hebat dan pencuri hantu hebat, yang dapat disamakan dengan Sherlock Holmes vs. Arsene Lupin.`}
         </p>
 
         <Table
           striped
           bordered
-          hover
-          style={{
-            marginInline: "10.5vh",
-            marginBottom: "10vh",
-          }}>
+          hover>
           <thead>
             <tr>
               <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>

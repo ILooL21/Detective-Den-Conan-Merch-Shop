@@ -180,16 +180,11 @@ const ProductDetailScreen = () => {
                     width: "100%",
                     gap: "24px",
                   }}>
-                  {/* <input
-                    type="number"
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                  /> */}
                   <div className="product-quantity">
                     <input
                       type="button"
                       value="-"
-                      className="quantity-minus"
+                      className={product.countInStock === 0 || quantity <= 1 ? " border-radius-minus disabled-button-quantity" : "border-radius-minus quantity-minus"}
                       onClick={handleDecrement}
                       disabled={quantity <= 1}
                     />
@@ -208,13 +203,13 @@ const ProductDetailScreen = () => {
                     <input
                       type="button"
                       value="+"
-                      className="quantity-plus"
+                      className={product.countInStock === 0 || product.countInStock <= quantity ? "border-radius-plus disabled-button-quantity" : "border-radius-plus quantity-plus"}
                       onClick={handleIncrement}
                       disabled={product.countInStock === 0 || product.countInStock <= quantity}
                     />
                   </div>
                   <button
-                    className="button-product-to-cart"
+                    className={product.countInStock === 0 ? "disabled-button" : "button-product-to-cart"}
                     onClick={handleAddProductToCart}
                     disabled={product.countInStock === 0}>
                     {product.countInStock === 0 ? "Out of Stock" : "Add to Cart"}
