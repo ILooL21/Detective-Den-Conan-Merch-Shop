@@ -112,8 +112,8 @@
 .card-body-katalog-screen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 16px;
+  justify-content: space-between;
+  padding: 10px;
   gap: 0px;
   height: 100px;
   border-top: solid 1px #c4c4c4;

@@ -1,7 +1,9 @@
 import { useGetMyOrdersQuery, useCancelOrderMutation, useSelesaiOrderMutation } from "../slices/orderApiSlice";
+// import { useNavigate } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
 const ListMyOrderScreen = () => {
+  // const rating = useNavigate();
   const { data: orders, isLoading, refetch } = useGetMyOrdersQuery();
 
   const [cancelOrder] = useCancelOrderMutation();
@@ -24,6 +26,10 @@ const ListMyOrderScreen = () => {
       console.error(error);
     }
   };
+
+  // const handleRating = () => {
+  //   rating("/product");
+  // }
 
   return (
     <div>
@@ -70,11 +76,13 @@ const ListMyOrderScreen = () => {
                 <Card.Text>Status: {order.status}</Card.Text>
                 <Card.Text>Order Date: {new Date(order.createdAt).toLocaleString("id-ID")}</Card.Text>
                 {order.status === "Belum Dibayar" && <Card.Text>Hubungi 1234567890 untuk melakukan pembayaran, admin akan mengonfirmasi pembayaran agar barang segera di proses </Card.Text>}
+                {order.status === "Selesai" && <Card.Text>Barang sudah dikirim, nomor resi akan dikirimkan melalui email</Card.Text>}
               </Card.Body>
               {(order.status === "Dikirim" || (order.status !== "Dibatalkan" && order.status !== "Selesai")) && (
                 <Card.Footer>
                   {order.status === "Dikirim" && <button onClick={() => handleSelesaiOrder(order._id)}>Selesai</button>}
-                  {order.status !== "Dibatalkan" && order.status !== "Selesai" && <button onClick={() => handleCancelOrder(order._id)}>Batalkan</button>}
+                  {order.status !== "Dibatalkan" && order.status !== "Selesai" || order.status !== "Dikirim" && <button onClick={() => handleCancelOrder(order._id)}>Batalkan</button>}
+                  {/* {order.status !== "Selesai" && <button onClick={() => handleCancelOrder(order._id)}>Beri Rating</button>} */}
                 </Card.Footer>
               )}
             </Card>
