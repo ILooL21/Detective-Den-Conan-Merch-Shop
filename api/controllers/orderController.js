@@ -95,7 +95,6 @@ const getMyOrders = expressAsyncHandler(async (req, res) => {
       }
     }
   }
-  // await orders.save();
 
   if (orders) {
     // Mengurutkan pesanan berdasarkan status dan tanggal pembuatan
@@ -131,9 +130,21 @@ const updateOrder = expressAsyncHandler(async (req, res) => {
   if (order) {
     if (resi) {
       order.resi = resi;
+    } else {
+      res.status(400);
+      throw new Error("Resi tidak boleh kosong");
     }
+
     if (status) {
-      order.status = "Dikirim";
+      if (order.status === "Diproses") {
+        order.status = status;
+      } else {
+        res.status(400);
+        throw new Error("Status tidak sesuai prosedur");
+      }
+    } else {
+      res.status(400);
+      throw new Error("Status tidak boleh kosong");
     }
 
     const updatedOrder = await order.save();
@@ -153,7 +164,12 @@ const paidOrder = expressAsyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
 
   if (order) {
-    order.status = "Diproses";
+    if (order.status === "Belum Dibayar") {
+      order.status = "Diproses";
+    } else {
+      res.status(400);
+      throw new Error("Status tidak sesuai prosedur");
+    }
 
     const updatedOrder = await order.save();
 
@@ -172,7 +188,12 @@ const selesaiOrder = expressAsyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
 
   if (order) {
-    order.status = "Selesai";
+    if (order.status === "Dikirim") {
+      order.status = "Selesai";
+    } else {
+      res.status(400);
+      throw new Error("Status tidak sesuai prosedur");
+    }
 
     const updatedOrder = await order.save();
 
@@ -191,7 +212,12 @@ const cancelOrder = expressAsyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
 
   if (order) {
-    order.status = "Dibatalkan";
+    if (order.status !== "Selesai" && order.status !== "Dibatalkan" && order.status !== "Dikirim") {
+      order.status = "Dibatalkan";
+    } else {
+      res.status(400);
+      throw new Error("Status tidak sesuai prosedur");
+    }
 
     for (let i = 0; i < order.orderItems.length; i++) {
       const item = order.orderItems[i];
