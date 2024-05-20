@@ -36,10 +36,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -112,10 +112,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -188,10 +188,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -205,8 +205,6 @@ const WikiScreen = () => {
                 {`Profesor yang menciptakan gadget untuk digunakan Conan. Adalah sahabat dan tetangga sebelah keluarga kudo (Keluarga Sinichi). Dialah orang pertama yang mengetahui identitas asli Conan.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Sonoko Suzuki.jpg" />
@@ -215,8 +213,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Serena Sebastian</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Teman baik Ran. Anak temuda dari keluarga kaya Suzuki`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Eri Kisaki.jpg" />
@@ -230,8 +226,6 @@ const WikiScreen = () => {
                   textAlign: "left",
                 }}>{`Ibu Ran, seorang pengacara yang sangat sukses. Menikah dengan kogoro mouri, tapi saat ini tinggal terpisah dari Kogoro Mouri. Dia adalah teman Yukiko Kudo.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Yusaku Kudo.jpg" />
@@ -240,8 +234,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Booker Kudo</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}> {`Ayah Shinichi. Seorang penulis novel misteri yang terkenal di Amerika dan Jepang.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Yukiko Kudo.jpg" />
@@ -252,8 +244,6 @@ const WikiScreen = () => {
                 {`ibu Shinichi. Seorang pensiunan aktris, dia bisa menyamar dengan baik dan bisa meniru suara tanpa pengubah suara, sebuah keterampilan yang dia pelajari dari Pesulap Toichi Kuroba. Dia adalah teman dekat Sharon Vineyard.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Heiji Hattori.jpg" />
@@ -264,8 +254,6 @@ const WikiScreen = () => {
                 {`Detektif saingan Shinichi dan sahabatnya dari Osaka. Dikenal sebagai "Detektif Hebat Barat". Dia juga seorang seniman bela diri Kendo yang terlatih dan orang pertama yang menyimpulkan identitas asli Conan.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Kazuha Toyama.jpg" />
@@ -276,8 +264,6 @@ const WikiScreen = () => {
               </td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Sahabat Heiji Hattori sejak kecil dan kekasihnya. Dia adalah seniman bela diri Aikido yang terlatih.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Yoko Okino.jpg" />
@@ -286,8 +272,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Yoko Okino</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Selebriti yang di idolakan oleh Kogoro Mouri`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image
@@ -299,8 +283,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Liz Faulkner</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Wali kelas Conan dan pacar Ninzaburo Shiratori. Juga mengaku sebagai manajer Detective Boys.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Tomoaki Araide.jpg" />
@@ -309,8 +291,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Dokter Kogoro, perawat sekolah Teitan, dan pelatih bola basket sekolah menengah. Dia pernah ditiru oleh Vermouth.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Makoto Kyogoku.jpg" />
@@ -319,8 +299,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Pacar Sonoko Suzuki, dan seorang juara karate yang dikagumi Ran.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Shizuka Hattori.jpg" />
@@ -329,8 +307,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Ibu Heiji Hattori`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Jirokichi Suzuki.jpg" />
@@ -339,8 +315,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Paman Sonoko, yang terobsesi untuk mempermalukan dan mengakali Kaitou Kid.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Eisuke Hondou.jpg" />
@@ -351,8 +325,6 @@ const WikiScreen = () => {
                 {`Teman sekelas Ran dan Sonoko, yang menurut Conan mencurigakan. Dia kemudian diketahui sedang mencari saudara perempuannya Hidemi dan ingin mengikuti jejak ayah dan saudara perempuannya menjadi agen CIA.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Azusa Enomoto.jpg" />
@@ -366,8 +338,6 @@ const WikiScreen = () => {
                   textAlign: "left",
                 }}>{`Seorang pekerja baik hati di kedai kopi yang berada tepat di bawah Kantor Detektif Mouri, yang terkadang memiliki kasus yang dia ingin Kogoro selesaikan.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Subaru Okiya.jpg" />
@@ -378,8 +348,6 @@ const WikiScreen = () => {
                 {`Agen FBI Shuichi Akai yang menyamar menjadi warga sipil setelah dia memalsukan kematiannya untuk melindungi Kir. Dia tinggal di rumah Shinichi Kudo, terkadang membantu Detektif Boys dan Conan dalam kasus, dan mengawasi Haibara.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Masumi Sera.jpg" />
@@ -393,8 +361,6 @@ const WikiScreen = () => {
                   textAlign: "left",
                 }}>{`Seorang detektif sekolah menengah yang pindah ke kelas sekolah menengah Ran dan Sonoko. Dia adalah adik perempuan dari Shuichi Akai dan Shukichi Haneda.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Shukichi Haneda.jpg" />
@@ -403,8 +369,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Pacar Yumi Miyamoto dan pemain shogi profesional. Juga saudara laki-laki Shuichi Akai dan Masumi Sera.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Sakurako Yonehara.jpg" />
@@ -413,8 +377,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Seorang pengurus rumah tangga dan teman masa kecil Naeko Miike dan Kazunobu Chiba.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Momiji Ooka.jpg" />
@@ -423,8 +385,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Seorang siswa SMA Kyoto yang mengklaim bahwa Heiji adalah calon suaminya.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image
@@ -436,8 +396,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Wakil wali kelas baru kelas 1-B SD Teitan. Dia juga entah bagaimana terhubung dengan Kohji Haneda dan kasus 17 tahun lalu.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image
@@ -469,10 +427,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -484,8 +442,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Joseph Meguire</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Seorang inspektur dari Distrik Kepolisian Metropolitan Tokyo.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Ninzaburo Shiratori.jpg" />
@@ -496,8 +452,6 @@ const WikiScreen = () => {
                 {`Inspektur polisi yang bekerja dengan Inspektur Megure. Awalnya saingan Detektif Takagi untuk mendapatkan Hati Detektif Sato, dia tertarik dengan Sumiko Kobayashi.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Miwako Sato.jpg" />
@@ -506,8 +460,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Detective Simone</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Petugas polisi wanita yang bekerja dengan Inspektur Megure. Saat ini tertarik dengan Detektif Takagi.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Wataru Takagi.jpg" />
@@ -516,8 +468,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Harry Wilder</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Petugas polisi yang bekerja dengan Inspektur Megure. Saat ini tertarik dengan Detektif Sato.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Kazunobu Chiba.jpg" />
@@ -526,8 +476,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Detective Chiba</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Petugas polisi yang sering bekerja dengan Inspektur Megure. Dia adalah teman masa kecil dan kekasih Naeko Miike.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Yumi Miyamoto.jpg" />
@@ -536,8 +484,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Seorang petugas lalu lintas dan sahabat Detektif Sato yang suka menggoda. Juga pacar Shukichi Haneda.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Naeko Miike.jpg" />
@@ -546,8 +492,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Seorang petugas lalu lintas yang bekerja dengan Yumi Miyamoto. Dia adalah teman masa kecil dan kekasih Kazunobu Chiba.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Kiyonaga Matsumoto.jpg" />
@@ -556,8 +500,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Kristopher McLaughlin</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Inspektur Senior Divisi 1 Polisi Metropolitan Tokyo dan atasan Inspektur Megure.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Inspector Yuminaga.jpg" />
@@ -566,8 +508,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Kepala inspektur Divisi Kebakaran dan mantan atasan Kogoro Mouri.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Shintaro Chaki.jpg" />
@@ -576,8 +516,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Bernie Biggers</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Inspektur Divisi 2 Polisi Metropolitan Tokyo dan atasan Ginzo Nakamori.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Hyoue Kuroda.jpg" />
@@ -588,8 +526,6 @@ const WikiScreen = () => {
                 {`Inspektur Divisi 1 Polisi Metropolitan Tokyo dan Mantan Kepala Polisi Nagano. Dia memiliki mata rusak yang ditutupi oleh lensa yang teduh. Dia tahu kalau Conan adalah "Otak dibalik Kogoro Tidur".`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Jinpei Matsuda.jpg" />
@@ -598,8 +534,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Seorang anggota skuadron bom MPD Tokyo yang tewas saat bertugas tiga tahun lalu. Dia adalah cinta pertama Sato.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Kenji Hagiwara.jpg" />
@@ -608,8 +542,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}> {`Seorang anggota skuadron bom MPD Tokyo yang tewas saat bertugas tujuh tahun lalu. Dia adalah sahabat Matsuda.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Wataru Date.jpg" />
@@ -632,10 +564,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -647,8 +579,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Martin Hartwell</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Ayah Heiji Hattori, dan seorang kepala polisi dari Kepolisian Distrik Osaka.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Ginshiro Toyama.jpg" />
@@ -657,8 +587,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Chief Thomas</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}> {`Ayah Kazuha, dan seorang detektif dari Kepolisian Distrik Osaka.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Goro Otaki.jpg" />
@@ -681,10 +609,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -696,8 +624,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Inspektur dari Kepolisian Distrik Nagano, cacat sebagian setelah selamat dari longsoran salju.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Yui Uehara.jpg" />
@@ -706,8 +632,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Mantan rekan Kansuke Yamato yang baru saja kembali bertugas.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Taka'aki Morofushi.jpg" />
@@ -731,10 +655,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -746,8 +670,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Inspector Worthington</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}> Inspektur dari Kepolisian Distrik Shizuoka, terkenal dengan kepribadiannya yang kasar.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/	Misao Yamamura.jpg" />
@@ -756,8 +678,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Inspector Magnum</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Detektif dari Kepolisian Distrik Gunma, meski tidak terlalu baik namun kemudian dipromosikan menjadi "Inspektur".`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Jugo Yokomizo.jpg" />
@@ -766,8 +686,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Saudara kembar Sango Yokomizo, juga seorang inspektur dari Kepolisian Daerah Kanagawa. Dia tidak semudah saudaranya.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image
@@ -779,8 +697,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Asisten Inspektur dari departemen kepolisian Prefektur Kanagawa dan kakak perempuan Kenji Hagiwara.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Fumimaro Ayanokoji.jpg" />
@@ -804,10 +720,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -826,8 +742,6 @@ const WikiScreen = () => {
                 bekerja untuk melemahkan Organisasi.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Hiromitsu Morofushi.jpg" />
@@ -842,8 +756,6 @@ const WikiScreen = () => {
                 {`Seorang penyelidik yang menyamar dari Biro Keamanan Umum Departemen Kepolisian Metropolitan Tokyo. Dia meninggal saat menyusup ke Organisasi Hitam dan merupakan adik dari Taka'aki Morofushi.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Yuya Kazami.jpg" />
@@ -865,10 +777,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -883,8 +795,6 @@ const WikiScreen = () => {
                 sebelum diusir. Dia memalsukan kematiannya untuk melindungi Kir dan saat ini menyamar sebagai Subaru Okiya.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Jodie Starling.jpg" />
@@ -897,8 +807,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Seorang agen FBI yang sedang melakukan tugas rahasia melawan Organisasi Hitam, dan pernah menjadi guru bahasa Inggris Ran.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/James Black.jpg" />
@@ -907,8 +815,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Agen FBI berpangkat tinggi, atasan Jodie.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Andre Camel.jpg" />
@@ -931,10 +837,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -950,8 +856,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Seorang agen CIA yang menyamar, juga berpura-pura menjadi reporter TV Rena Mizunashi.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Ethan Hondou.jpg" />
@@ -974,10 +878,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -995,8 +899,6 @@ const WikiScreen = () => {
                 Shukichi Haneda, dan Masumi Sera.
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image
@@ -1029,10 +931,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -1046,8 +948,6 @@ const WikiScreen = () => {
                 {`Bos Organisasi Hitam, yang dengan hormat dipanggil "orang itu" oleh bawahannya, dan antagonis utama sebenarnya dari serial ini. Dia adalah seorang miliarder dan orang paling berkuasa di Jepang.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Rum.jpg" />
@@ -1059,8 +959,6 @@ const WikiScreen = () => {
                 Iroha Sushi sebagai koki sushi untuk memata-matai Kogoro.
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Gin.jpg" />
@@ -1071,8 +969,6 @@ const WikiScreen = () => {
                 Seorang anggota eksekutif tingkat tinggi Organisasi Hitam. Seorang pembunuh yang sangat cerdas dan mematikan, dia mencoba membunuh Shinichi dengan APTX 4869.
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image
@@ -1084,8 +980,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Vodka Kaspar</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Anggota Organisasi Hitam. Sekretaris Gin dan rekannya di banyak kesempatan.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Chris Vineyard.jpg" />
@@ -1100,8 +994,6 @@ const WikiScreen = () => {
                 {`Anggota Organisasi Hitam. Dia adalah seorang aktris dan ahli penyamaran. Dianggap sebagai "favorit" Bos, dan mengetahui bahwa Haibara dan Conan adalah Sherry dan Shinichi. Dia dikenal dunia sebagai Sharon Vineyard.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Chianti.jpg" />
@@ -1110,8 +1002,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Anggota Organisasi Hitam. Dianggap sebagai penembak jitu yang hebat.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Korn.jpg" />
@@ -1120,8 +1010,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Anggota Organisasi Hitam. Dianggap sebagai penembak jitu yang hebat.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Shiho Miyano.jpg" />
@@ -1136,8 +1024,6 @@ const WikiScreen = () => {
                 {`Dengan nama sandi Sherry, dia adalah seorang ilmuwan untuk Organisasi Hitam dan pencipta APTX 4869. Kematian saudara perempuannya menyebabkan dia mengkhianati Organisasi Hitam.saat ini dia hidup sebagai Ai Haibara.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Akemi Miyano.jpg" />
@@ -1148,8 +1034,6 @@ const WikiScreen = () => {
                 Mantan anggota Organisasi Hitam, saudara perempuan Shiho Miyano, putri Elena Miyano dan Atsushi Miyano, dan pacar Shuichi Akai. Dia dibunuh oleh Gin karena menjadi tanggung jawab organisasi.
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Elena Miyano.jpg" />
@@ -1158,8 +1042,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Ibu Akemi dan Shiho Miyano. Almarhum anggota Organisasi Hitam yang dikenal sebagai "Hell's Angel".`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Atsushi Miyano.jpg" />
@@ -1168,8 +1050,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Ayah Akemi Miyano dan Shiho Miyano. Almarhum anggota Organisasi Hitam yang dikenal sebagai "Mad Scientist".`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Tequila.jpg" />
@@ -1178,8 +1058,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Tequila</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Anggota Organisasi Hitam, awalnya mencoba mendapatkan program dan daftar programmer top dunia. Tidak sengaja terbunuh oleh bom.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Kenzo Masuyama.jpg" />
@@ -1194,8 +1072,6 @@ const WikiScreen = () => {
                 Seorang anggota eksekutif Organisasi Hitam dan teman keluarga Miyano. Tugas terakhirnya adalah membunuh seorang politisi. Dia dibunuh oleh Gin karena ketahuan.
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Calvados.jpg" />
@@ -1204,8 +1080,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Anggota Organisasi Hitam, penembak jitu lainnya. Membunuh dirinya sendiri setelah Shuichi Akai melempuhkannyanya. Dia jatuh cinta dengan Vermouth.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Rikumichi Kusuda.jpg" />
@@ -1216,8 +1090,6 @@ const WikiScreen = () => {
                 {`Anggota Organisasi Hitam, yang berpura-pura menjadi pasien di rumah sakit yang menampung Kir. Dia bunuh diri ketika penyamarannya terbongkar. Mayatnya digunakan untuk memalsukan kematian Shuichi Akai.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Ki'ichiro Numabuchi.jpg" />
@@ -1239,10 +1111,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -1257,8 +1129,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Kohji Haneda</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Saudara laki-laki Sesumpah Shukichi dan pemain shogi profesional. Dia terpaksa meminum APTX 4869, dan akibatnya meninggal 17 tahun yang lalu.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Amanda Hughes.jpg" />
@@ -1269,8 +1139,6 @@ const WikiScreen = () => {
                 Seorang pengusaha wanita kaya Amerika terbunuh dalam kasus 17 tahun lalu. Dia kemungkinan besar menjadi sasaran Organisasi Hitam karena hubungannya dengan FBI.
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image
@@ -1282,8 +1150,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Karakter misterius ditampilkan di sebuah ruangan besar yang mewah dengan seekor elang.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image
@@ -1295,8 +1161,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Karakter misterius yang ditampilkan dalam mobil mewah mengenakan nafas.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image
@@ -1308,8 +1172,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Karakter misterius yang ditampilkan sebagai pengemudi Pak Tua misterius.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/The Criminal.jpg" />
@@ -1318,8 +1180,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>{`"The Criminal"`}</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Penggambaran umum yang menggantikan pelaku yang tidak diketahui.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Scar Akai.jpg" />
@@ -1328,8 +1188,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Penyamaran Shuichi Akai digunakan oleh Bourbon dan Vermouth untuk mengetahui apakah Akai yang asli sudah mati dan untuk memancing Sherry.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Ryusuke Higo.jpg" />
@@ -1338,8 +1196,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Seorang pemain sepak bola terkenal yang sebelumnya bermain untuk Noir Tokyo, sebelum direkrut ke Big Osaka. Haibara adalah penggemar beratnya.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Hideo Akagi.jpg" />
@@ -1367,10 +1223,10 @@ const WikiScreen = () => {
           hover>
           <thead>
             <tr>
-              <th style={{ backgroundColor: "#db4444", width: "60px" }}>Picture</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "30px" }}>English Name</th>
-              <th style={{ backgroundColor: "#db4444", width: "200px" }}>Role</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "60px" }}>Picture</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "30px" }}>English Name</th>
+              <th style={{ backgroundColor: "#db4444", color: "#fff", width: "200px" }}>Role</th>
             </tr>
           </thead>
           <tbody>
@@ -1382,8 +1238,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Kaito Kuroba</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Siswa sekolah menengah dan pesulap. Teman masa kecil Aoko Nakamori, dan kekasihnya. Putra pesulap terkenal dunia Toichi Kuroba.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Kaitou Kid.jpg" />
@@ -1392,8 +1246,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Phantom Thief Kid</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Identitas rahasia Kaito Kuroba. Pesulap dan pencuri, juga dikenal "tidak bisa ditangkap".`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Aoko Nakamori.jpg" />
@@ -1402,8 +1254,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Teman masa kecil Kaito Kuroba, dan kekasihnya. Putri Ginzo Nakamori.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Ginzo Nakamori.jpg" />
@@ -1412,8 +1262,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>Mace Fuller</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Inspektur dari Divisi 2 Polisi Metropolitan Tokyo, yang terobsesi menangkap Kaitou Kid.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Toichi Kuroba.jpg" />
@@ -1424,8 +1272,6 @@ const WikiScreen = () => {
                 {`Ayah Kaito Kuroba yang sudah meninggal. Pernah menjadi pesulap terkenal di dunia dan Kaitou Kid yang asli. Dialah yang mengajari Yukiko Kudo dan Sharon Vineyard cara membuat penyamaran yang sempurna.`}
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Chikage Kuroba.jpg" />
@@ -1434,8 +1280,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Ibu Kaito Kuroba. Sebelum bertemu suaminya, dia adalah seorang pencuri permata yang dikenal sebagai Phantom Lady.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Konosuke Jii.jpg" />
@@ -1444,8 +1288,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>{`Dulunya pelayan dan teman Toichi Kuroba, sekarang asisten Kaito.`}</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Kaitou Corbeau.jpg" />
@@ -1456,8 +1298,6 @@ const WikiScreen = () => {
                 Pencuri misterius yang terlihat seperti Kaitou Kid dengan pakaian hitam. Dia baru-baru ini muncul di Las Vegas sebelum datang ke Jepang untuk mengincar Midnight Crow.
               </td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Akako Koizumi.jpg" />
@@ -1466,8 +1306,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Seorang penyihir yang ingin merayu Kaitou Kid dan memperbudak semua pria.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Saguru Hakuba.jpg" />
@@ -1476,8 +1314,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Detektif SMA mencoba menangkap Kaitou Kid.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Snake.jpg" />
@@ -1486,8 +1322,6 @@ const WikiScreen = () => {
               <td style={{ width: "30px", lineHeight: "15px" }}>N/A</td>
               <td style={{ width: "200px", padding: "0 5px", textAlign: "left" }}>Antagonis utama, anggota Organisasi Kaito Sihir yang bertanggung jawab atas pembunuhan Toichi Kuroba.</td>
             </tr>
-          </tbody>
-          <tbody>
             <tr>
               <td style={{ width: "60px" }}>
                 <Image src="./src/assets/images/WikiImage/Spider.jpg" />

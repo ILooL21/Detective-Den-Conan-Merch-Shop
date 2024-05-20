@@ -124,24 +124,11 @@ const ProductDetailScreen = () => {
                     gap: "8px",
                   }}>
                   <a className="detail-product-rating">{product.rating}</a>
-                  {/* <Rate value={userRating}
-                    onChange={(e) => ReviewHandle(e.target.value)}/> */}
                   <Rate
                     className="rating-icon-product"
                     disabled
                     value={product.rating}
                   />
-                  {/* <select
-                    value={userRating}
-                    onChange={(e) => ReviewHandle(e.target.value)}
-                  >
-                    <option value="">Select Rating</option>
-                    {[...Array(5).keys()].map((x) => (
-                      <option key={x} value={x + 1}>
-                        {x + 1}
-                      </option>
-                    ))}
-                  </select> */}
                   <span
                     style={{
                       color: "#000",
