@@ -79,11 +79,27 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
 // @access  Private
 
 const getMyOrders = expressAsyncHandler(async (req, res) => {
-  const orders = await Order.find({ user: req.user._id, status: { $ne: "Dibatalkan" } }).sort({ status: 1, createdAt: -1 });
+  // Mendapatkan semua pesanan pengguna yang tidak dibatalkan
+  const orders = await Order.find({ user: req.user._id, status: { $ne: "Dibatalkan" } }).sort({ createdAt: -1 });
+
+  // Mengecek apakah pengguna telah memberikan rating pada setiap produk dalam pesanan mereka
+  for (let i = 0; i < orders.length; i++) {
+    for (let j = 0; j < orders[i].orderItems.length; j++) {
+      const item = orders[i].orderItems[j];
+      const product = await Product.findOne({ name: item.product });
+      if (product) {
+        const userRating = product.review.filter((x) => x.name.toString() === req.user.name.toString());
+        item.rating = userRating.length > 0 ? userRating[0].rating : 0;
+      } else {
+        continue;
+      }
+    }
+  }
+  // await orders.save();
 
   if (orders) {
+    // Mengurutkan pesanan berdasarkan status dan tanggal pembuatan
     const statusOrder = ["Belum Dibayar", "Diproses", "Dikirim", "Selesai", "Dibatalkan"];
-
     const sortedOrders = orders.sort((a, b) => {
       const statusA = statusOrder.indexOf(a.status);
       const statusB = statusOrder.indexOf(b.status);
@@ -91,7 +107,6 @@ const getMyOrders = expressAsyncHandler(async (req, res) => {
       if (statusA < statusB) return -1;
       if (statusA > statusB) return 1;
 
-      // If statuses are the same, sort by createdAt descending
       if (a.createdAt < b.createdAt) return 1;
       if (a.createdAt > b.createdAt) return -1;
 

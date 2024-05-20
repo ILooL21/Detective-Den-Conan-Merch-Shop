@@ -15,9 +15,6 @@ const ProductDetailScreen = () => {
 
   const [quantity, setQuantity] = useState(1);
 
-  // const { userInfo } = useSelector((state) => state.auth);
-  // const [userRating, setUserRating] = useState("");
-
   const { data: product, isLoading } = useGetSingleProductQuery(id);
   const [addProductToCart] = useAddProductToCartMutation();
   // const [ReviewProduct] = useReviewsProductMutation();
@@ -25,6 +22,7 @@ const ProductDetailScreen = () => {
   const handleAddProductToCart = async () => {
     try {
       const data = {
+        id: product._id,
         image: product.image,
         product: product.name,
         price: product.price,

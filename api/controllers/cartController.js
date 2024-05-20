@@ -27,7 +27,7 @@ const getCartById = expressAsyncHandler(async (req, res) => {
 // @route   PUT /api/carts/addproduct
 // @access  Private
 const addProductToCart = expressAsyncHandler(async (req, res) => {
-  const { product, quantity, price, image } = req.body;
+  const { id, product, quantity, price, image } = req.body;
 
   const cart = await Cart.findOne({ user: req.user._id });
 
@@ -41,7 +41,7 @@ const addProductToCart = expressAsyncHandler(async (req, res) => {
         item.quantity += 1;
       }
     } else {
-      cart.items.push({ product, quantity, price, image });
+      cart.items.push({ id, product, quantity, price, image });
     }
 
     await cart.save();

@@ -154,11 +154,11 @@ const ListOrderScreen = () => {
                   }
                 </Card.Text>
               </Card.Body>
-              {(order.status === "Belum Dibayar" || order.status === "Diproses" || (order.status !== "Dibatalkan" && order.status !== "Selesai")) && (
+              {(order.status === "Belum Dibayar" || order.status === "Diproses" || (order.status !== "Dibatalkan" && order.status !== "Selesai" && order.status !== "Dikirim")) && (
                 <Card.Footer>
                   {order.status === "Belum Dibayar" && <button onClick={() => handlePaidOrder(order._id)}>Paid</button>}
                   {order.status === "Diproses" && <button onClick={() => handleUpdateOrder(order._id)}>Update</button>}
-                  {order.status !== "Dibatalkan" && order.status !== "Selesai" && <button onClick={() => handleCancelOrder(order._id)}>Cancel</button>}
+                  {order.status !== "Dibatalkan" && order.status !== "Selesai" && order.status !== "Dikirim" && <button onClick={() => handleCancelOrder(order._id)}>Cancel</button>}
                 </Card.Footer>
               )}
             </Card>
