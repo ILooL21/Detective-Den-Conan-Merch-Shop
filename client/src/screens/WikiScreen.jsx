@@ -6,9 +6,9 @@ const WikiScreen = () => {
   return (
     <>
       <div className="container-wiki">
-        <div className="container-address-header">
+        <div className="container-wiki-header">
         <Breadcrumb
-          className="breadcrumb-address"
+          className="breadcrumb-wiki"
           items={[
             {
               title: <a href="/">Home</a>,
