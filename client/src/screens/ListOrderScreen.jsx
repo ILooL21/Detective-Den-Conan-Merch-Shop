@@ -128,7 +128,7 @@ const ListOrderScreen = () => {
                   style={{
                     border: "1px solid black",
                   }}>
-                  <table>
+                  <table className="table-cart">
                     <thead>
                       <tr>
                         <th>Product</th>
