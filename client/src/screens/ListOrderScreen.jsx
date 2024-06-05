@@ -4,6 +4,8 @@ import { useGetOrdersQuery, useCancelOrderMutation, usePaidOrderMutation, useUpd
 import { FaSearch } from "react-icons/fa";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { Breadcrumb } from "antd";
+import "../styles/ListUserScreen.css";
 
 const ListOrderScreen = () => {
   const [resi, setResi] = useState("");
@@ -75,27 +77,44 @@ const ListOrderScreen = () => {
   };
 
   return (
-    <div>
-      <h1>Order List</h1>
-      <form onSubmit={searchSubmit}>
-        <div className="container-search-product">
-          <div className="d-flex">
-            <input
-              className="input-search-product"
-              type="text"
-              placeholder="Search by id order"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              style={{ width: "200px" }}
-            />
-            <Button
-              type="submit"
-              className="button-list-product">
-              <FaSearch />
-            </Button>
+    <div className="container-list-user">
+      <div>
+        <form onSubmit={searchSubmit}>
+          <div className="d-flex justify-content-between align-items-center my-3">
+            <div className="container-list-user-header">
+              <Breadcrumb
+                className="breadcrumb-list-user"
+                items={[
+                  {
+                    title: <a href="/">Home</a>,
+                  },
+                  {
+                    title: <a href="/dashboard">Dashboard</a>,
+                  },
+                  {
+                    title: "List Order",
+                  },
+                ]}
+              />
+            </div>
+            <div className="d-flex align-items-center">
+              <input
+                className="input-search-user"
+                type="text"
+                placeholder="Search by order id"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                style={{ width: "200px" }}
+              />
+              <Button
+                type="submit"
+                className="button-list-user">
+                <FaSearch />
+              </Button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
       {isLoading ? (
         <h2>Loading...</h2>
       ) : (

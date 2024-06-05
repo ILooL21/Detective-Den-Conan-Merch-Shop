@@ -1,75 +1,81 @@
-import { Card, Button, Carousel } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import RefreshToken from "../components/RefreshToken";
-import { useGetAllProductsQuery } from "../slices/productApiSlice";
-import { useGetAllRiddlesQuery } from "../slices/riddleApiSlice";
-import { useGetAllArticlesQuery } from "../slices/articleApiSlice";
-import { useEffect, useState } from "react";
+import RenderOnViewportEntry from "../components/controlComponents/RenderOnViewportEntry";
+// import { useGetAllProductsQuery } from "../slices/productApiSlice";
+// import { useGetAllRiddlesQuery } from "../slices/riddleApiSlice";
+// import { useGetAllArticlesQuery } from "../slices/articleApiSlice";
+import { lazy } from "react";
+const BestRatingProduct = lazy(() =>
+  import("../components/Home/BestRatingProduct")
+);
+const NewRiddle = lazy(() => import("../components/Home/NewRiddle"));
+const NewProduct = lazy(() => import("../components/Home/NewProduct"));
+const NewArticle = lazy(() => import("../components/Home/NewArticle"));
 import "../styles/Hero.css";
 
 const Hero = () => {
   const { userInfo } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
-  const [listProduct, setListProduct] = useState([]);
-  const [listRiddle, setListRiddle] = useState([]);
-  const [listProductNew, setListProductNew] = useState([]);
-  const [listArticle, setListArticle] = useState([]);
-  const { data: products, isLoading } = useGetAllProductsQuery();
-  const { data: riddles, isLoading2 } = useGetAllRiddlesQuery();
-  const { data: productsNew, isLoading3 } = useGetAllProductsQuery();
-  const { data: articles, isLoading4 } = useGetAllArticlesQuery();
+  // const [listProduct, setListProduct] = useState([]);
+  // const [listRiddle, setListRiddle] = useState([]);
+  // const [listProductNew, setListProductNew] = useState([]);
+  // const [listArticle, setListArticle] = useState([]);
+  // const { data: products, isLoading } = useGetAllProductsQuery();
+  // const { data: riddles, isLoading2 } = useGetAllRiddlesQuery();
+  // const { data: productsNew, isLoading3 } = useGetAllProductsQuery();
+  // const { data: articles, isLoading4 } = useGetAllArticlesQuery();
 
-  useEffect(() => {
-    if (!isLoading && products) {
-      const updatedList = products
-        .slice()
-        .sort((a, b) => b.rating - a.rating)
-        .slice(0, 4);
+  // useEffect(() => {
+  // if (!isLoading && products) {
+  //   const updatedList = products
+  //     .slice()
+  //     .sort((a, b) => b.rating - a.rating)
+  //     .slice(0, 4);
 
-      setListProduct(updatedList);
-    }
+  //   setListProduct(updatedList);
+  // }
 
-    if (!isLoading2 && riddles) {
-      const updatedList = riddles
-        .slice()
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        .slice(0, 4);
+  // if (!isLoading2 && riddles) {
+  //   const updatedList = riddles
+  //     .slice()
+  //     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  //     .slice(0, 4);
 
-      setListRiddle(updatedList);
-    }
+  //   setListRiddle(updatedList);
+  // }
 
-    if (!isLoading3 && productsNew) {
-      const updatedList = productsNew
-        .slice()
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        .slice(0, 8);
+  // if (!isLoading3 && productsNew) {
+  //   const updatedList = productsNew
+  //     .slice()
+  //     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  //     .slice(0, 8);
 
-      setListProductNew(updatedList);
-    }
+  //   setListProductNew(updatedList);
+  // }
 
-    if (!isLoading4 && articles) {
-      const updatedList = articles
-        .slice()
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        .slice(0, 4);
+  // if (!isLoading4 && articles) {
+  //   const updatedList = articles
+  //     .slice()
+  //     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  //     .slice(0, 4);
 
-      setListArticle(updatedList);
-    }
-  }, [
-    products,
-    isLoading,
-    setListProduct,
-    riddles,
-    isLoading2,
-    setListRiddle,
-    productsNew,
-    isLoading3,
-    setListProductNew,
-    articles,
-    isLoading4,
-    setListArticle,
-  ]);
+  //   setListArticle(updatedList);
+  // }
+  // }, [
+  // products,
+  // setListProduct,
+  // isLoading,
+  // riddles,
+  // isLoading2,
+  // setListRiddle,
+  // productsNew,
+  // isLoading3,
+  // setListProductNew,
+  // articles,
+  // isLoading4,
+  // setListArticle,
+  // ]);
   return (
     <>
       <RefreshToken />
@@ -112,7 +118,35 @@ const Hero = () => {
           </button>
         </div>
         <div className="">
-          <div className="container-katalog-screen-card">
+          <div>
+            <div style={{ height: "40vh" }}></div>
+            <RenderOnViewportEntry threshold={0.5}>
+              <BestRatingProduct />
+            </RenderOnViewportEntry>
+          </div>
+          <div>
+            <div style={{ height: "40vh" }}></div>
+            <RenderOnViewportEntry threshold={0.5}>
+              <NewRiddle />
+            </RenderOnViewportEntry>
+          </div>
+          <div>
+            <div style={{ height: "40vh" }}></div>
+            <RenderOnViewportEntry threshold={0.5}>
+              <NewProduct />
+            </RenderOnViewportEntry>
+          </div>
+          <div>
+            <div style={{ height: "40vh" }}></div>
+            <RenderOnViewportEntry threshold={0.5}>
+              <NewArticle />
+            </RenderOnViewportEntry>
+          </div>
+          {/* <BestRatingProduct />
+          <NewRiddle />
+          <NewProduct />
+          <NewArticle /> */}
+          {/* <div className="container-katalog-screen-card">
             {listProduct &&
               listProduct.length > 0 &&
               listProduct.map((product) => (
@@ -139,8 +173,8 @@ const Hero = () => {
                   </Card.Body>
                 </Card>
               ))}
-          </div>
-          <div className="">
+          </div> */}
+          {/* <div className="">
             <Carousel>
               {isLoading2 ? (
                 <h1>Loading...</h1>
@@ -167,8 +201,8 @@ const Hero = () => {
                 <h1>No riddles found</h1>
               )}
             </Carousel>
-          </div>
-          <div className="container-katalog-screen-card">
+          </div> */}
+          {/* <div className="container-katalog-screen-card">
             {listProductNew &&
               listProductNew.length > 0 &&
               listProductNew.map((product) => (
@@ -195,10 +229,10 @@ const Hero = () => {
                   </Card.Body>
                 </Card>
               ))}
-          </div>
-          <div className="">
+          </div> */}
+          {/* <div className="">
             <Carousel>
-              {isLoading2 ? (
+              {isLoading4 ? (
                 <h1>Loading...</h1>
               ) : listArticle && listArticle.length > 0 ? (
                 listArticle?.map((article) => (
@@ -223,7 +257,7 @@ const Hero = () => {
                 <h1>No Article found</h1>
               )}
             </Carousel>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
