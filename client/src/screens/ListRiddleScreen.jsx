@@ -100,7 +100,7 @@ const ListRiddleScreen = () => {
       {isLoading ? (
         <h2>Loading...</h2>
       ) : (
-        <table className="table-list-product">
+        <table className="table-list-riddle">
           <thead>
             <tr>
               <th>No</th>
@@ -133,13 +133,13 @@ const ListRiddleScreen = () => {
                     : riddle.clue}
                 </td>
                 <td>
-                  <div className="container-action-product">
-                    <div className="container-edit-product">
+                  <div className="container-action-riddle">
+                    <div className="container-edit-riddle">
                       <button onClick={() => EditRedirect(riddle._id)}>
                         <EditOutlined />
                       </button>
                     </div>
-                    <div className="container-delete-product">
+                    <div className="container-delete-riddle">
                       <button onClick={() => deleteHandler(riddle._id)}>
                         <DeleteOutlined />
                       </button>
