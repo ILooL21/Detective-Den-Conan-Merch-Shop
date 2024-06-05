@@ -11,33 +11,50 @@ const KatalogScreen = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [list, setList] = useState([]);
+  const [sortCriteria, setSortCriteria] = useState("newest");
+
   const { data: products, isLoading } = useGetAllProductsQuery();
   const { data: categories } = useGetAllCategoriesQuery();
 
   const countProducts = (categoryName) => {
-    return products?.filter((product) => product.category === categoryName)
-      .length;
+    return products?.filter((product) => product.category === categoryName).length;
   };
 
   useEffect(() => {
-    let updatedList = products;
+    let updatedList = products || [];
     if (searchParams.has("search")) {
       const regex = new RegExp(searchParams.get("search"), "i");
       updatedList = products?.filter((product) => regex.test(product.name));
     }
     if (searchParams.has("category")) {
-      updatedList = updatedList?.filter(
-        (product) => product.category === searchParams.get("category")
-      );
+      updatedList = updatedList?.filter((product) => product.category === searchParams.get("category"));
     }
-    setList(updatedList);
-  }, [products, searchParams]);
+
+    const sortProducts = (productsList) => {
+      switch (sortCriteria) {
+        case "rating":
+          return [...productsList].sort((a, b) => b.rating - a.rating);
+        case "priceLowToHigh":
+          return [...productsList].sort((a, b) => a.price - b.price);
+        case "priceHighToLow":
+          return [...productsList].sort((a, b) => b.price - a.price);
+        case "newest":
+          return [...productsList].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        default:
+          return productsList;
+      }
+    };
+    setList(sortProducts(updatedList));
+  }, [products, searchParams, sortCriteria, setList, setSortCriteria]);
 
   const handleCategoryChange = (categoryName) => {
+
     if (
       searchParams.has("category") &&
       searchParams.get("category") === categoryName
     ) {
+    //jika category checked, kemudian di-uncheck maka hapus category dari searchParams
+    if (searchParams.has("category") && searchParams.get("category") === categoryName) {
       searchParams.delete("category");
       navigate(`?${searchParams.toString()}`);
       return;
@@ -77,30 +94,38 @@ const KatalogScreen = () => {
                   width: "100%",
                   padding: "8px 16px",
                   flexWrap: "wrap",
-                }}
-              >
+                }}>
                 {categories &&
                   categories.map(
                     (category) =>
                       countProducts(category.name) > 0 && (
                         <div
                           key={category._id}
-                          className="katalog-screen-filter"
-                        >
+                          className="katalog-screen-filter">
                           <input
                             type="checkbox"
                             name="category"
                             value={category.name}
                             onChange={() => handleCategoryChange(category.name)}
-                            checked={
-                              searchParams.has("category") &&
-                              searchParams.get("category") === category.name
-                            }
+                            checked={searchParams.has("category") && searchParams.get("category") === category.name}
                           />
                           <label>{category.name}</label>
                         </div>
                       )
                   )}
+              </div>
+            </div>
+            <div className="container-katalog-screen-sort">
+              <h5>Urutkan :</h5>
+              <div className="select-dropdown">
+                <select
+                  onChange={(e) => setSortCriteria(e.target.value)}
+                  value={sortCriteria}>
+                  <option value="newest">Terbaru</option>
+                  <option value="rating">Rating Tertinggi</option>
+                  <option value="priceLowToHigh">Harga Terendah</option>
+                  <option value="priceHighToLow">Harga Tertinggi</option>
+                </select>
               </div>
             </div>
             <div className="container-katalog-screen-card">
@@ -109,8 +134,7 @@ const KatalogScreen = () => {
                   <Card
                     key={product._id}
                     className="card-katalog-screen"
-                    onClick={() => navigate(`/product/${product._id}`)}
-                  >
+                    onClick={() => navigate(`/product/${product._id}`)}>
                     <Card.Img
                       variant="top"
                       src={`http://localhost:8080/${product.image}`}
