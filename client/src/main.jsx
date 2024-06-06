@@ -7,7 +7,6 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import store from "./store";
 import { Provider } from "react-redux";
-
 const App = lazy(() => import("./App"));
 const HomeScreen = lazy(() => import("./screens/HomeScreen"));
 const WikiScreen = lazy(() => import("./screens/WikiScreen"));
@@ -32,8 +31,9 @@ const RiddleScreen = lazy(() => import("./screens/RiddleScreen"));
 const RiddleGameScreen = lazy(() => import("./screens/RiddleGameScreen"));
 const CartScreen = lazy(() => import("./screens/CartScreen"));
 const PrivateRoute = lazy(() => import("./components/PrivateRoute"));
-// const AdminRoute = lazy(() => import("./components/AdminRoute"));
+const AdminRoute = lazy(() => import("./components/AdminRoute"));
 const OwnerRoute = lazy(() => import("./components/OwnerRoute"));
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -96,12 +96,17 @@ const router = createBrowserRouter(
         }
       />
       <Route
-        path="product/:id"
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            <ProductDetailScreen />
-          </Suspense>
-        }
+
+        path="/article"
+        element={<ArticleScreen />}
+      />
+      <Route
+        path="/article/123"
+        element={<DetailArticle />}
+      />
+      <Route
+        path="/product/:id"
+        element={<ProductDetailScreen />}
       />
       <Route
         path="riddle"
