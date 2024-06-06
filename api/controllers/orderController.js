@@ -10,9 +10,17 @@ import Cart from "../models/cartModel.js";
 const getOrders = expressAsyncHandler(async (req, res) => {
   const orders = await Order.find({}).sort({ createdAt: -1 }).populate("user", "id name");
 
+  const filteredOrders = orders.filter((order) => {
+    if (order.user) {
+      return order.user.name !== req.user.name;
+    } else {
+      return order;
+    }
+  });
+
   const statusOrder = ["Belum Dibayar", "Diproses", "Dikirim", "Selesai", "Dibatalkan"];
 
-  const sortedOrders = orders.sort((a, b) => {
+  const sortedOrders = filteredOrders.sort((a, b) => {
     const statusA = statusOrder.indexOf(a.status);
     const statusB = statusOrder.indexOf(b.status);
 

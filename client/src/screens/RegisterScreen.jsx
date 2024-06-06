@@ -27,6 +27,11 @@ const RegisterScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
+    if (!name || !email || !password || !confirmPassword) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
     } else {
@@ -110,7 +115,7 @@ const RegisterScreen = () => {
           </form>
           <div className="container-submit-register">
             <button
-              type="sumbit"
+              type="submit"
               className="button-register"
               onClick={submitHandler}>
               Create Account

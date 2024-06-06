@@ -8,7 +8,7 @@ import ProductNotFoundScreen from "./ProductNotFoundScreen";
 import "../styles/KatalogScreen.css";
 
 const KatalogScreen = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const [list, setList] = useState([]);
   const [sortCriteria, setSortCriteria] = useState("newest");
@@ -45,22 +45,15 @@ const KatalogScreen = () => {
       }
     };
     setList(sortProducts(updatedList));
-  }, [products, searchParams, sortCriteria, setList, setSortCriteria]);
+  }, [products, searchParams, sortCriteria]);
 
   const handleCategoryChange = (categoryName) => {
-
-    if (
-      searchParams.has("category") &&
-      searchParams.get("category") === categoryName
-    ) {
-    //jika category checked, kemudian di-uncheck maka hapus category dari searchParams
     if (searchParams.has("category") && searchParams.get("category") === categoryName) {
       searchParams.delete("category");
-      navigate(`?${searchParams.toString()}`);
-      return;
+    } else {
+      searchParams.set("category", categoryName);
     }
-    searchParams.set("category", categoryName);
-    navigate(`?${searchParams.toString()}`);
+    setSearchParams(searchParams);
   };
 
   return (

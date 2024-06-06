@@ -76,7 +76,7 @@ const ContactScreen = () => {
             </div>
             <div className="menu-contact-content">
               <p>We are available 24/7, 7 days a week.</p>
-              <p>Phone: +8801611112222</p>
+              <p>Phone: +6285745820511</p>
             </div>
             <hr />
             <div className="menu-contact-header">
@@ -87,7 +87,7 @@ const ContactScreen = () => {
             </div>
             <div className="menu-contact-content">
               <p>Fill out our form and we will contact you within 24 hours.</p>
-              <p>Emails: support@exclusive.com</p>
+              <p>Emails: muhammadkholilurrohman72@gmail.com</p>
             </div>
           </div>
           <Form className="container-form-contact">
