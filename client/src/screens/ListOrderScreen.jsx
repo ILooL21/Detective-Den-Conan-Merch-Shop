@@ -4,6 +4,8 @@ import { useGetOrdersQuery, useCancelOrderMutation, usePaidOrderMutation, useUpd
 import { FaSearch } from "react-icons/fa";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { Breadcrumb } from "antd";
+import "../styles/ListOrderScreen.css";
 
 const ListOrderScreen = () => {
   const [resi, setResi] = useState("");
@@ -75,41 +77,57 @@ const ListOrderScreen = () => {
   };
 
   return (
-    <div>
-      <h1>Order List</h1>
-      <form onSubmit={searchSubmit}>
-        <div className="container-search-product">
-          <div className="d-flex">
-            <input
-              className="input-search-product"
-              type="text"
-              placeholder="Search by id order"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              style={{ width: "200px" }}
-            />
-            <Button
-              type="submit"
-              className="button-list-product">
-              <FaSearch />
-            </Button>
+    <div className="container-list-order">
+      <div>
+        <form onSubmit={searchSubmit}>
+          <div className="d-flex justify-content-between align-items-center my-3">
+            <div className="container-list-order-header">
+              <Breadcrumb
+                className="breadcrumb-list-order"
+                items={[
+                  {
+                    title: <a href="/">Home</a>,
+                  },
+                  {
+                    title: <a href="/dashboard">Dashboard</a>,
+                  },
+                  {
+                    title: "List Order",
+                  },
+                ]}
+              />
+            </div>
+            <div className="d-flex align-items-center">
+              <input
+                className="input-search-order"
+                type="text"
+                placeholder="Search by order id"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                style={{ width: "200px" }}
+              />
+              <Button
+                type="submit"
+                className="button-list-order">
+                <FaSearch />
+              </Button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
       {isLoading ? (
         <h2>Loading...</h2>
       ) : (
         <div>
           {list?.map((order) => (
-            <Card key={order._id}>
+            <Card key={order._id} style={{marginBottom: "24px", border: "solid 1px #db4444"}}>
               <Card.Body>
+                <b>Order ID</b>
+                <Card.Text>{order._id}</Card.Text>
+                <b>Customer</b>
                 <Card.Text>{order.user.name}</Card.Text>
-                <Card.Text>List Items</Card.Text>
-                <div
-                  style={{
-                    border: "1px solid black",
-                  }}>
-                  <table>
+                <b>List Order</b>
+                  <table className="table-list-order">
                     <thead>
                       <tr>
                         <th>Product</th>
@@ -127,10 +145,13 @@ const ListOrderScreen = () => {
                           <td>{item.price * item.quantity}</td>
                         </tr>
                       ))}
+                        <tr>
+                          <td colSpan={2}><b>Total</b></td>
+                          <td colSpan={2}>{order.totalPrice}</td>
+                        </tr>
                     </tbody>
                   </table>
-                </div>
-                <Card.Text>{order.totalPrice}</Card.Text>
+                  <b>Nomor Resi</b>
                 <Card.Text>
                   {order.status === "Diproses" ? (
                     <input
@@ -138,6 +159,7 @@ const ListOrderScreen = () => {
                       value={order.resi === "" ? resi : order.resi}
                       placeholder="Masukkan resi"
                       onChange={(e) => setResi(e.target.value)}
+                      className="input-resi"
                     />
                   ) : order.resi ? (
                     order.resi
@@ -145,20 +167,22 @@ const ListOrderScreen = () => {
                     "Belum ada resi"
                   )}
                 </Card.Text>
+                <b>Alamat</b>
                 <Card.Text>{order.shippingAddress}</Card.Text>
+                <b>Status</b>
                 <Card.Text>{order.status}</Card.Text>
+                <b>Tanggal Pesanan</b>
                 <Card.Text>
                   {
-                    // ubah format createdAt
                     new Date(order.createdAt).toLocaleString("id-ID")
                   }
                 </Card.Text>
               </Card.Body>
               {(order.status === "Belum Dibayar" || order.status === "Diproses" || (order.status !== "Dibatalkan" && order.status !== "Selesai" && order.status !== "Dikirim")) && (
-                <Card.Footer>
-                  {order.status === "Belum Dibayar" && <button onClick={() => handlePaidOrder(order._id)}>Paid</button>}
-                  {order.status === "Diproses" && <button onClick={() => handleUpdateOrder(order._id)}>Update</button>}
-                  {order.status !== "Dibatalkan" && order.status !== "Selesai" && order.status !== "Dikirim" && <button onClick={() => handleCancelOrder(order._id)}>Cancel</button>}
+                <Card.Footer style={{display: "flex", gap: "8px"}}>
+                  {order.status === "Belum Dibayar" && <button className="button-order-green" onClick={() => handlePaidOrder(order._id)}>Paid</button>}
+                  {order.status === "Diproses" && <button className="button-order-green" onClick={() => handleUpdateOrder(order._id)}>Update</button>}
+                  {order.status !== "Dibatalkan" && order.status !== "Selesai" && order.status !== "Dikirim" && <button className="button-order" onClick={() => handleCancelOrder(order._id)}>Cancel</button>}
                 </Card.Footer>
               )}
             </Card>

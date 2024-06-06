@@ -5,3 +5,19 @@
   align-items: center;
   gap: 48px;
 }
+.container-wiki-header {
+  display: flex;
+  justify-content: space-between;
+}
+.container-wiki-header span {
+  color: #db4444;
+}
+.breadcrumb-wiki a {
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+}
+.breadcrumb-wiki a:hover {
+  color: #db4444;
+  text-decoration: underline;
+}

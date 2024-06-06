@@ -178,7 +178,7 @@ const CartScreen = () => {
                         }) ?? "Rp 0,00"}
                       </td>
                       <td>
-                        <div className="product-quantity-cart">
+                        <div className="product-quantity">
                           <input
                             type="button"
                             value="-"
@@ -193,7 +193,7 @@ const CartScreen = () => {
                             name="quantity"
                             value={cart.quantity}
                             title="Qty"
-                            className="input-text-quantity-cart"
+                            className="input-text-quantity"
                             size="4"
                             pattern=""
                           />
@@ -222,8 +222,8 @@ const CartScreen = () => {
                         })}
                       </td>
                       <td>
-                        <div className="container-action-product">
-                          <div className="container-delete-product">
+                        <div className="container-action-cart">
+                          <div className="container-delete-cart">
                             <button onClick={() => handleDeleteProductInCart(cart.product)}>
                               <DeleteOutlined />
                             </button>

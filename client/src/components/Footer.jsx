@@ -16,7 +16,8 @@ const FooterComponent = () => {
           justifyContent: "center",
           height: "300px",
           backgroundColor: "#000",
-        }}>
+        }}
+      >
         <div className="footer-container">
           <div className="footer-links">
             <h1>Exclusive</h1>
@@ -24,9 +25,12 @@ const FooterComponent = () => {
           </div>
           <div className="footer-links">
             <h1>Support</h1>
-            <a href="">Jl. Panglima Sudirman No.125, Sawah, Banjarmendalan, Kec. Lamongan, Kabupaten Lamongan, Jawa Timur 62212</a>
-            <a href="">exclusive@gmail.com</a>
-            <a href="">+62815-8888-9999</a>
+            <a target="blank" href="https://www.google.com/maps/place/Politeknik+Elektronika+Negeri+Surabaya+(PENS)+PSDKU+Lamongan/@-7.1160776,112.4286083,18z/data=!4m6!3m5!1s0x2e77fb5639db7bbf:0x38f9dbc7075722fa!8m2!3d-7.1155235!4d112.4278539!16s%2Fg%2F11nnphycp8?entry=ttu">
+              Jl. Panglima Sudirman No.125, Sawah, Banjarmendalan, Kec.
+              Lamongan, Kabupaten Lamongan, Jawa Timur 62212
+            </a>
+            <a target="blank" href="https://pens.ac.id">exclusive@gmail.com</a>
+            <a target="blank" href="https://wa.me/6285745820511">+6285745820511</a>
           </div>
           <div className="footer-links">
             <h1>Account</h1>
@@ -45,9 +49,9 @@ const FooterComponent = () => {
           </div>
           <div className="footer-links">
             <h1>Quick Link</h1>
-            <a href="">Privacy Policy</a>
-            <a href="">Terms Of Use</a>
-            <a href="">FAQ</a>
+            <a href="/news">News</a>
+            <a href="/wiki">Wiki</a>
+            <a href="/riddle">Riddle</a>
             <a href="/contact">Contact</a>
           </div>
         </div>
@@ -60,7 +64,8 @@ const FooterComponent = () => {
           height: "60px",
           backgroundColor: "#000",
           borderTop: "1px solid #444",
-        }}>
+        }}
+      >
         <div className="footer-cr">
           <a>© Copyright 2024. All right reserved</a>
         </div>

@@ -1,70 +1,102 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "./components/ErrorFallback";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import store from "./store";
 import { Provider } from "react-redux";
-import HomeScreen from "./screens/HomeScreen";
-import WikiScreen from "./screens/WikiScreen.jsx";
-import LoginScreen from "./screens/LoginScreen.jsx";
-import RegisterScreen from "./screens/RegisterScreen.jsx";
-import ProfileScreen from "./screens/ProfileScreen.jsx";
-import DashboardScreen from "./screens/DashboardScreen.jsx";
-import ContactScreen from "./screens/ContactScreen.jsx";
-import KatalogScreen from "./screens/KatalogScreen.jsx";
-import ListSupportScreen from "./screens/SupportScreen.jsx";
-import ListUserScreen from "./screens/ListUserScreen.jsx";
-import ListAddressScreen from "./screens/ListAddressScreen.jsx";
-import ListCategoryScreen from "./screens/ListCategoryScreen.jsx";
-import ListArticleScreen from "./screens/ListArticleScreen.jsx";
-import ArticleScreen from "./screens/ArticleScreen.jsx";
-import ListProductScreen from "./screens/ListProductScreen.jsx";
-import ListRiddleScreen from "./screens/ListRiddleScreen.jsx";
-import ListOrderScreen from "./screens/ListOrderScreen.jsx";
-import ListMyOrderScreen from "./screens/ListMyOrderScreen.jsx";
-import ProductDetailScreen from "./screens/ProductDetailScreen.jsx";
-import EditRiddlePage from "./components/admin/riddle/EditRiddlePage.jsx";
-import RiddleScreen from "./screens/RiddleScreen.jsx";
-import RiddleGameScreen from "./screens/RiddleGameScreen.jsx";
-import CartScreen from "./screens/CartScreen.jsx";
-import PrivateRoute from "./components/PrivateRoute.jsx";
-import AdminRoute from "./components/AdminRoute.jsx";
-import OwnerRoute from "./components/OwnerRoute.jsx";
-import DetailArticle from "./screens/ArticleDetail.jsx";
+const App = lazy(() => import("./App"));
+const HomeScreen = lazy(() => import("./screens/HomeScreen"));
+const WikiScreen = lazy(() => import("./screens/WikiScreen"));
+const LoginScreen = lazy(() => import("./screens/LoginScreen"));
+const RegisterScreen = lazy(() => import("./screens/RegisterScreen"));
+const ProfileScreen = lazy(() => import("./screens/ProfileScreen"));
+const DashboardScreen = lazy(() => import("./screens/DashboardScreen"));
+const ContactScreen = lazy(() => import("./screens/ContactScreen"));
+const KatalogScreen = lazy(() => import("./screens/KatalogScreen"));
+const ListSupportScreen = lazy(() => import("./screens/SupportScreen"));
+const ListUserScreen = lazy(() => import("./screens/ListUserScreen"));
+const ListAddressScreen = lazy(() => import("./screens/ListAddressScreen"));
+const ListCategoryScreen = lazy(() => import("./screens/ListCategoryScreen"));
+const ListArticleScreen = lazy(() => import("./screens/ListArticleScreen"));
+const ListProductScreen = lazy(() => import("./screens/ListProductScreen"));
+const ListRiddleScreen = lazy(() => import("./screens/ListRiddleScreen"));
+const ListOrderScreen = lazy(() => import("./screens/ListOrderScreen"));
+const ListMyOrderScreen = lazy(() => import("./screens/ListMyOrderScreen"));
+const ProductDetailScreen = lazy(() => import("./screens/ProductDetailScreen"));
+const EditRiddlePage = lazy(() => import("./components/admin/riddle/EditRiddlePage"));
+const RiddleScreen = lazy(() => import("./screens/RiddleScreen"));
+const RiddleGameScreen = lazy(() => import("./screens/RiddleGameScreen"));
+const CartScreen = lazy(() => import("./screens/CartScreen"));
+const PrivateRoute = lazy(() => import("./components/PrivateRoute"));
+const AdminRoute = lazy(() => import("./components/AdminRoute"));
+const OwnerRoute = lazy(() => import("./components/OwnerRoute"));
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
       path="/"
-      element={<App />}>
+      element={
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <App />
+          </Suspense>
+        </ErrorBoundary>
+      }
+    >
       <Route
-        index={true}
-        path="/"
-        element={<HomeScreen />}
+        index
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <HomeScreen />
+          </Suspense>
+        }
       />
       <Route
-        path="/wiki"
-        element={<WikiScreen />}
+        path="wiki"
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <WikiScreen />
+          </Suspense>
+        }
       />
       <Route
-        path="/login"
-        element={<LoginScreen />}
+        path="login"
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <LoginScreen />
+          </Suspense>
+        }
       />
       <Route
-        path="/register"
-        element={<RegisterScreen />}
+        path="register"
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <RegisterScreen />
+          </Suspense>
+        }
       />
       <Route
-        path="/contact"
-        element={<ContactScreen />}
+        path="contact"
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <ContactScreen />
+          </Suspense>
+        }
       />
       <Route
-        path="/katalog"
-        element={<KatalogScreen />}
+        path="katalog"
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <KatalogScreen />
+          </Suspense>
+        }
       />
       <Route
+
         path="/article"
         element={<ArticleScreen />}
       />
@@ -77,85 +109,153 @@ const router = createBrowserRouter(
         element={<ProductDetailScreen />}
       />
       <Route
-        path="/riddle"
-        element={<RiddleScreen />}
+        path="riddle"
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <RiddleScreen />
+          </Suspense>
+        }
       />
       <Route
-        path="/riddle/:id"
-        element={<RiddleGameScreen />}
+        path="riddle/:id"
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <RiddleGameScreen />
+          </Suspense>
+        }
       />
       <Route
-        path=""
-        element={<PrivateRoute />}>
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <PrivateRoute />
+          </Suspense>
+        }
+      >
         <Route
-          path=""
-          element={<AdminRoute />}>
+          path="dashboard"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <DashboardScreen />
+            </Suspense>
+          }
+        />
+        <Route
+          path="support"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <ListSupportScreen />
+            </Suspense>
+          }
+        />
+        <Route
+          path="listcategories"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <ListCategoryScreen />
+            </Suspense>
+          }
+        />
+        <Route
+          path="listarticles"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <ListArticleScreen />
+            </Suspense>
+          }
+        />
+        <Route
+          path="listproducts"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <ListProductScreen />
+            </Suspense>
+          }
+        />
+        <Route
+          path="listriddles"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <ListRiddleScreen />
+            </Suspense>
+          }
+        />
+        <Route
+          path="editriddle/:id"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <EditRiddlePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="listorders"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <ListOrderScreen />
+            </Suspense>
+          }
+        />
+        <Route
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <OwnerRoute />
+            </Suspense>
+          }
+        >
           <Route
-            path="/dashboard"
-            element={<DashboardScreen />}
+            path="listallusers"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <ListUserScreen />
+              </Suspense>
+            }
           />
-          <Route
-            path="/support"
-            element={<ListSupportScreen />}
-          />
-          <Route
-            path="/listcategories"
-            element={<ListCategoryScreen />}
-          />
-          <Route
-            path="/listarticles"
-            element={<ListArticleScreen />}
-          />
-          <Route
-            path="/listproducts"
-            element={<ListProductScreen />}
-          />
-          <Route
-            path="/listriddles"
-            element={<ListRiddleScreen />}
-          />
-          <Route
-            path="/editriddle/:id"
-            element={<EditRiddlePage />}
-          />
-          <Route
-            path="/listorders"
-            element={<ListOrderScreen />}
-          />
-          <Route
-            path=""
-            element={<OwnerRoute />}>
-            <Route
-              path="/listallusers"
-              element={<ListUserScreen />}
-            />
-          </Route>
         </Route>
         <Route
-          path="/cart"
-          element={<CartScreen />}
+          path="cart"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <CartScreen />
+            </Suspense>
+          }
         />
         <Route
-          path="/profile"
-          element={<ProfileScreen />}
+          path="profile"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <ProfileScreen />
+            </Suspense>
+          }
         />
         <Route
-          path="/addressbook"
-          element={<ListAddressScreen />}
+          path="addressbook"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <ListAddressScreen />
+            </Suspense>
+          }
         />
         <Route
-          path="/myorders"
-          element={<ListMyOrderScreen />}
+          path="myorders"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <ListMyOrderScreen />
+            </Suspense>
+          }
         />
       </Route>
     </Route>
   )
 );
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const AppWrapper = () => (
   <Provider store={store}>
     <React.StrictMode>
       <RouterProvider router={router} />
     </React.StrictMode>
   </Provider>
 );
+
+export default AppWrapper;
+
+ReactDOM.createRoot(document.getElementById("root")).render(<AppWrapper />);

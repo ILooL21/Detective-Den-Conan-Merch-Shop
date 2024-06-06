@@ -93,7 +93,7 @@ const ListArticleScreen = () => {
       {isLoading ? (
         <h2>Loading...</h2>
       ) : (
-        <table className="table-list-product">
+        <table className="table-list-article">
           <thead>
             <tr>
               <th>Judul</th>
@@ -119,8 +119,8 @@ const ListArticleScreen = () => {
                 <td>{article.penulis}</td>
                 <td>{article.editor}</td>
                 <td>
-                  <div className="container-action-product">
-                    <div className="container-edit-product">
+                  <div className="container-action-article">
+                    <div className="container-edit-article">
                       <EditArticleModal
                         articleId={article._id}
                         judul={article.judul}
@@ -128,7 +128,7 @@ const ListArticleScreen = () => {
                         image={article.images}
                       />
                     </div>
-                    <div className="container-delete-product">
+                    <div className="container-delete-article">
                       <button onClick={() => deleteHandler(article._id)}>
                         <DeleteOutlined />
                       </button>
