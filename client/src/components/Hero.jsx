@@ -49,6 +49,9 @@ const Hero = () => {
             )}
           </div>
         </Card>
+        <div>
+          <h2 className="mt-5">All Article</h2>
+        </div>
         <div className="container-view-products">
           <button className="view-product">
             <Link to="/katalog">View All Products</Link>

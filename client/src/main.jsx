@@ -32,6 +32,7 @@ import CartScreen from "./screens/CartScreen.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
 import OwnerRoute from "./components/OwnerRoute.jsx";
+import DetailArticle from "./screens/ArticleDetail.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -64,8 +65,12 @@ const router = createBrowserRouter(
         element={<KatalogScreen />}
       />
       <Route
-        path="/news"
+        path="/article"
         element={<ArticleScreen />}
+      />
+      <Route
+        path="/article/123"
+        element={<DetailArticle />}
       />
       <Route
         path="/product/:id"

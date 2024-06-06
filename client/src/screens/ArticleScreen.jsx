@@ -78,7 +78,7 @@ const ArtikelScreens = () => {
               <div className="card-artikel ">
                 <Row>
                 <Col md={3}>
-                    <a href="/artikel/">
+                    <a href="/article/123">
                       <Card>
                         <Card.Img
                           variant="top"
@@ -97,7 +97,7 @@ const ArtikelScreens = () => {
                     </a>
                   </Col>
                 <Col md={3}>
-                    <a href="/artikel/">
+                    <a href="/article/123">
                       <Card>
                         <Card.Img
                           variant="top"
@@ -116,7 +116,7 @@ const ArtikelScreens = () => {
                     </a>
                   </Col>
                 <Col md={3}>
-                    <a href="/artikel/">
+                    <a href="/article/123">
                       <Card>
                         <Card.Img
                           variant="top"
@@ -135,7 +135,7 @@ const ArtikelScreens = () => {
                     </a>
                   </Col>
                   <Col md={3}>
-                    <a href="/artikel/">
+                    <a href="/article/123">
                       <Card>
                         <Card.Img
                           variant="top"
