@@ -9,6 +9,12 @@ export const articleApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getArticleById: builder.query({
+      query: (id) => ({
+        url: `${ARTICLE_URL}/${id}`,
+        method: "GET",
+      }),
+    }),
     createArticle: builder.mutation({
       query: (data) => ({
         url: `${ARTICLE_URL}`,
@@ -32,4 +38,4 @@ export const articleApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAllArticlesQuery, useCreateArticleMutation, useUpdateArticleMutation, useDeleteArticleMutation } = articleApiSlice;
+export const { useGetAllArticlesQuery, useGetArticleByIdQuery, useCreateArticleMutation, useUpdateArticleMutation, useDeleteArticleMutation } = articleApiSlice;

@@ -20,35 +20,6 @@ const Hero = () => {
             className="image-home-main"
           />
         </div>
-        <Card className="p-5 d-flex flex-column align-items-center hero-card bg-light w-75">
-          <h1 className="text-center mb-4">Detective Den</h1>
-          {userInfo ? <h2>Hello, {userInfo.name}</h2> : null}
-          <p className="text-center mb-4">
-            Selamat Datang di Toko Merch Detective conan
-          </p>
-          <div className="d-flex">
-            {userInfo ? (
-              <>
-                <Button variant="primary" href="/profile" className="me-3">
-                  Profile
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button variant="primary" href="/login" className="me-3">
-                  Sign In
-                </Button>
-                <Button variant="secondary" href="/register">
-                  Sign Up
-                </Button>
-              </>
-            )}
-          </div>
-        </Card>
-        <div>
-          <h2 className="mt-5">All Article</h2>
-        </div>
-
         <div className="container-view-products">
           <button className="view-product">
             <Link to="/katalog">View All Products</Link>

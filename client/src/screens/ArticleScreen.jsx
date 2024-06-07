@@ -1,163 +1,100 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
 import Card from "react-bootstrap/Card";
-// import Carousel from "react-bootstrap";
+import { useGetAllArticlesQuery } from "../slices/articleApiSlice";
+import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const ArtikelScreens = () => {
-  const fontStyle = {
-    textDecoration: "none",
-    color: "black",
-  };
+  const { data: articles, isLoading } = useGetAllArticlesQuery();
+  const navigate = useNavigate();
   const artikelHeader = {
     width: "100%",
-  };
-  const fontAllArtikel = {
-    textDecoration: "gray underline",
-    color: "gray",
   };
 
   const fontStyleJudul = {
     textDecoration: "none",
-    fontSize: "20px",
-    fontWeight: "bold"
+    fontSize: "15px",
+    fontWeight: "bold",
+    color: "black",
   };
   const fontStyleName = {
     textDecoration: "none",
-    fontSize: "10px",
-   
+    fontSize: "12px",
+    color: "gray",
   };
+
+  const cardStyle = {
+    marginTop: "50px",
+    marginBottom: "50px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "350px",
+    cursor: "pointer",
+  };
+
+  const cardImgStyle = {
+    height: "200px",
+    width: "100%",
+    objectFit: "cover",
+  };
+
+  const formatDateTime = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return new Intl.DateTimeFormat("id-ID", options).format(new Date(dateString));
+  };
+
   return (
     <Container>
       <div>
         <div className="container">
           <div
             className="artikel-header d-flex justify-content-between align-items-center"
-            style={{ marginTop: "150px", artikelHeader }}
-          >
+            style={{ marginTop: "150px", artikelHeader }}>
             <div>
-              <h2 className="fs-2">Artikel Screen</h2>
-            </div>
-            <div className="d-flex gap-1">
-              <div>
-                <a href="/" style={fontStyle}>
-                  Home
-                </a>
-              </div>
-              / Artikel
+              <h2 className="fs-2">Artikel</h2>
             </div>
           </div>
 
-          {/* Tujuan Ini Dibuat biar dibenarin sama Rama dan Kawan Kawan heheheh :hehehe */}
-          {/* Carousel */}
-          {/* <Carousel
-            className=""
-            style={{
-              borderRadius: "10px",
-              width: "80%",
-            }}
-          >
-            <Carousel.Item>
-              <img src="../src/assets/images/Conan-Home-Image.png"  alt="" />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src="../src/assets/images/Conan-Home-Image.png"  alt="" />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src="../src/assets/images/Conan-Home-Image.png"  alt="" />
-            </Carousel.Item>
-          </Carousel> */}
-          {/* End Carousel */}
-
           <div className="mt-2">
-
-            {/* Artikel */}
-            <div className="mt-3 mb-3">
-              <div className="card-artikel ">
-                <Row>
-                <Col md={3}>
-                    <a href="/article/123">
-                      <Card>
-                        <Card.Img
-                          variant="top"
-                          src="https://via.placeholder.com/286x200"
-                        />
-                      </Card>
-                      <div
-                        className="artikel-cardBody d-flex gap-2 mt-3"
-                        style={{ alignItems: "center", textDecoration: "none" }}
-                      >
-                        <div class="d-flex flex-column">
-                          <div style={fontStyleJudul}>Judul Article</div>
-                          <div style={fontStyleName}>Name</div>
-                        </div>
-                      </div>
-                    </a>
-                  </Col>
-                <Col md={3}>
-                    <a href="/article/123">
-                      <Card>
-                        <Card.Img
-                          variant="top"
-                          src="https://via.placeholder.com/286x200"
-                        />
-                      </Card>
-                      <div
-                        className="artikel-cardBody d-flex gap-2 mt-3"
-                        style={{ alignItems: "center", textDecoration: "none" }}
-                      >
-                        <div class="d-flex flex-column">
-                          <div style={fontStyleJudul}>Judul Article</div>
-                          <div style={fontStyleName}>Name</div>
-                        </div>
-                      </div>
-                    </a>
-                  </Col>
-                <Col md={3}>
-                    <a href="/article/123">
-                      <Card>
-                        <Card.Img
-                          variant="top"
-                          src="https://via.placeholder.com/286x200"
-                        />
-                      </Card>
-                      <div
-                        className="artikel-cardBody d-flex gap-2 mt-3"
-                        style={{ alignItems: "center", textDecoration: "none" }}
-                      >
-                        <div class="d-flex flex-column">
-                          <div style={fontStyleJudul}>Judul Article</div>
-                          <div style={fontStyleName}>Name</div>
-                        </div>
-                      </div>
-                    </a>
-                  </Col>
-                  <Col md={3}>
-                    <a href="/article/123">
-                      <Card>
-                        <Card.Img
-                          variant="top"
-                          src="https://via.placeholder.com/286x200"
-                        />
-                      </Card>
-                      <div
-                        className="artikel-cardBody d-flex gap-2 mt-3"
-                        style={{ alignItems: "center", textDecoration: "none" }}
-                      >
-                        <div class="d-flex flex-column">
-                          <div style={fontStyleJudul}>Judul Article</div>
-                          <div style={fontStyleName}>Name</div>
-                        </div>
-                      </div>
-                    </a>
-                  </Col>
-                </Row>
+            {isLoading ? (
+              <div>Loading...</div>
+            ) : (
+              <div className="mt-3 mb-3">
+                <div className="card-artikel">
+                  <Row>
+                    {articles?.map((article) => (
+                      <Col
+                        md={3}
+                        key={article._id}>
+                        <Card
+                          style={cardStyle}
+                          onClick={() => navigate(`/article/${article._id}`)}>
+                          <Card.Img
+                            variant="top"
+                            src={`http://localhost:8080/${article.images}`}
+                            style={cardImgStyle}
+                            href={`/article/${article._id}`}
+                          />
+                          <Card.Body className="d-flex flex-column">
+                            <div style={fontStyleJudul}>{article.judul}</div>
+                            <div style={fontStyleName}>
+                              By {article.penulis} - {formatDateTime(article.createdAt)}
+                            </div>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    ))}
+                  </Row>
+                </div>
               </div>
-            </div>
-
-            {/* End Artikel */}
+            )}
           </div>
         </div>
       </div>

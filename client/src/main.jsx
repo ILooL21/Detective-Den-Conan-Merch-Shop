@@ -31,9 +31,10 @@ const RiddleScreen = lazy(() => import("./screens/RiddleScreen"));
 const RiddleGameScreen = lazy(() => import("./screens/RiddleGameScreen"));
 const CartScreen = lazy(() => import("./screens/CartScreen"));
 const PrivateRoute = lazy(() => import("./components/PrivateRoute"));
-const AdminRoute = lazy(() => import("./components/AdminRoute"));
+// const AdminRoute = lazy(() => import("./components/AdminRoute"));
 const OwnerRoute = lazy(() => import("./components/OwnerRoute"));
-
+const ArticleScreen = lazy(() => import("./screens/ArticleScreen"));
+const DetailArticle = lazy(() => import("./screens/ArticleDetail"));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,8 +46,7 @@ const router = createBrowserRouter(
             <App />
           </Suspense>
         </ErrorBoundary>
-      }
-    >
+      }>
       <Route
         index
         element={
@@ -96,12 +96,11 @@ const router = createBrowserRouter(
         }
       />
       <Route
-
         path="/article"
         element={<ArticleScreen />}
       />
       <Route
-        path="/article/123"
+        path="/article/:id"
         element={<DetailArticle />}
       />
       <Route
@@ -129,8 +128,7 @@ const router = createBrowserRouter(
           <Suspense fallback={<div>Loading...</div>}>
             <PrivateRoute />
           </Suspense>
-        }
-      >
+        }>
         <Route
           path="dashboard"
           element={
@@ -200,8 +198,7 @@ const router = createBrowserRouter(
             <Suspense fallback={<div>Loading...</div>}>
               <OwnerRoute />
             </Suspense>
-          }
-        >
+          }>
           <Route
             path="listallusers"
             element={
