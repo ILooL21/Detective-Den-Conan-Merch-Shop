@@ -1,11 +1,12 @@
 {
   "name": "detective-den-conan-merch-shop",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "type": "module",
   "description": "conan merch shop",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "start:dev": "bun --hot index.js",
+    "start:prod": "bun index.js"
   },
   "author": "Kelompok 2 (Ilul, Raka, Rama, Haris, Indira, Fina)",
   "dependencies": {

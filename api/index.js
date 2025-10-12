@@ -1,7 +1,6 @@
 import path from "path";
 import express from "express";
 import dotenv from "dotenv";
-dotenv.config();
 import connectDB from "./config/db.js";
 import multer from "multer";
 import cookieParser from "cookie-parser";
@@ -18,15 +17,21 @@ import getCurrentTime from "./utils/getCurrentTime.js";
 
 import { fileURLToPath } from "url";
 
-const port = process.env.PORT || 5000;
+// Load environment variables
+dotenv.config();
 
+// Connect to databas
 connectDB();
 
+// Initialize express
 const app = express();
 
+// Static folder for images
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+app.use("/public", express.static(path.join(__dirname, "/public")));
 
+// File upload settings
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/images");
@@ -44,13 +49,15 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single("image"));
+
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
-app.use("/public", express.static(path.join(__dirname, "/public")));
-app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single("image"));
 
+// Routes
 app.use("/api/categories", categoryRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
@@ -60,6 +67,7 @@ app.use("/api/riddles", riddleRoutes);
 app.use("/api/carts", cartRoutes);
 app.use("/api/orders", orderRoutes);
 
+// Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
   app.use(express.static(path.join(__dirname, "/client/dist")));
@@ -71,7 +79,9 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+// Error Handling Middleware
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+// Start server
+app.listen(process.env.PORT, () => console.log(`Server started on port ${process.env.PORT}`));
