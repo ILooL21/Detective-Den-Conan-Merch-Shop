@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react';
+import { fetchBaseQuery, createApi } from "@reduxjs/toolkit/query/react";
 
-const baseQuery = fetchBaseQuery({ baseUrl: '' });
+const baseQuery = fetchBaseQuery({ baseUrl: process.env.VITE_API_URL });
 
 export const apiSlice = createApi({
   baseQuery,
-  tagTypes: ['User'],
-  endpoints: (builder) => ({
-  }),
+  tagTypes: ["User"],
+  endpoints: (builder) => ({}),
 });

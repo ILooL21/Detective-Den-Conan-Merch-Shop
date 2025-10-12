@@ -3,10 +3,10 @@
   "version": "1.2.0",
   "type": "module",
   "description": "conan merch shop",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start:dev": "bun --hot index.js",
-    "start:prod": "bun index.js"
+    "start:dev": "bun --hot main.js",
+    "start:prod": "bun main.js"
   },
   "author": "Kelompok 2 (Ilul, Raka, Rama, Haris, Indira, Fina)",
   "dependencies": {
