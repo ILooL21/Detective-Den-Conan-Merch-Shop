@@ -42,17 +42,23 @@ const ResultRiddleModal = (props) => {
         <button onClick={handleShow}>Lihat Hasil</button>
       </div>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal
+        show={show}
+        onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Hasil</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {message === "Correct" ? (
-            <div className="alert alert-primary" role="alert">
+            <div
+              className="alert alert-primary"
+              role="alert">
               Jawaban Benar
             </div>
           ) : (
-            <div className="alert alert-danger" role="alert">
+            <div
+              className="alert alert-danger"
+              role="alert">
               Jawaban Salah
             </div>
           )}
@@ -60,7 +66,9 @@ const ResultRiddleModal = (props) => {
           <p>Alasan : {alasan}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button
+            variant="secondary"
+            onClick={handleClose}>
             Tutup
           </Button>
         </Modal.Footer>
