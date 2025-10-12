@@ -2,7 +2,7 @@ import AsyncHandler from "express-async-handler";
 import Support from "../models/supportModel.js";
 
 // @desc   add support
-// @route   POST /api/supports
+// @route   POST /api/v1/supports
 // @access  Private/Admin
 const addSupport = AsyncHandler(async (req, res) => {
   const { email, subject, message } = req.body;
@@ -18,7 +18,7 @@ const addSupport = AsyncHandler(async (req, res) => {
 });
 
 // @desc    Fetch all supports
-// @route   GET /api/supports
+// @route   GET /api/v1/supports
 // @access  Private/Admin
 const getSupports = AsyncHandler(async (req, res) => {
   const supports = await Support.find({});
@@ -33,7 +33,7 @@ const getSupports = AsyncHandler(async (req, res) => {
 });
 
 // @desc    delete support
-// @route   DELETE /api/supports/:id
+// @route   DELETE /api/v1/supports/:id
 // @access  Private/Admin
 
 const deleteSupport = AsyncHandler(async (req, res) => {

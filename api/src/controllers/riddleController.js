@@ -4,7 +4,7 @@ import { unlink } from "node:fs";
 import e from "express";
 
 // @desc    Fetch all riddles
-// @route   GET /api/riddles
+// @route   GET /api/v1/riddles
 // @access  Public
 const getRiddles = expressAsyncHandler(async (req, res) => {
   const riddles = await Riddle.find({});
@@ -18,7 +18,7 @@ const getRiddles = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    Fetch single riddle
-// @route   GET /api/riddles/:id
+// @route   GET /api/v1/riddles/:id
 // @access  Public
 const getRiddleById = expressAsyncHandler(async (req, res) => {
   const riddle = await Riddle.findById(req.params.id);
@@ -32,7 +32,7 @@ const getRiddleById = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    add riddle
-// @route   POST /api/riddles
+// @route   POST /api/v1/riddles
 // @access  Private/Admin
 const addRiddle = expressAsyncHandler(async (req, res) => {
   const { title, kronologi } = req.body;
@@ -48,7 +48,7 @@ const addRiddle = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    update riddle
-// @route   PUT /api/riddles/:id
+// @route   PUT /api/v1/riddles/:id
 // @access  Private/Admin
 const updateRiddle = expressAsyncHandler(async (req, res) => {
   const { title, kronologi, clue, pelaku, alasan } = req.body;
@@ -87,7 +87,7 @@ const updateRiddle = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    delete riddle
-// @route   DELETE /api/riddles/:id
+// @route   DELETE /api/v1/riddles/:id
 // @access  Private/Admin
 const deleteRiddle = expressAsyncHandler(async (req, res) => {
   const riddle = await Riddle.findById(req.params.id);
@@ -109,7 +109,7 @@ const deleteRiddle = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    add Tersangka
-// @route   PUT /api/riddles/tersangka/:id
+// @route   PUT /api/v1/riddles/tersangka/:id
 // @access  Private/Admin
 const addTersangka = expressAsyncHandler(async (req, res) => {
   const { tersangka, alibi } = req.body;
@@ -132,7 +132,7 @@ const addTersangka = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    delete Tersangka
-// @route   PUT /api/riddles/tersangka/:id
+// @route   PUT /api/v1/riddles/tersangka/:id
 // @access  Private/Admin
 const deleteTersangka = expressAsyncHandler(async (req, res) => {
   const { tersangka } = req.body;
@@ -155,7 +155,7 @@ const deleteTersangka = expressAsyncHandler(async (req, res) => {
 });
 
 //@desc   answer riddle
-//@route  POST /api/riddles/:id/answer
+//@route  POST /api/v1/riddles/:id/answer
 //@access Public
 const answerRiddle = expressAsyncHandler(async (req, res) => {
   const { answer } = req.body;

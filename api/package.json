@@ -5,13 +5,14 @@
   "description": "conan merch shop",
   "main": "main.js",
   "scripts": {
-    "start:dev": "bun --hot main.js",
-    "start:prod": "bun main.js"
+    "start": "node main.js",
+    "start:dev": "bun --hot main.js"
   },
   "author": "Kelompok 2 (Ilul, Raka, Rama, Haris, Indira, Fina)",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",

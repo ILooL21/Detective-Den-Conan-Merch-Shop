@@ -3,7 +3,7 @@ import Category from "../models/categoryModel.js";
 import Product from "../models/productModel.js";
 
 // @desc    Fetch all categories
-// @route   GET /api/categories
+// @route   GET /api/v1/categories
 // @access  Public
 const getCategories = asyncHandler(async (req, res) => {
   const categories = await Category.find({});
@@ -12,7 +12,7 @@ const getCategories = asyncHandler(async (req, res) => {
 });
 
 // @desc    add category
-// @route   POST /api/categories
+// @route   POST /api/v1/categories
 // @access  Private/Admin
 const addCategory = asyncHandler(async (req, res) => {
   const { name } = req.body;
@@ -26,7 +26,7 @@ const addCategory = asyncHandler(async (req, res) => {
 });
 
 // @desc    Update a category
-// @route   PUT /api/categories/:id
+// @route   PUT /api/v1/categories/:id
 // @access  Private/Admin
 const updateCategory = asyncHandler(async (req, res) => {
   const { name } = req.body;
@@ -54,7 +54,7 @@ const updateCategory = asyncHandler(async (req, res) => {
 });
 
 // @desc    Delete a category
-// @route   DELETE /api/categories/:id
+// @route   DELETE /api/v1/categories/:id
 // @access  Private/Admin
 const deleteCategory = asyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id);

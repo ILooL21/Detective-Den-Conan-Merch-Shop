@@ -4,7 +4,7 @@ import Cart from "../models/cartModel.js";
 import { unlink } from "node:fs";
 
 // @desc    Fetch all products
-// @route   GET /api/products
+// @route   GET /api/v1/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({});
@@ -18,7 +18,7 @@ const getProducts = asyncHandler(async (req, res) => {
 });
 
 // @desc    Fetch single product
-// @route   GET /api/products/:id
+// @route   GET /api/v1/products/:id
 // @access  Public
 const getProductById = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
@@ -32,7 +32,7 @@ const getProductById = asyncHandler(async (req, res) => {
 });
 
 // @desc    add product
-// @route   POST /api/products
+// @route   POST /api/v1/products
 // @access  Private/Admin
 const addProduct = asyncHandler(async (req, res) => {
   const { name, category, description, price } = req.body;
@@ -50,7 +50,7 @@ const addProduct = asyncHandler(async (req, res) => {
 });
 
 // @desc    update product
-// @route   PUT /api/products/:id
+// @route   PUT /api/v1/products/:id
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
   const { name, category, description, price, stock } = req.body;
@@ -102,7 +102,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 });
 
 // @desc    delete product
-// @route   DELETE /api/products/:id
+// @route   DELETE /api/v1/products/:id
 // @access  Private/Admin
 const deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
@@ -135,7 +135,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 });
 
 //@desc   rating
-//@route  POST /api/products/:id/reviews
+//@route  POST /api/v1/products/:id/reviews
 //@access Private
 const createProductReview = asyncHandler(async (req, res) => {
   const { rating } = req.body;

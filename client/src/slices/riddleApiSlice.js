@@ -1,5 +1,5 @@
 import { apiSlice } from "./apiSlice";
-const RIDDLE_URL = "/api/riddles";
+const RIDDLE_URL = "/api/v1/riddles";
 
 export const riddleApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

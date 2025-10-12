@@ -4,7 +4,7 @@ import Product from "../models/productModel.js";
 import Cart from "../models/cartModel.js";
 
 // @desc    Fetch all orders
-// @route   GET /api/orders
+// @route   GET /api/v1/orders
 // @access  Private/Admin
 
 const getOrders = expressAsyncHandler(async (req, res) => {
@@ -38,7 +38,7 @@ const getOrders = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    Create new order
-// @route   POST /api/orders
+// @route   POST /api/v1/orders
 // @access  Private
 
 const addOrderItems = expressAsyncHandler(async (req, res) => {
@@ -83,7 +83,7 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    Get order all user order
-// @route   GET /api/orders
+// @route   GET /api/v1/orders
 // @access  Private
 
 const getMyOrders = expressAsyncHandler(async (req, res) => {
@@ -128,7 +128,7 @@ const getMyOrders = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    update order
-// @route   PUT /api/orders/:id
+// @route   PUT /api/v1/orders/:id
 // @access  Private
 
 const updateOrder = expressAsyncHandler(async (req, res) => {
@@ -165,7 +165,7 @@ const updateOrder = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    paid order
-// @route   PUT /api/orders/:id/paid
+// @route   PUT /api/v1/orders/:id/paid
 // @access  Private
 
 const paidOrder = expressAsyncHandler(async (req, res) => {
@@ -189,7 +189,7 @@ const paidOrder = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    selesai order
-// @route   Put /api/orders/:id/selesai
+// @route   Put /api/v1/orders/:id/selesai
 // @access  Private
 
 const selesaiOrder = expressAsyncHandler(async (req, res) => {
@@ -213,7 +213,7 @@ const selesaiOrder = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    cancel order
-// @route   Put /api/orders/:id/cancel
+// @route   Put /api/v1/orders/:id/cancel
 // @access  Private
 
 const cancelOrder = expressAsyncHandler(async (req, res) => {

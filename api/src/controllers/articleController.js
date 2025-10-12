@@ -3,7 +3,7 @@ import Article from "../models/articleModel.js";
 import { unlink } from "node:fs";
 
 // @desc    Fetch all articles
-// @route   GET /api/articles
+// @route   GET /api/v1/articles
 // @access  Public
 const getArticles = asyncHandler(async (req, res) => {
   const articles = await Article.find({});
@@ -11,9 +11,8 @@ const getArticles = asyncHandler(async (req, res) => {
 });
 
 // @desc    Fetch single article
-// @route   GET /api/articles/:id
+// @route   GET /api/v1/articles/:id
 // @access  Public
-
 const getArticleById = asyncHandler(async (req, res) => {
   const article = await Article.findById(req.params.id);
 
@@ -26,7 +25,7 @@ const getArticleById = asyncHandler(async (req, res) => {
 });
 
 // @desc    Create a article
-// @route   POST /api/articles
+// @route   POST /api/v1/articles
 // @access  Private/Admin
 const createArticle = asyncHandler(async (req, res) => {
   const { judul, isi } = req.body;
@@ -44,7 +43,7 @@ const createArticle = asyncHandler(async (req, res) => {
 });
 
 // @desc    Update an article
-// @route   PUT /api/articles/:id
+// @route   PUT /api/v1/articles/:id
 // @access  Private/Admin
 const updateArticle = asyncHandler(async (req, res) => {
   const { judul, isi } = req.body;
@@ -80,7 +79,7 @@ const updateArticle = asyncHandler(async (req, res) => {
 });
 
 // @desc    Delete an article
-// @route   DELETE /api/articles/:id
+// @route   DELETE /api/v1/articles/:id
 // @access  Private/Admin
 const deleteArticle = asyncHandler(async (req, res) => {
   const article = await Article.findById(req.params.id);

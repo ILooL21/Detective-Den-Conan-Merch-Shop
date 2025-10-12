@@ -1,87 +1,13 @@
-import path from "path";
-import express from "express";
-import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-import multer from "multer";
-import cookieParser from "cookie-parser";
-import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
-import userRoutes from "./routes/userRoutes.js";
-import categoryRoutes from "./routes/categoryRoutes.js";
-import productRoutes from "./routes/productRoutes.js";
-import supportRoutes from "./routes/supportRoutes.js";
-import articleRoutes from "./routes/articleRoutes.js";
-import riddleRoutes from "./routes/riddleRoutes.js";
-import cartRoutes from "./routes/cartRoutes.js";
-import orderRoutes from "./routes/orderRoutes.js";
-import getCurrentTime from "./utils/getCurrentTime.js";
+import app from "./app.js";
+import connectDB from "./src/config/database.js";
+import corsConfig from "./src/config/cors.js";
+import config from "./src/config/environment.js";
 
-import { fileURLToPath } from "url";
-
-// Load environment variables
-dotenv.config();
-
-// Connect to databas
+// Jalankan koneksi ke database
 connectDB();
 
-// Initialize express
-const app = express();
+// Konfigurasi CORS
+app.use(corsConfig);
 
-// Static folder for images
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-app.use("/public", express.static(path.join(__dirname, "/public")));
-
-// File upload settings
-const fileStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/images");
-  },
-  filename: (req, file, cb) => {
-    cb(null, getCurrentTime() + "-" + file.originalname);
-  },
-});
-
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-};
-
-app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single("image"));
-
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.use(cookieParser());
-
-// Routes
-app.use("/api/categories", categoryRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/products", productRoutes);
-app.use("/api/supports", supportRoutes);
-app.use("/api/articles", articleRoutes);
-app.use("/api/riddles", riddleRoutes);
-app.use("/api/carts", cartRoutes);
-app.use("/api/orders", orderRoutes);
-
-// Serve static assets if in production
-if (process.env.NODE_ENV === "production") {
-  const __dirname = path.resolve();
-  app.use(express.static(path.join(__dirname, "/client/dist")));
-
-  app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, "client", "dist", "index.html")));
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is running....");
-  });
-}
-
-// Error Handling Middleware
-app.use(notFound);
-app.use(errorHandler);
-
-// Start server
-app.listen(process.env.PORT, () => console.log(`Server started on port ${process.env.PORT}`));
+// Jalankan server
+app.listen(config.port, () => console.log(`🚀 Server berjalan di mode ${config.nodeEnv} pada port ${config.port}`));

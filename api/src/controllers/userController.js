@@ -6,7 +6,7 @@ import generateToken from "../utils/generateToken.js";
 import generateCart from "../utils/generateCart.js";
 
 // @desc    Auth user & get token
-// @route   POST /api/users/auth
+// @route   POST /api/v1/users/auth
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -40,7 +40,7 @@ const authUser = asyncHandler(async (req, res) => {
 });
 
 // @desc    Register a new user
-// @route   POST /api/users
+// @route   POST /api/v1/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
@@ -78,7 +78,7 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 // @desc    Logout user / clear cookie
-// @route   POST /api/users/logout
+// @route   POST /api/v1/users/logout
 // @access  Public
 const logoutUser = (req, res) => {
   const token = req.cookies.jwt;
@@ -92,7 +92,7 @@ const logoutUser = (req, res) => {
 };
 
 // @desc    Get user profile
-// @route   GET /api/users/profile
+// @route   GET /api/v1/users/profile
 // @access  Private
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
@@ -112,7 +112,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 });
 
 // @desc    Get all users
-// @route   GET /api/users/allUser
+// @route   GET /api/v1/users/allUser
 // @access  Private
 const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find({ $or: [{ role: "user" }, { role: "admin" }] }).sort({ role: 1 });
@@ -133,7 +133,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
 });
 
 // @desc    Update user profile
-// @route   PUT /api/users/profile
+// @route   PUT /api/v1/users/profile
 // @access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
@@ -180,7 +180,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 });
 
 // @desc    Change user role
-// @route   Put /api/users/changeRole
+// @route   Put /api/v1/users/changeRole
 // @access  Private
 const changeUserRole = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body.id);
@@ -204,7 +204,7 @@ const changeUserRole = asyncHandler(async (req, res) => {
 });
 
 // @desc    refresh token
-// @route   POST /api/users/refreshToken
+// @route   POST /api/v1/users/refreshToken
 // @access  Public
 const refreshToken = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body.id);
@@ -222,7 +222,7 @@ const refreshToken = asyncHandler(async (req, res) => {
 });
 
 // @desc    add alamat
-// @route   POST /api/users/alamat
+// @route   POST /api/v1/users/alamat
 // @access  Private
 
 const addAlamat = asyncHandler(async (req, res) => {
@@ -251,7 +251,7 @@ const addAlamat = asyncHandler(async (req, res) => {
 });
 
 // @desc    delete alamat
-// @route   DELETE /api/users/alamat
+// @route   DELETE /api/v1/users/alamat
 // @access  Private
 
 const deleteAlamat = asyncHandler(async (req, res) => {

@@ -3,7 +3,7 @@ import Cart from "../models/cartModel.js";
 import Product from "../models/productModel.js";
 
 // @desc    Fetch single cart dari id pemilik
-// @route   GET /api/carts/
+// @route   GET /api/v1/carts/
 // @access  Private
 
 const getCartById = expressAsyncHandler(async (req, res) => {
@@ -24,7 +24,7 @@ const getCartById = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    tambah jumlah product di cart
-// @route   PUT /api/carts/addproduct
+// @route   PUT /api/v1/carts/addproduct
 // @access  Private
 const addProductToCart = expressAsyncHandler(async (req, res) => {
   const { id, product, quantity, price, image } = req.body;
@@ -53,7 +53,7 @@ const addProductToCart = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    kurangi jumlah product di cart
-// @route   PUT /api/carts/decreaseproduct
+// @route   PUT /api/v1/carts/decreaseproduct
 // @access  Private
 
 const decreaseProductInCart = expressAsyncHandler(async (req, res) => {
@@ -83,7 +83,7 @@ const decreaseProductInCart = expressAsyncHandler(async (req, res) => {
 });
 
 // @desc    hapus product di cart
-// @route   DELETE /api/carts/deleteproduct
+// @route   DELETE /api/v1/carts/deleteproduct
 // @access  Private
 const deleteProductInCart = expressAsyncHandler(async (req, res) => {
   const { product } = req.body;

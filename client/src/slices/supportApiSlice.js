@@ -1,5 +1,5 @@
 import { apiSlice } from "./apiSlice";
-const SUPPORT_URL = "/api/supports";
+const SUPPORT_URL = "/api/v1/supports";
 
 export const supportApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
